@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_onboarding"
+    app:startDestination="@id/firstOnboardingFragment">
+    <fragment
+        android:id="@+id/firstOnboardingFragment"
+        android:name="com.example.tasksapp.presentation.onboarding.onboardingfragment.FirstOnboardingFragment"
+        android:label="fragment_firstOnboarding"
+        tools:layout="@layout/fragment_first_onboarding">
+        <action
+            android:id="@+id/action_firstOnboardingFragment_to_secondOnboardingFragment"
+            app:destination="@id/secondOnboardingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondOnboardingFragment"
+        android:name="com.example.tasksapp.presentation.onboarding.onboardingfragment.SecondOnboardingFragment"
+        android:label="fragment_secondOnboarding"
+        tools:layout="@layout/fragment_second_onboarding">
+        <action
+            android:id="@+id/action_secondOnboardingFragment_to_thirdOnboardingFragment"
+            app:destination="@id/thirdOnboardingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdOnboardingFragment"
+        android:name="com.example.tasksapp.presentation.onboarding.onboardingfragment.ThirdOnboardingFragment"
+        android:label="fragment_thirdOnboarding"
+        tools:layout="@layout/fragment_third_onboarding">
+    </fragment>
+</navigation>

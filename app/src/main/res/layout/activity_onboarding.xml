@@ -5,6 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/default_margin"
     tools:context=".presentation.onboarding.OnboardingActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_onboarding"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_onboarding" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

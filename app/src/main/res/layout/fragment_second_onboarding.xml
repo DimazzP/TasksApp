@@ -20,12 +20,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/bg_obd1"
+        android:id="@+id/bg_obd2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_margin"
         android:contentDescription="@string/img_obd1"
-        android:src="@drawable/bg_obd1"
+        android:src="@drawable/bg_obd2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/obd_tasks" />
@@ -41,7 +41,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bg_obd1" />
+        app:layout_constraintTop_toBottomOf="@id/bg_obd2" />
 
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/flex_layout"
@@ -138,6 +138,7 @@
         app:layout_constraintTop_toTopOf="@id/linear_indicator" />
 
     <ImageButton
+        android:id="@+id/button_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_next_button"

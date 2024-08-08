@@ -3,8 +3,14 @@
     <style name="Base.Theme.TasksApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <style name="AppTheme.CustomFont" parent="Theme.AppCompat.Light.DarkActionBar">
-            <item name="android:fontFamily">@font/poppins</item>
-        </style>
+        <item name="android:windowBackground">@android:color/white</item>
+        <!-- Warna latar belakang status bar -->
+        <item name="android:statusBarColor">@android:color/white</item>
+        <!-- Warna latar belakang navigation bar -->
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <!-- Warna teks status bar -->
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Warna latar belakang aktivitas -->
+        <item name="android:colorBackground">@android:color/white</item>
     </style>
 </resources>

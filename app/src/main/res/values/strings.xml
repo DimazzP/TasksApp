@@ -5,35 +5,64 @@
     <string name="tasks">tasks</string>
 
 <!--    onboarding 1-->
-    <string name="obd1_tx1">Mari ciptakan&#032;</string>
-    <string name="obd1_tx2">ruang&#032;</string>
-    <string name="obd1_tx3">untuk&#032;</string>
+    <string name="obd1_tx1">Mari ciptakan&#160;</string>
+    <string name="obd1_tx2">ruang&#160;</string>
+    <string name="obd1_tx3">untuk&#160;</string>
     <string name="obd1_tx4">alur kerja Anda.?</string>
-    <string name="obd1_tx">Mari ciptakan ruang untuk alur kerja Anda.?</string>
+    <string name="obd1_tx">Mari ciptakan ruang untuk alur kerja Anda.</string>
     <string name="obd1_manage_tasks">Manajemen Tugas</string>
     <string name="obd1_next">Lewati</string>
 
 <!--    onboarding 2-->
     <string name="obd2_tx1">Bekerja lebih</string>
-    <string name="obd2_tx2">terstruktur&#032;</string>
-    <string name="obd2_tx3">dan&#032;</string>
+    <string name="obd2_tx2">terstruktur&#160;</string>
+    <string name="obd2_tx3">dan&#160;</string>
     <string name="obd2_tx4">Terorganisir👌</string>
     <string name="obd2_tx">Bekerja lebih terstruktur dan terorganisir👌</string>
 
 
     <!--    onboarding 3-->
-    <string name="obd3_tx1">Kelola tugas&#032;</string>
-    <string name="obd3_tx2">cepat&#032;</string>
-    <string name="obd3_tx3">untuk&#032;</string>
+    <string name="obd3_tx1">Kelola tugas&#160;</string>
+    <string name="obd3_tx2">cepat&#160;</string>
+    <string name="obd3_tx3">untuk&#160;</string>
     <string name="obd3_tx4">hasil Maksimal ✌</string>
     <string name="obd3_tx">Kelola tugas cepat untuk hasil Maksimal✌</string>
 
+<!--    login-->
+    <string name="lgn_login">Masuk</string>
+    <string name="lgn_wellcome">Selamat Datang</string>
+    <string name="lgn_description">Silakan masukkan alamat email dan kata sandi untuk Masuk</string>
+    <string name="lgn_email">Email</string>
+    <string name="lgn_password">Kata Sandi</string>
+    <string name="lgn_forgot_password">Lupa Sandi?</string>
+    <string name="lgn_with">Masuk dengan</string>
+    <string name="lgn_not_register">Belum terdaftar?&#160;</string>
+
+<!--    register-->
+    <string name="reg_register">Daftar</string>
+    <string name="reg_name">Nama</string>
+    <string name="reg_title">Buat Akun</string>
+    <string name="reg_description">Silakan masukkan informasi Anda dan buat akun Anda</string>
+    <string name="reg_with">Daftar</string>
+    <string name="reg_have_account">Sudah punya akun?&#160;</string>
+
+<!--    home-->
+    <string name="hom_example_date">Selasa, 21 April 2024</string>
+    <string name="hom_example_name">Andi</string>
+    <string name="hom_hello">Halo&#160;</string>
+    <string name="hom_wishes">Semoga harimu menyenangkan!</string>
+    <string name="hom_daily_task">Tugas Harian</string>
 
 <!--    image descripstion-->
+    <string name="img_checker_square">Image Checker Square</string>
     <string name="img_obd1">Image Onboarding 1</string>
     <string name="img_obd2">Image Onboarding 1</string>
     <string name="img_obd3">Image Onboarding 1</string>
     <string name="img_next_obd">Image Next Onboarding</string>
     <string name="img_select_obd">Image Selected Onboarding</string>
     <string name="img_not_select_obd">Image Not Selected Onboarding</string>
+    <string name="img_back">Back Button</string>
+    <string name="img_apple">Apple Logo</string>
+    <string name="img_google">Google Logo</string>
+
 </resources>
