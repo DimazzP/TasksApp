@@ -14,5 +14,9 @@
         <!-- Warna latar belakang aktivitas -->
         <item name="android:colorBackground">@android:color/white</item>
     </style>
+    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">@color/black</item>
+        <item name="android:textColorSecondary">@color/purple_deep</item>
+    </style>
     <style name="Theme.TasksApp" parent="Base.Theme.TasksApp" />
 </resources>

@@ -8,4 +8,9 @@
     <color name="gray_stroke">#E9F1FF</color>
     <color name="purple_deep">#5451D6</color>
     <color name="purple_soft">#8b78ff</color>
+    <color name="purple_trans">#ebe7ff</color>
+    <color name="item_purple_progress">#61346B</color>
+    <color name="item_purple_bg_progress">#7E498A</color>
+    <color name="item_yellow_progress">#F2C75B</color>
+    <color name="item_yellow_bg_progress">#EDD494</color>
 </resources>

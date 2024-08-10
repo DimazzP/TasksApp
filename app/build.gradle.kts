@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.tasksapp"
-        minSdk = 24
+        minSdk = 27
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -54,6 +54,8 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.viewpager2)
     implementation(libs.flexbox)
+    implementation(libs.glide)
+    annotationProcessor(libs.glide.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

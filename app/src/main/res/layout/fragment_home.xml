@@ -1,57 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_login"
-    android:paddingHorizontal="@dimen/default_margin_2"
-    android:paddingVertical="@dimen/default_margin"
     tools:context=".presentation.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/hom_date"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter"
-        android:text="@string/hom_example_date"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingHorizontal="@dimen/default_margin_2"
+        android:paddingVertical="@dimen/default_margin">
 
-    <TextView
-        android:id="@+id/hom_hello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_margin"
-        android:fontFamily="@font/inter"
-        android:text="@string/hom_hello"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hom_date" />
+        <TextView
+            android:id="@+id/hom_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/hom_example_date"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/hom_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_margin"
-        android:fontFamily="@font/inter"
-        android:text="@string/hom_example_name"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/hom_hello"
-        app:layout_constraintTop_toBottomOf="@id/hom_date" />
+        <TextView
+            android:id="@+id/hom_hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/hom_hello"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hom_date" />
 
-    <TextView
-        android:id="@+id/hom_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter"
-        android:text="@string/hom_wishes"
-        android:textColor="@color/gray_text"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hom_name" />
+        <TextView
+            android:id="@+id/hom_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/hom_example_name"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/hom_hello"
+            app:layout_constraintTop_toBottomOf="@id/hom_date" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/hom_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/hom_wishes"
+            android:textColor="@color/gray_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hom_name" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/hom_cons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:background="@drawable/bg_hom_searchview"
+            android:paddingHorizontal="23dp"
+            android:paddingVertical="11dp"
+            app:layout_constraintTop_toBottomOf="@id/hom_description">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/hom_search"
+                android:textColor="@color/gray_text"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/hom_ic_search"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/hom_ic_search" />
+
+            <ImageView
+                android:id="@+id/hom_ic_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/img_ic_search"
+                android:src="@drawable/ic_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/hom_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="20dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@id/hom_cons" />
+
+        <TextView
+            android:id="@+id/hom_daily_tasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/hom_daily_task"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hom_view_pager" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hom_rc_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/hom_daily_tasks"
+            tools:itemCount="10"
+            tools:layout_editor_absoluteX="5dp"
+            tools:listitem="@layout/adp_task" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/hom_add_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/purple_deep"
+            android:contentDescription="@string/img_add"
+            android:src="@drawable/ic_add"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hom_rc_task"
+            app:tint="@color/white" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -23,7 +23,7 @@
         android:id="@+id/lgn_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter"
+        android:fontFamily="@font/inter_regular"
         android:text="@string/lgn_login"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:fontFamily="@font/poppins"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/lgn_wellcome"
         android:textColor="@color/black"
         android:textSize="23sp"
@@ -121,7 +121,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter"
+        android:fontFamily="@font/inter_regular"
         android:includeFontPadding="false"
         android:letterSpacing="0.05"
         android:paddingLeft="0dp"
@@ -140,7 +140,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/purple_deep"
-        android:fontFamily="@font/poppins"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/lgn_login"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/lgn_forgot_pass" />
@@ -150,7 +150,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:fontFamily="@font/inter"
+        android:fontFamily="@font/inter_regular"
         android:text="@string/lgn_with"
         android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/lgn_btn_login" />
@@ -221,7 +221,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/inter_regular"
             android:text="@string/lgn_not_register"
             android:textColor="@color/gray_text"
             android:textSize="14sp" />
@@ -229,7 +229,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/inter_regular"
             android:text="@string/reg_register"
             android:textColor="@color/purple_deep"
             android:textSize="14sp"

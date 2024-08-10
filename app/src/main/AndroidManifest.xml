@@ -16,10 +16,10 @@
             android:name=".presentation.onboarding.OnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.main.MainActivity"
+            android:name=".presentation.splashscreen.SplashScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.splashscreen.SplashScreenActivity"
+            android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

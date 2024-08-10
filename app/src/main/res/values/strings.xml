@@ -51,7 +51,24 @@
     <string name="hom_example_name">Andi</string>
     <string name="hom_hello">Halo&#160;</string>
     <string name="hom_wishes">Semoga harimu menyenangkan!</string>
+    <string name="hom_search">Cari</string>
     <string name="hom_daily_task">Tugas Harian</string>
+
+<!--    adp_progress-->
+    <string name="adp_progress_example_title">Belajar Laravel</string>"
+    <string name="adp_progress_progress">Progress</string>
+    <string name="adp_example_example_users">2 Lainnya</string>
+
+<!--    adp_task-->
+    <string name="adp_task_example_title">Tugas 1</string>
+    <string name="adp_task_example_description">Mengerjakan Kuis</string>
+    <string name="adp_task_hyphen">-</string>
+    <string name="adp_task_time">07:00</string>
+
+<!--    detail task-->
+    <string name="detask_example_title">Desain UI</string>
+    <string name="detask_example_data">23/04/2024</string>
+
 
 <!--    image descripstion-->
     <string name="img_checker_square">Image Checker Square</string>
@@ -61,7 +78,10 @@
     <string name="img_next_obd">Image Next Onboarding</string>
     <string name="img_select_obd">Image Selected Onboarding</string>
     <string name="img_not_select_obd">Image Not Selected Onboarding</string>
+    <string name="img_ic_search">Icon Search</string>
     <string name="img_back">Back Button</string>
+    <string name="img_add">Icon Add</string>
+    <string name="img_bg_progress">Icon Add</string>
     <string name="img_apple">Apple Logo</string>
     <string name="img_google">Google Logo</string>
 

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/adp_task_root"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/item_purple_progress"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp">
+
+        <ImageView
+            android:id="@+id/adp_task_img_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-10dp"
+            android:contentDescription="@string/img_bg_progress"
+            android:src="@drawable/bg_adp_hom_progress"
+            app:tint="@color/item_purple_bg_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/adp_progress_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:fontFamily="@font/inter_medium"
+            android:lines="2"
+            android:maxLines="2"
+            android:text="@string/adp_progress_example_title"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/adp_progress_txpro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/adp_progress_progress"
+            android:textColor="@color/white"
+            android:textSize="8sp"
+            app:layout_constraintStart_toStartOf="@id/adp_progress_title"
+            app:layout_constraintTop_toBottomOf="@id/adp_progress_title" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="2dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/progress_drawable"
+            app:layout_constraintTop_toBottomOf="@id/adp_progress_txpro" />
+
+        <ImageView
+            android:id="@+id/adp_progress_user1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_circle"
+            android:padding="2dp"
+            android:src="@drawable/example_user"
+            app:layout_constraintBottom_toBottomOf="@id/adp_prgress_other"
+            app:layout_constraintStart_toStartOf="@id/progressBar"
+            app:layout_constraintTop_toTopOf="@id/adp_prgress_other" />
+
+        <ImageView
+            android:id="@+id/adp_progress_user2"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginStart="-5dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/bg_circle"
+            android:padding="1dp"
+            android:src="@drawable/example_user"
+            app:layout_constraintBottom_toBottomOf="@id/adp_prgress_other"
+            app:layout_constraintStart_toEndOf="@id/adp_progress_user1"
+            app:layout_constraintTop_toTopOf="@id/adp_prgress_other" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/adp_prgress_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-5dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toEndOf="@id/adp_progress_user2"
+            app:layout_constraintTop_toBottomOf="@id/progressBar"
+            app:strokeColor="#61346B"
+            app:strokeWidth="2dp">
+
+            <TextView
+                android:id="@+id/adp_progress_sizemember"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="8dp"
+                android:text="@string/adp_example_example_users"
+                android:textColor="@color/black"
+                android:textSize="6sp" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
