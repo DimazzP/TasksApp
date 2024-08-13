@@ -67,7 +67,17 @@
 
 <!--    detail task-->
     <string name="detask_example_title">Desain UI</string>
-    <string name="detask_example_data">23/04/2024</string>
+    <string name="detask_completion_date">Tanggal selesai</string>
+    <string name="detask_example_date">23/04/2024</string>
+    <string name="detask_example_role">Manager</string>
+    <string name="detask_example_user">Budi Nam</string>
+    <string name="detask_description">Deskripsi</string>
+    <string name="detask_example_description">Contoh deskripsi</string>
+    <string name="detask_team">Anggota Tim</string>
+    <string name="detask_progress">Progress</string>
+    <string name="detask_sub_assignment">Sub-tugas</string>
+    <string name="detask_example_sub_title">Tugas 1</string>
+    <string name="detask_example_sub_description">Mengerjakan Kuis</string>
 
 
 <!--    image descripstion-->
@@ -80,8 +90,12 @@
     <string name="img_not_select_obd">Image Not Selected Onboarding</string>
     <string name="img_ic_search">Icon Search</string>
     <string name="img_back">Back Button</string>
+    <string name="img_more">More Button</string>
     <string name="img_add">Icon Add</string>
     <string name="img_bg_progress">Icon Add</string>
+    <string name="img_calendar">Icon Calendar</string>
+    <string name="img_user1">Image User 1</string>
+    <string name="img_user2">Image User 2</string>
     <string name="img_apple">Apple Logo</string>
     <string name="img_google">Google Logo</string>
 

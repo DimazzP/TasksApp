@@ -20,12 +20,220 @@
             android:backgroundTint="@color/transparent"
             android:contentDescription="@string/img_back"
             android:src="@drawable/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="@id/detask_more"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:text="@string/img_back"
+            app:layout_constraintTop_toTopOf="@id/detask_more" />
+
+        <ImageButton
+            android:id="@+id/detask_more"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_contenta"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/img_more"
+            android:src="@drawable/ic_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detask_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/detask_example_title"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detask_btnback" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detask_cons_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            app:layout_constraintEnd_toStartOf="@id/detask_cons_right"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detask_title">
+
+            <com.example.tasksapp.view.CustomCardImage
+                android:id="@+id/detask_photo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="360dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/detask_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/detask_example_role"
+                android:textColor="@color/gray_text"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/detask_photo"
+                app:layout_constraintTop_toTopOf="@id/detask_photo" />
+
+            <TextView
+                android:id="@+id/detask_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/inter_bold"
+                android:maxLines="1"
+                android:text="@string/detask_example_user"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/detask_photo"
+                app:layout_constraintTop_toBottomOf="@id/detask_role" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detask_cons_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/detask_cons_left"
+            app:layout_constraintTop_toBottomOf="@id/detask_title">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detask_ic_calendar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardBackgroundColor="@color/purple_deep"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/img_calendar"
+                    android:src="@drawable/ic_calendar" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/detask_text_completion_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="@string/detask_completion_date"
+                android:textColor="@color/gray_text"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/detask_ic_calendar"
+                app:layout_constraintTop_toTopOf="@id/detask_ic_calendar" />
+
+            <TextView
+                android:id="@+id/detask_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/detask_example_date"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/detask_ic_calendar"
+                app:layout_constraintTop_toBottomOf="@id/detask_text_completion_calendar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/detask_text_description"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/detask_description"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detask_cons_left" />
+
+        <TextView
+            android:id="@+id/detask_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/detask_example_description"
+            android:textColor="@color/gray_text"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detask_text_description" />
+
+        <TextView
+            android:id="@+id/detask_text_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/detask_team"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detask_description" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detask_rc_team"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detask_text_team"
+            tools:itemCount="4"
+            tools:layout_editor_absoluteX="5dp"
+            tools:listitem="@layout/adp_photo" />
+
+        <TextView
+            android:id="@+id/detask_tx_pro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/adp_progress_progress"
+            android:textColor="@color/black"
+            android:textSize="8sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detask_rc_team" />
+
+        <ProgressBar
+            android:id="@+id/detask_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="2dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/dw_progress_detail_task"
+            app:layout_constraintTop_toBottomOf="@id/detask_tx_pro" />
+
+        <TextView
+            android:id="@+id/detask_progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_margin"
+            app:layout_constraintBottom_toBottomOf="@id/detask_progress_bar"
+            app:layout_constraintEnd_toEndOf="@id/detask_progress_bar"
+            app:layout_constraintStart_toStartOf="@id/detask_progress_bar"
+            app:layout_constraintTop_toTopOf="@id/detask_progress_bar" />
+
+        <TextView
+            android:id="@+id/detask_tx_sub_assignment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:fontFamily="@font/inter_medium"
+            android:text="@string/detask_sub_assignment"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detask_progress_bar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

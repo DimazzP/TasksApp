@@ -63,7 +63,7 @@ class AdapterProgress(private val items: List<ProgressModel>, private val viewPa
     inner class ViewHolder(val binding: AdpProgressBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProgressModel) {
             binding.adpProgressTitle.text = item.title
-            binding.progressBar.progress = item.progress
+            binding.adpProgressBar.progress = item.progress
             binding.adpProgressTxpro.text = "Progress"
 
             binding.adpPrgressOther.findViewById<TextView>(R.id.adp_progress_sizemember).text = "${item.member.size - 2} Lainnya"
