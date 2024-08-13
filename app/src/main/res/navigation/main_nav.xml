@@ -28,7 +28,16 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_homeFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_homeFragment_to_detailTaskFragment"
+            app:destination="@id/detailTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailTaskFragment"
+        android:name="com.example.tasksapp.presentation.detailtask.DetailTaskFragment"
+        android:label="fragment_detailTask"
+        tools:layout="@layout/fragment_detail_task">
+<!--        <action-->
+<!--            android:id="@+id/action_homeFragment_to_homeFragment"-->
+<!--            app:destination="@id/loginFragment" />-->
     </fragment>
 </navigation>

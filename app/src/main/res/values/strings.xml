@@ -72,13 +72,18 @@
     <string name="detask_example_role">Manager</string>
     <string name="detask_example_user">Budi Nam</string>
     <string name="detask_description">Deskripsi</string>
-    <string name="detask_example_description">Contoh deskripsi</string>
+    <string name="detask_example_description">Antarmuka Pengguna (UI) adalah titik interaksi antara manusia dan mesin dalam perangkat lunak atau perangkat keras, memungkinkan pengguna berinteraksi dengan sistem secara efisien.</string>
     <string name="detask_team">Anggota Tim</string>
     <string name="detask_progress">Progress</string>
     <string name="detask_sub_assignment">Sub-tugas</string>
+    <string name="detask_example_progress">20%</string>
     <string name="detask_example_sub_title">Tugas 1</string>
     <string name="detask_example_sub_description">Mengerjakan Kuis</string>
 
+<!--    member-->
+    <string name="member_team">0 Anggota</string>
+    <string name="member_add_team">Tambah Anggota</string>
+    <string name="member_out">Keluar dari tim</string>
 
 <!--    image descripstion-->
     <string name="img_checker_square">Image Checker Square</string>
@@ -95,6 +100,7 @@
     <string name="img_bg_progress">Icon Add</string>
     <string name="img_calendar">Icon Calendar</string>
     <string name="img_user1">Image User 1</string>
+    <string name="img_logout">Image Out</string>
     <string name="img_user2">Image User 2</string>
     <string name="img_apple">Apple Logo</string>
     <string name="img_google">Google Logo</string>

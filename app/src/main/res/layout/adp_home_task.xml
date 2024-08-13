@@ -69,6 +69,7 @@
         android:backgroundTint="@color/gray_text"
         android:button="@drawable/custom_checkbox"
         android:checked="false"
+        app:buttonTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

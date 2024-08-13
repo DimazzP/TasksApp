@@ -120,8 +120,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/hom_daily_tasks"
             tools:itemCount="10"
-            tools:layout_editor_absoluteX="5dp"
-            tools:listitem="@layout/adp_task" />
+            tools:listitem="@layout/adp_home_task" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/hom_add_task"

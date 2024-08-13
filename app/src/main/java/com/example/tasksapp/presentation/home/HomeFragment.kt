@@ -7,15 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.tasksapp.R
 import com.example.tasksapp.databinding.FragmentHomeBinding
 import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.domain.model.MemberModel
 import com.example.tasksapp.domain.model.ProgressModel
 import com.example.tasksapp.presentation.home.adapter.AdapterProgress
-import com.example.tasksapp.presentation.home.adapter.TaskAdapter
+import com.example.tasksapp.presentation.home.adapter.AdapterTaskHome
 import java.time.LocalDateTime
 
 
@@ -99,7 +101,9 @@ class HomeFragment : Fragment() {
                 detailAssignment = dummyDetail
             ),
         )
-        adapterProgress = AdapterProgress(dummyData, binding.homViewPager, requireContext())
+        adapterProgress = AdapterProgress(requireContext(), dummyData, binding.homViewPager){
+            findNavController().navigate(R.id.action_homeFragment_to_detailTaskFragment)
+        }
         binding.homViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         val viewPager2 = binding.homViewPager
@@ -138,7 +142,7 @@ class HomeFragment : Fragment() {
         })
         binding.homViewPager.adapter = adapterProgress
 
-        val taskAdapter = TaskAdapter(dummyDetail)
+        val taskAdapter = AdapterTaskHome(dummyDetail)
 
         binding.homRcTask.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -158,6 +162,7 @@ class HomeFragment : Fragment() {
             }
         })
     }
+
 
     companion object {
         fun newInstance() = HomeFragment()

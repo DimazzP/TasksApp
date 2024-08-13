@@ -1,17 +1,17 @@
-package com.example.tasksapp.presentation.home.adapter
+package com.example.tasksapp.presentation.detailtask.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tasksapp.databinding.AdpTaskBinding
+import com.example.tasksapp.databinding.AdpDetailTaskBinding
 import com.example.tasksapp.domain.model.DetailAssignmentModel
 import java.time.format.DateTimeFormatter
 
-class TaskAdapter(private val tasks: List<DetailAssignmentModel>) :
-    RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class AdapterDetailTask(private val tasks: List<DetailAssignmentModel>) :
+    RecyclerView.Adapter<AdapterDetailTask.TaskViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val binding = AdpTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = AdpDetailTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TaskViewHolder(binding)
     }
 
@@ -21,13 +21,10 @@ class TaskAdapter(private val tasks: List<DetailAssignmentModel>) :
 
     override fun getItemCount(): Int = tasks.size
 
-    inner class TaskViewHolder(private val binding: AdpTaskBinding) :
+    inner class TaskViewHolder(private val binding: AdpDetailTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(task: DetailAssignmentModel) {
             binding.adpTaskDescription.text = task.name
-            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
-            val formattedTime: String = task.time.format(formatter)
-            binding.adpTaskTime.text = formattedTime
         }
     }
 }

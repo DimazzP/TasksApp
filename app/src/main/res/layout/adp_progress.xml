@@ -4,7 +4,7 @@
     android:id="@+id/adp_task_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardBackgroundColor="@color/item_purple_progress"
+    app:cardBackgroundColor="@color/home_item_purple_progress"
     app:cardCornerRadius="22dp"
     app:cardElevation="0dp">
 
@@ -22,7 +22,7 @@
             android:src="@drawable/bg_adp_hom_progress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/item_purple_bg_progress" />
+            app:tint="@color/home_item_purple_bg_progress" />
 
         <TextView
             android:id="@+id/adp_progress_title"
@@ -73,7 +73,7 @@
             android:id="@+id/adp_progress_user1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="@color/item_purple_progress"
+            app:cardBackgroundColor="@color/home_item_purple_progress"
             app:cardCornerRadius="360dp"
             app:layout_constraintBottom_toBottomOf="@id/adp_prgress_other"
             app:layout_constraintDimensionRatio="1:1"
@@ -92,7 +92,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="-5dp"
-            app:cardBackgroundColor="@color/item_purple_progress"
+            app:cardBackgroundColor="@color/home_item_purple_progress"
             app:cardCornerRadius="360dp"
             app:layout_constraintBottom_toBottomOf="@id/adp_prgress_other"
             app:layout_constraintDimensionRatio="1:1"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="-5dp"
             android:layout_marginTop="16dp"
-            app:cardBackgroundColor="@color/item_purple_progress"
+            app:cardBackgroundColor="@color/home_item_purple_progress"
             app:cardCornerRadius="80dp"
             app:layout_constraintStart_toEndOf="@id/adp_progress_user2"
             app:layout_constraintTop_toBottomOf="@id/adp_progress_bar"

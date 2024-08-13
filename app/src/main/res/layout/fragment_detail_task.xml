@@ -50,7 +50,7 @@
             android:id="@+id/detask_cons_left"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_margin"
+            android:layout_marginTop="@dimen/default_margin"
             app:layout_constraintEnd_toStartOf="@id/detask_cons_right"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detask_title">
@@ -93,7 +93,7 @@
             android:id="@+id/detask_cons_right"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_margin"
+            android:layout_marginTop="@dimen/default_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/detask_cons_left"
             app:layout_constraintTop_toBottomOf="@id/detask_title">
@@ -189,7 +189,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detask_text_team"
             tools:itemCount="4"
-            tools:layout_editor_absoluteX="5dp"
             tools:listitem="@layout/adp_photo" />
 
         <TextView
@@ -200,7 +199,7 @@
             android:fontFamily="@font/inter_medium"
             android:text="@string/adp_progress_progress"
             android:textColor="@color/black"
-            android:textSize="8sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detask_rc_team" />
 
@@ -208,9 +207,9 @@
             android:id="@+id/detask_progress_bar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_marginTop="2dp"
-            android:progress="50"
+            android:layout_height="20dp"
+            android:layout_marginTop="@dimen/space_margin"
+            android:progress="20"
             android:progressDrawable="@drawable/dw_progress_detail_task"
             app:layout_constraintTop_toBottomOf="@id/detask_tx_pro" />
 
@@ -218,7 +217,10 @@
             android:id="@+id/detask_progress_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_margin"
+            android:fontFamily="@font/inter_semi"
+            android:includeFontPadding="false"
+            android:text="@string/detask_example_progress"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/detask_progress_bar"
             app:layout_constraintEnd_toEndOf="@id/detask_progress_bar"
             app:layout_constraintStart_toStartOf="@id/detask_progress_bar"
@@ -228,12 +230,24 @@
             android:id="@+id/detask_tx_sub_assignment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/inter_medium"
             android:text="@string/detask_sub_assignment"
             android:textColor="@color/black"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detask_progress_bar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detask_rc_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/detask_tx_sub_assignment"
+            tools:itemCount="10"
+            tools:listitem="@layout/adp_detail_task" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

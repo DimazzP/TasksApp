@@ -2,7 +2,6 @@ package com.example.tasksapp.presentation.home.adapter
 
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -14,7 +13,7 @@ import com.example.tasksapp.R
 import com.example.tasksapp.databinding.AdpProgressBinding
 import com.example.tasksapp.domain.model.ProgressModel
 
-class AdapterProgress(private val items: List<ProgressModel>, private val viewPager: ViewPager2, private val context: Context) : RecyclerView.Adapter<AdapterProgress.ViewHolder>() {
+class AdapterProgress(private val context: Context, private val items: List<ProgressModel>, private val viewPager: ViewPager2, private val itemSelected: (item: ProgressModel)-> Unit) : RecyclerView.Adapter<AdapterProgress.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = AdpProgressBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -39,11 +38,11 @@ class AdapterProgress(private val items: List<ProgressModel>, private val viewPa
         animateTextSize(holder.binding.adpProgressSizemember, currentTextviewSize, scaleTextview, 300)
 
         if (position % 2 == 0) {
-            holder.binding.adpTaskRoot.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.item_purple_progress))
-            holder.binding.adpTaskImgBg.setColorFilter(ContextCompat.getColor(holder.binding.root.context, R.color.item_purple_bg_progress))
+            holder.binding.adpTaskRoot.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
+            holder.binding.adpTaskImgBg.setColorFilter(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_bg_progress))
         } else {
-            holder.binding.adpTaskRoot.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.item_yellow_progress))
-            holder.binding.adpTaskImgBg.setColorFilter(ContextCompat.getColor(holder.binding.root.context, R.color.item_yellow_bg_progress))
+            holder.binding.adpTaskRoot.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
+            holder.binding.adpTaskImgBg.setColorFilter(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_bg_progress))
         }
     }
 
@@ -65,7 +64,9 @@ class AdapterProgress(private val items: List<ProgressModel>, private val viewPa
             binding.adpProgressTitle.text = item.title
             binding.adpProgressBar.progress = item.progress
             binding.adpProgressTxpro.text = "Progress"
-
+            binding.root.setOnClickListener {
+                itemSelected(item)
+            }
             binding.adpPrgressOther.findViewById<TextView>(R.id.adp_progress_sizemember).text = "${item.member.size - 2} Lainnya"
         }
     }

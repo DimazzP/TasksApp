@@ -12,5 +12,7 @@
         <item name="android:windowLightStatusBar">true</item>
         <!-- Warna latar belakang aktivitas -->
         <item name="android:colorBackground">@android:color/white</item>
+        <item name="colorAccent">@color/purple_deep</item>
+        <item name="colorPrimary">@color/purple_deep</item>
     </style>
 </resources>
