@@ -4,6 +4,7 @@
 <!--    splashscreen-->
     <string name="tasks">tasks</string>
 
+
 <!--    onboarding 1-->
     <string name="obd1_tx1">Mari ciptakan&#160;</string>
     <string name="obd1_tx2">ruang&#160;</string>
@@ -85,6 +86,27 @@
     <string name="member_add_team">Tambah Anggota</string>
     <string name="member_out">Keluar dari tim</string>
 
+<!--    add member-->
+    <string name="addmem_finish">Selesai</string>
+
+<!--    dialog add task-->
+    <string name="hmaddtask_task_title">Tugas</string>
+    <string name="hmaddtask_task_description">Aktivitas sekali selesai dan tidak perlu pelacakan waktu progres.</string>
+    <string name="hmaddtask_repetitive_title">Tugas Berulang</string>
+    <string name="hmaddtask_repetitive_description">Aktivitas berkala yang dijadwalkan ulang otomatis tanpa pemantauan progres.</string>
+    <string name="hmaddtask_habit_title">Kebiasaan</string>
+    <string name="hmaddtask_habit_description">Aktivitas yang berulang seiring waktu dengan pelacakan dan statistik.</string>
+
+<!--    new task-->
+    <string name="newtask_task_title">Tugas Baru</string>
+    <string name="newtask_task_task_name">Nama Tugas</string>
+    <string name="newtask_task_select_date">Pilih Waktu</string>
+    <string name="newtask_task_add_member">Tambah Anggota</string>
+    <string name="example_number">22</string>
+    <string name="example_day_name">Senin</string>
+    <string name="example_month_name">Juni</string>
+
+    
 <!--    image descripstion-->
     <string name="img_checker_square">Image Checker Square</string>
     <string name="img_obd1">Image Onboarding 1</string>
@@ -103,6 +125,12 @@
     <string name="img_logout">Image Out</string>
     <string name="img_user2">Image User 2</string>
     <string name="img_apple">Apple Logo</string>
+    <string name="img_circle_check">Icon Circle Check</string>
+    <string name="img_circle_repetitive">Icon Circle Repetitive</string>
+    <string name="img_circle_habit">Icon Circle Habit</string>
+    <string name="img_ios_arrow_right">Icon Arrow Ios Right</string>
+    <string name="img_ios_arrow_left">Icon Arrow Ios Left</string>
     <string name="img_google">Google Logo</string>
+
 
 </resources>

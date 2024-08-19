@@ -1,36 +1,32 @@
-package com.example.tasksapp.presentation.member
+package com.example.tasksapp.presentation.addmember
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tasksapp.R
-import com.example.tasksapp.databinding.FragmentMemberBinding
+import com.example.tasksapp.databinding.FragmentAddMemberBinding
 import com.example.tasksapp.domain.model.MemberModel
-import com.example.tasksapp.presentation.member.adapter.AdapterMember
+import com.example.tasksapp.presentation.addmember.adapter.AdapterAddMember
 
-class MemberFragment : Fragment() {
+class AddMemberFragment : Fragment() {
 
-    private val viewModel: MemberViewModel by viewModels()
-    private lateinit var binding: FragmentMemberBinding
+    private val viewModel: AddMemberViewModel by viewModels()
+    private lateinit var binding: FragmentAddMemberBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMemberBinding.inflate(layoutInflater)
+        binding = FragmentAddMemberBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setClickListener()
-
+//        binding.admemSearch.setLayoutParams(ActionBar.LayoutParams(Gravity.RIGHT))
         val dummyMembers = listOf(
             MemberModel(
                 name = "Renaldi",
@@ -49,18 +45,13 @@ class MemberFragment : Fragment() {
             )
         )
 
-        val adapter = AdapterMember(dummyMembers)
-        binding.memberRcTeam.adapter = adapter
-        binding.memberRcTeam.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-    }
-
-    private fun setClickListener(){
-        binding.memberCons.setOnClickListener {
-            findNavController().navigate(R.id.action_memberFragment_to_addMemberFragment)
-        }
+        val adapter = AdapterAddMember(dummyMembers)
+        binding.admemRcMember.adapter = adapter
+        binding.admemRcMember.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 
     companion object {
-        fun newInstance() = MemberFragment()
+        fun newInstance() = AddMemberFragment()
     }
+
 }

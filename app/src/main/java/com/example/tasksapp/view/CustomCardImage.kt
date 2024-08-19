@@ -16,13 +16,11 @@ class CustomCardImage @JvmOverloads constructor(
     private val imageView: ImageView
 
     init {
-        // Mengatur properti CardView
         layoutParams = LayoutParams(
             LayoutParams.MATCH_PARENT,
             LayoutParams.MATCH_PARENT
         )
 
-        // Inisialisasi ImageView
         imageView = ImageView(context).apply {
             layoutParams = LayoutParams(
                 LayoutParams.MATCH_PARENT,
@@ -31,21 +29,23 @@ class CustomCardImage @JvmOverloads constructor(
             scaleType = ImageView.ScaleType.CENTER_CROP
             contentDescription = context.getString(R.string.img_user1)
             background = ContextCompat.getDrawable(context, R.drawable.bg_circle)
+            elevation = 0f
             setImageResource(R.drawable.example_user) // Set gambar default
         }
 
-        // Menambahkan ImageView ke dalam CardView
         addView(imageView)
     }
 
-    // Fungsi untuk mengatur gambar pada ImageView
     fun setImageResource(resourceId: Int) {
         imageView.setImageResource(resourceId)
     }
 
-    // Fungsi untuk mengatur background pada ImageView
     fun setImageBackground(resourceId: Int) {
         imageView.background = ContextCompat.getDrawable(context, resourceId)
+    }
+
+    fun getImageView(): ImageView{
+        return imageView
     }
 
 }

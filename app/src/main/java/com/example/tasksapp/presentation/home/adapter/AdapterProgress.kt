@@ -38,9 +38,15 @@ class AdapterProgress(private val context: Context, private val items: List<Prog
         animateTextSize(holder.binding.adpProgressSizemember, currentTextviewSize, scaleTextview, 300)
 
         if (position % 2 == 0) {
+            holder.binding.adpProgressUser1.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
+            holder.binding.adpProgressUser2.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
+            holder.binding.adpPrgressOther.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
             holder.binding.adpTaskRoot.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
             holder.binding.adpTaskImgBg.setColorFilter(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_bg_progress))
         } else {
+            holder.binding.adpProgressUser1.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
+            holder.binding.adpProgressUser2.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
+            holder.binding.adpPrgressOther.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
             holder.binding.adpTaskRoot.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
             holder.binding.adpTaskImgBg.setColorFilter(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_bg_progress))
         }

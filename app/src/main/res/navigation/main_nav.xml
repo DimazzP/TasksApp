@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/homeFragment"
-    android:id="@+id/main_nav">
+    android:id="@+id/main_nav"
+    app:startDestination="@id/newTaskFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.tasksapp.presentation.login.LoginFragment"
@@ -36,8 +36,35 @@
         android:name="com.example.tasksapp.presentation.detailtask.DetailTaskFragment"
         android:label="fragment_detailTask"
         tools:layout="@layout/fragment_detail_task">
+        <action
+            android:id="@+id/action_detailTaskFragment_to_memberFragment"
+            app:destination="@id/memberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberFragment"
+        android:name="com.example.tasksapp.presentation.member.MemberFragment"
+        android:label="fragment_member"
+        tools:layout="@layout/fragment_member">
+        <action
+            android:id="@+id/action_memberFragment_to_addMemberFragment"
+            app:destination="@id/addMemberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMemberFragment"
+        android:name="com.example.tasksapp.presentation.addmember.AddMemberFragment"
+        android:label="fragment_addMember"
+        tools:layout="@layout/fragment_add_member">
+        <!--        <action-->
+        <!--            android:id="@+id/action_homeFragment_to_homeFragment"-->
+        <!--            app:destination="@id/loginFragment" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.example.tasksapp.presentation.newtask.NewtaskFragment"
+        android:label="fragment_newtask"
+        tools:layout="@layout/fragment_newtask">
 <!--        <action-->
-<!--            android:id="@+id/action_homeFragment_to_homeFragment"-->
-<!--            app:destination="@id/loginFragment" />-->
+<!--            android:id="@+id/action_newTaskFragment_to_newTaskFragment"-->
+<!--            app:destination="@id/addMemberFragment" />-->
     </fragment>
 </navigation>
