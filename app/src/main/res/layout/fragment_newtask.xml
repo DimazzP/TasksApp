@@ -4,15 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fbfaff"
     tools:context=".presentation.newtask.NewtaskFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/newtask_top_cons"
+        android:id="@+id/newtask_bottom_cons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="240dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/newtask_btn_prev_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/img_ios_arrow_left"
+            android:padding="@dimen/space_margin"
+            android:src="@drawable/ic_ios_arrow_left"
+            app:layout_constraintBottom_toBottomOf="@id/newtask_month_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/newtask_month_name" />
+
+        <TextView
+            android:id="@+id/newtask_month_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semi"
+            android:padding="@dimen/space_margin"
+            android:text="@string/example_month_name"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/newtask_btn_next_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/img_ios_arrow_right"
+            android:padding="@dimen/space_margin"
+            android:src="@drawable/ic_arrow_ios_right"
+            app:layout_constraintBottom_toBottomOf="@id/newtask_month_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/newtask_month_name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newtask_rc_days"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/newtask_month_name"
+            tools:listitem="@layout/adp_item_day" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/newtask_header"
         android:background="@color/white"
         android:paddingHorizontal="@dimen/default_margin_2"
-        android:paddingVertical="@dimen/default_margin"
+        android:paddingTop="@dimen/default_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -56,97 +119,244 @@
             app:iconPadding="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/newtask_name_task"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/newtask_header">
+        <LinearLayout
+            android:id="@+id/newtask_top_cons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin_2"
-            android:hint="@string/newtask_task_task_name"
-            app:boxBackgroundMode="outline"
-            app:boxCornerRadiusBottomEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:boxStrokeColor="@color/purple_deep"
-            app:layout_constraintTop_toBottomOf="@id/newtask_btnback">
+            android:paddingBottom="@dimen/default_margin"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingHorizontal="@dimen/default_margin_2">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/newtask_name_task"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:inputType="text"
-                android:textColor="@android:color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="@dimen/default_margin_2"
+                android:hint="@string/newtask_task_name"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxStrokeColor="@color/purple_deep"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/newtask_more_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
-            android:backgroundTint="@color/transparent"
-            android:contentDescription="@string/img_more"
-            android:src="@drawable/ic_ios_arrow_bottom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newtask_name_task" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:inputType="text"
+                    android:textColor="@android:color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/newtask_bottom_cons"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#fdfcfe"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newtask_top_cons">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/default_margin"
+                app:layout_constraintTop_toBottomOf="@id/newtask_name_task">
 
-        <ImageButton
-            android:id="@+id/newtask_btn_prev_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/default_margin"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/img_ios_arrow_left"
-            android:padding="@dimen/space_margin"
-            android:src="@drawable/ic_ios_arrow_left"
-            app:layout_constraintBottom_toBottomOf="@id/newtask_month_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/newtask_month_name" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/newtask_description_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/newtask_description_name"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxStrokeColor="@color/purple_deep">
 
-        <TextView
-            android:id="@+id/newtask_month_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_semi"
-            android:padding="@dimen/space_margin"
-            android:text="@string/example_month_name"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        android:inputType="text"
+                        android:textColor="@android:color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageButton
-            android:id="@+id/newtask_btn_next_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/default_margin"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/img_ios_arrow_right"
-            android:padding="@dimen/space_margin"
-            android:src="@drawable/ic_arrow_ios_right"
-            app:layout_constraintBottom_toBottomOf="@id/newtask_month_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/newtask_month_name" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newtask_bt_task"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newtask_ic_remember"
+                        android:src="@drawable/ic_add_box"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/img_ios_arrow_right"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/newtask_add_sub"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/inter_regular"
+                        android:textSize="15sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/newtask_ic_remember"
+                        android:layout_marginStart="@dimen/space_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="@color/gray_stroke"
+                        app:layout_constraintTop_toBottomOf="@id/newtask_ic_remember"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newtask_bt_add_reminder"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newtask_ic_add"
+                        android:src="@drawable/ic_bell"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/img_ios_arrow_right"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/newtask_reminder"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/inter_regular"
+                        android:textSize="15sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/newtask_ic_add"
+                        android:layout_marginStart="@dimen/space_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/example_number_0"
+                        android:textColor="@color/purple_deep"
+                        android:background="@drawable/bg_circle_text"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:fontFamily="@font/inter_semi"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="@color/gray_stroke"
+                        app:layout_constraintTop_toBottomOf="@id/newtask_ic_add"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newtask_bt_add_priority"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newtask_ic_priority"
+                        android:src="@drawable/ic_flag"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/img_ios_arrow_right"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/newtask_priority"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/inter_regular"
+                        android:textSize="15sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/newtask_ic_priority"
+                        android:layout_marginStart="@dimen/space_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/default1"
+                        android:textColor="@color/purple_deep"
+                        android:background="@drawable/rd_8"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/inter_semi"
+                        android:gravity="center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="@color/gray_stroke"
+                        app:layout_constraintTop_toBottomOf="@id/newtask_ic_priority"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/newtask_bt_add_postpone"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/newtask_ic_postpone"
+                        android:src="@drawable/ic_postpone_task"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:contentDescription="@string/img_ios_arrow_right"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="@string/newtask_priority"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/inter_regular"
+                        android:textSize="15sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/newtask_ic_postpone"
+                        android:layout_marginStart="@dimen/space_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:src="@drawable/ic_circle_checklist_2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <View
+                        android:background="@color/gray_stroke"
+                        app:layout_constraintTop_toBottomOf="@id/newtask_ic_postpone"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/newtask_vp_days"
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/newtask_month_name"/>
+            <ImageView
+                android:id="@+id/newtask_more_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/default_margin"
+                android:backgroundTint="@color/transparent"
+                android:contentDescription="@string/img_more"
+                android:src="@drawable/ic_ios_arrow_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/newtask_name_task" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

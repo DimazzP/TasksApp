@@ -3,6 +3,11 @@
 
 <!--    splashscreen-->
     <string name="tasks">tasks</string>
+    <string name="example_number_0">0</string>
+    <string name="example_number_22">22</string>
+    <string name="example_day_name">Senin</string>
+    <string name="example_month_name">Juni</string>
+    <string name="default1">Default</string>
 
 
 <!--    onboarding 1-->
@@ -99,12 +104,14 @@
 
 <!--    new task-->
     <string name="newtask_task_title">Tugas Baru</string>
-    <string name="newtask_task_task_name">Nama Tugas</string>
-    <string name="newtask_task_select_date">Pilih Waktu</string>
+    <string name="newtask_task_name">Nama Tugas</string>
+    <string name="newtask_description_name">Deskripsi (Opsional)</string>
+    <string name="newtask_add_sub">Tambahkan sub-tugas</string>
+    <string name="newtask_reminder">Pengingat</string>
+    <string name="newtask_priority">Prioritas</string>
+    <string name="newtask_postpone">Tunda Tugas</string>
+    <string name="newtask_select_date">Pilih Waktu</string>
     <string name="newtask_task_add_member">Tambah Anggota</string>
-    <string name="example_number">22</string>
-    <string name="example_day_name">Senin</string>
-    <string name="example_month_name">Juni</string>
 
     
 <!--    image descripstion-->
@@ -129,6 +136,7 @@
     <string name="img_circle_repetitive">Icon Circle Repetitive</string>
     <string name="img_circle_habit">Icon Circle Habit</string>
     <string name="img_ios_arrow_right">Icon Arrow Ios Right</string>
+    <string name="img_add_box">Icon Add Box</string>
     <string name="img_ios_arrow_left">Icon Arrow Ios Left</string>
     <string name="img_google">Google Logo</string>
 

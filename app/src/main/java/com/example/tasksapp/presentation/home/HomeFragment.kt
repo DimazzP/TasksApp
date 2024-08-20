@@ -108,10 +108,10 @@ class HomeFragment : Fragment() {
         adapterProgress = AdapterProgress(requireContext(), dummyData, binding.homViewPager) {
             findNavController().navigate(R.id.action_homeFragment_to_detailTaskFragment)
         }
+        binding.homViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         val viewPager2 = binding.homViewPager
 
-        viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         val displayMetrics = resources.displayMetrics
         val screenWidth = displayMetrics.widthPixels
         val itemWidth = screenWidth * 0.65

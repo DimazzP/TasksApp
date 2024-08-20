@@ -1,28 +1,30 @@
 package com.example.tasksapp.presentation.newtask
 
 import android.graphics.Rect
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.example.tasksapp.databinding.FragmentNewtaskBinding
 import com.example.tasksapp.presentation.newtask.adapter.CalendarAdapter
 import com.example.tasksapp.presentation.newtask.model.CalendarDay
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import kotlin.math.abs
-import kotlin.math.max
 
 class NewtaskFragment : Fragment() {
 
     private val viewModel: NewtaskViewModel by viewModels()
     private lateinit var binding: FragmentNewtaskBinding
-
     private lateinit var calendarAdapter: CalendarAdapter
     private lateinit var calendarDays: MutableList<CalendarDay>
     private var calendar: Calendar = Calendar.getInstance()
@@ -41,98 +43,99 @@ class NewtaskFragment : Fragment() {
         setupViews()
         setupListeners()
         initializeCalendar()
-
+        setupScrollListener()
     }
 
     private fun setupViews() {
-        val displayMetrics = resources.displayMetrics
-        val screenWidth = displayMetrics.widthPixels
+        val screenWidth = resources.displayMetrics.widthPixels
         calendarDays = generateDaysForMonth(calendar)
-        calendarAdapter = CalendarAdapter(calendarDays, screenWidth) { day ->
+        calendarAdapter = CalendarAdapter(calendarDays, screenWidth, binding.newtaskRcDays) { day ->
             // Handle day click, e.g., show a toast or navigate to another screen
         }
-        binding.newtaskVpDays.apply {
-            adapter = calendarAdapter
-            offscreenPageLimit = 5
 
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(binding.newtaskRcDays)
+        binding.newtaskRcDays.adapter = calendarAdapter
 
-            val displayMetrics = resources.displayMetrics
-            val screenWidth = displayMetrics.widthPixels
-            val itemWidth = screenWidth * 0.2
-
-            val largeMargin = (screenWidth - itemWidth).toInt()
-
-            setPageTransformer { page, position ->
-                // Hanya mengatur translasi X, menghilangkan pengaturan skala
-                page.setTranslationX((-position * page.width * 4).toFloat())
-                // Pengaturan skala dihapus untuk menghindari perkecilan item
-            }
-
-            addItemDecoration(object : RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(
-                    outRect: Rect,
-                    view: View,
-                    parent: RecyclerView,
-                    state: RecyclerView.State
-                ) {
-                    val position = parent.getChildAdapterPosition(view)
-                    if (position == 0) {
-                        outRect.left = 0
-                        outRect.right = largeMargin
-                    } else {
-                        outRect.left = 0
-                        outRect.right = largeMargin
-                    }
-                }
-            })
+        lifecycleScope.launch {
+            delay(100)
+            addPaddingItemDecoration()
+            calendarAdapter.setMiddleItemPosition(0)
         }
-//        binding.newtaskVpDays.apply {
-//            adapter = calendarAdapter
-//            offscreenPageLimit = 3
-//
-//            val displayMetrics = resources.displayMetrics
-//            val screenWidth = displayMetrics.widthPixels
-//            val itemWidth = screenWidth * 0.3
-//
-//            val largeMargin =
-//                (screenWidth - itemWidth).toInt()
-//            // Set a PageTransformer to create space between items
-//            setPageTransformer { page, position ->
-//                page.setTranslationX((-position * page.width * 0.3).toFloat())
-//                page.setScaleY(1-(0.15f * Math.abs(position)))
-////                page.apply {
-////                    val scaleFactor = 0.1f.coerceAtLeast(1 - kotlin.math.abs(position))
-////                    scaleX = scaleFactor
-////                    scaleY = scaleFactor
-////                }
-//            }
-
-            // Set margins between pages
-//            val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.space_item_date_1)
-//            val offsetPx = resources.getDimensionPixelOffset(R.dimen.space_item_date)
-//            setPageTransformer { page, position ->
-//                val myOffset = position * -(2 * offsetPx + pageMarginPx)
-//                if (ViewPager2.ORIENTATION_HORIZONTAL == orientation) {
-//                    if (ViewCompat.getLayoutDirection(this@apply) == ViewCompat.LAYOUT_DIRECTION_RTL) {
-//                        page.translationX = -myOffset
-//                    } else {
-//                        page.translationX = myOffset
-//                    }
-//                } else {
-//                    page.translationY = myOffset
-//                }
-//            }
-//        }
-
-
-//        binding.newtaskRcDays.offscreenPageLimit = 3
-//        binding.newtaskRcDays.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-//
-////        binding.newtaskRcDays.layoutManager =
-////            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        binding.newtaskRcDays.adapter = calendarAdapter
 
         updateMonthTitle()
+    }
+
+    private fun setupScrollListener() {
+        binding.newtaskRcDays.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    val middlePosition = getMiddleItemOnScreenPosition(recyclerView)
+                    middlePosition?.let { calendarAdapter.setMiddleItemPosition(it) }
+                }
+            }
+        })
+    }
+
+    private fun getMiddleItemOnScreenPosition(recyclerView: RecyclerView): Int? {
+        val layoutManager = recyclerView.layoutManager as? LinearLayoutManager ?: return null
+
+        val screenCenter = recyclerView.width / 2
+        var closestPosition: Int? = null
+        var minDistance = Int.MAX_VALUE
+
+        for (i in 0 until recyclerView.childCount) {
+            val child = recyclerView.getChildAt(i)
+            val childCenter = (child.left + child.right) / 2
+            val distanceToCenter = Math.abs(childCenter - screenCenter)
+
+            if (distanceToCenter < minDistance) {
+                minDistance = distanceToCenter
+                closestPosition = recyclerView.getChildAdapterPosition(child)
+            }
+        }
+
+        return closestPosition
+    }
+
+    private fun addPaddingItemDecoration() {
+        val screenWidth = resources.displayMetrics.widthPixels
+        binding.newtaskRcDays.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                val position = parent.getChildAdapterPosition(view)
+                val itemCount = state.itemCount
+                val itemWidth = getItemWidths(binding.newtaskRcDays)
+                var paddingLeft = 0
+                var paddingRight = 0
+
+                if (position == 0 && itemWidth != null) {
+                    paddingLeft = (screenWidth / 2) - (itemWidth / 2)
+                    outRect.left = paddingLeft
+                }
+
+                if (position == itemCount - 1 && itemWidth != null) {
+                    paddingRight = (screenWidth / 2) - (itemWidth / 2.5).toInt()
+                    Log.d("NewtaskFragment", "paddingRight: $paddingRight")
+                    outRect.right = paddingRight
+                }
+            }
+        })
+    }
+
+    private fun refreshItemDecoration() {
+        binding.newtaskRcDays.removeItemDecorationAt(0)
+        binding.newtaskRcDays.invalidateItemDecorations()
+    }
+
+    private fun getItemWidths(recyclerView: RecyclerView): Int? {
+        val layoutManager = recyclerView.layoutManager as? LinearLayoutManager
+        val firstVisibleItemPosition = layoutManager?.findFirstVisibleItemPosition()
+
+        return if (firstVisibleItemPosition != RecyclerView.NO_POSITION) {
+            firstVisibleItemPosition?.let { layoutManager.findViewByPosition(it)?.width }
+        } else {
+            null
+        }
     }
 
     private fun setupListeners() {
@@ -153,14 +156,15 @@ class NewtaskFragment : Fragment() {
     }
 
     private fun updateCalendarView() {
+        val newDays = generateDaysForMonth(calendar)
+        calendarAdapter.updateDays(newDays)
+        binding.newtaskRcDays.scrollToPosition(0)
         updateMonthTitle()
-        calendarDays.clear()
-        calendarDays.addAll(generateDaysForMonth(calendar))
-        calendarAdapter.notifyDataSetChanged()
+        calendarAdapter.setMiddleItemPosition(0)
     }
 
     private fun updateMonthTitle() {
-        val monthFormat = SimpleDateFormat("MMMM yyyy", Locale.getDefault())
+        val monthFormat = SimpleDateFormat("MMMM yyyy", Locale("in", "ID"))
         binding.newtaskMonthName.text = monthFormat.format(calendar.time)
     }
 
@@ -169,15 +173,16 @@ class NewtaskFragment : Fragment() {
         val maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         val currentMonth = calendar.get(Calendar.MONTH)
         val currentYear = calendar.get(Calendar.YEAR)
+        val dayOfWeekFormat = SimpleDateFormat("EEE", Locale("in", "ID"))
 
         for (i in 1..maxDay) {
-            val dayOfWeekFormat = SimpleDateFormat("EEE", Locale.getDefault())
             calendar.set(currentYear, currentMonth, i)
             val dayOfWeek = dayOfWeekFormat.format(calendar.time)
             days.add(CalendarDay(i, currentMonth + 1, currentYear, dayOfWeek))
         }
         return days
     }
+
 
     companion object {
         fun newInstance() = NewtaskFragment()
