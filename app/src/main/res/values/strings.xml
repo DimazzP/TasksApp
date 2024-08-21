@@ -8,6 +8,13 @@
     <string name="example_day_name">Senin</string>
     <string name="example_month_name">Juni</string>
     <string name="default1">Default</string>
+    <string name="today">Hari Ini</string>
+    <string name="cancel">Batal</string>
+    <string name="example_date">28/04/2024</string>
+    <string name="ok">OK</string>
+    <string name="x">x</string>
+    <string name="default2">____</string>
+
 
 
 <!--    onboarding 1-->
@@ -110,8 +117,39 @@
     <string name="newtask_reminder">Pengingat</string>
     <string name="newtask_priority">Prioritas</string>
     <string name="newtask_postpone">Tunda Tugas</string>
+    <string name="newtask_frec_task">Frekuensi Pengerjaan</string>
+    <string name="newtask_radio_daily">Tiap hari</string>
+    <string name="newtask_radio_weekly">Hari tertentu dalam seminggu</string>
+    <string name="newtask_day_monday">Senin</string>
+    <string name="newtask_day_tuesday">Selasa</string>
+    <string name="newtask_day_wednesday">Rabu</string>
+    <string name="newtask_day_thursday">Kamis</string>
+    <string name="newtask_day_friday">Jumat</string>
+    <string name="newtask_day_saturday">Sabtu</string>
+    <string name="newtask_day_sunday">Minggu</string>
+    <string name="newtask_radio_monthly">Tangggal tertentu dalam sebulan</string>
+    <string name="newtask_date_label">Tanggal</string>
+    <string name="newtask_monthly_label">tiap bulan</string>
+    <string name="newtask_yearly_label">tiap tahun</string>
+    <string name="newtask_calendar_icon_desc">Pilih tanggal</string>
+    <string name="newtask_radio_yearly">Tanggal tertentu dalam setahun</string>
+    <string name="newtask_radio_postpone">Berulang</string>
+    <string name="newtask_aktivitas">Aktivitas</string>
+    <string name="newtask_istirahat">Istirahat</string>
+    <string name="newtask_hari">hari</string>
+    <string name="newtask_date_start">Tanggal Mulai</string>
+    <string name="newtask_date_end">Tanggal Selesai</string>
+
+
+
     <string name="newtask_select_date">Pilih Waktu</string>
     <string name="newtask_task_add_member">Tambah Anggota</string>
+
+<!--    dialog priority-->
+    <string name="dlprio_title">Tentukan Prioritas</string>
+    <string name="dlprio_description">Prioritas tertinggi akan diletakkan paling atas dalam list</string>
+<!--    <string name="dlprio_title">Prioritas</string>-->
+
 
     
 <!--    image descripstion-->
@@ -135,6 +173,8 @@
     <string name="img_circle_check">Icon Circle Check</string>
     <string name="img_circle_repetitive">Icon Circle Repetitive</string>
     <string name="img_circle_habit">Icon Circle Habit</string>
+    <string name="img_plus">Icon Plus</string>
+    <string name="img_minus">Icon Minus</string>
     <string name="img_ios_arrow_right">Icon Arrow Ios Right</string>
     <string name="img_add_box">Icon Add Box</string>
     <string name="img_ios_arrow_left">Icon Arrow Ios Left</string>

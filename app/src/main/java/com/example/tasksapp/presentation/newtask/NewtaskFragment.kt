@@ -1,17 +1,21 @@
 package com.example.tasksapp.presentation.newtask
 
+import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tasksapp.databinding.DlPriorityBinding
 import com.example.tasksapp.databinding.FragmentNewtaskBinding
 import com.example.tasksapp.presentation.newtask.adapter.CalendarAdapter
 import com.example.tasksapp.presentation.newtask.model.CalendarDay
@@ -44,6 +48,7 @@ class NewtaskFragment : Fragment() {
         setupListeners()
         initializeCalendar()
         setupScrollListener()
+        setVisibilityView()
     }
 
     private fun setupViews() {
@@ -138,6 +143,47 @@ class NewtaskFragment : Fragment() {
         }
     }
 
+    private fun setVisibilityView(){
+        binding.radioDaily.isChecked = true
+        updateVisibility(binding.radioDaily.id)
+
+        // Set listener to check which RadioButton is selected and update visibility
+        binding.newtaskRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            updateVisibility(checkedId)
+        }
+
+        binding.newtaskSwitchDateEnd.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                binding.tableDateEnd.visibility = View.VISIBLE
+            } else {
+                binding.tableDateEnd.visibility = View.GONE
+            }
+        }
+    }
+    private fun updateVisibility(checkedId: Int) {
+        binding.newtaskTableDays.visibility = View.GONE
+        binding.tableMonthly.visibility = View.GONE
+        binding.tableYearly.visibility = View.GONE
+        binding.tablePostpone.visibility = View.GONE
+
+        when (checkedId) {
+            binding.radioDaily.id -> {
+
+            }
+            binding.radioSpecificDays.id -> {
+                binding.newtaskTableDays.visibility = View.VISIBLE
+            }
+            binding.radioSpecificDatesMonth.id -> {
+                binding.tableMonthly.visibility = View.VISIBLE
+            }
+            binding.radioSpecificDatesYear.id -> {
+                binding.tableYearly.visibility = View.VISIBLE
+            }
+            binding.radioRepeating.id -> {
+                binding.tablePostpone.visibility = View.VISIBLE
+            }
+        }
+    }
     private fun setupListeners() {
         binding.newtaskBtnPrevMonth.setOnClickListener {
             calendar.add(Calendar.MONTH, -1)
@@ -147,6 +193,39 @@ class NewtaskFragment : Fragment() {
         binding.newtaskBtnNextMonth.setOnClickListener {
             calendar.add(Calendar.MONTH, 1)
             updateCalendarView()
+        }
+
+        binding.newtaskBtAddPriority.setOnClickListener {
+            val bindingPrio = DlPriorityBinding.inflate(layoutInflater)
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setView(bindingPrio.root)
+
+            val dialog = builder.create()
+            dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+
+            bindingPrio.dlprioBtCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            bindingPrio.dlprioBtOk.setOnClickListener {
+                val selectedPriority = bindingPrio.dlprioNumberPriority.text.toString()
+                dialog.dismiss()
+            }
+
+            bindingPrio.dlprioBtMinus.setOnClickListener {
+                val currentValue = bindingPrio.dlprioNumberPriority.text.toString().toInt()
+                if (currentValue > 0) {
+                    bindingPrio.dlprioNumberPriority.text = (currentValue - 1).toString()
+                }
+            }
+
+            bindingPrio.dlprioBtPlus.setOnClickListener {
+                val currentValue = bindingPrio.dlprioNumberPriority.text.toString().toInt()
+                bindingPrio.dlprioNumberPriority.text = (currentValue + 1).toString()
+            }
+
+            dialog.show()
+
         }
     }
 

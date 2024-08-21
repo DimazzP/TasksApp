@@ -12,6 +12,10 @@
     <color name="purple_trans">#ebe7ff</color>
     <color name="red">#E42525</color>
 
+    <color name="switch_thumb_disabled">#BDBDBD</color> <!-- Warna thumb saat tidak aktif -->
+    <color name="switch_track_enabled">#FF80AB</color> <!-- Warna track saat aktif -->
+    <color name="switch_track_disabled">#E0E0E0</color>
+
 
     <color name="home_item_purple_progress">#61346B</color>
     <color name="home_item_purple_bg_progress">#7E498A</color>

@@ -14,6 +14,7 @@
         <item name="android:colorBackground">@android:color/white</item>
         <item name="colorAccent">@color/purple_deep</item>
         <item name="colorPrimary">@color/purple_deep</item>
+        <item name="android:textColorSecondaryInverse">@color/white</item>
         <item name="android:editTextColor">@android:color/black</item>
     </style>
 </resources>

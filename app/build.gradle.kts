@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation ("nl.joery.timerangepicker:timerangepicker:1.0.0")
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.viewpager2)
     implementation(libs.flexbox)

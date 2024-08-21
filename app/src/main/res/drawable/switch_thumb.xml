@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Saat Switch aktif -->
+    <item android:state_checked="true">
+        <shape android:shape="oval">
+            <solid android:color="@color/purple_deep" /> <!-- Warna thumb saat aktif -->
+        </shape>
+    </item>
+    <!-- Saat Switch tidak aktif -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/switch_thumb_disabled" /> <!-- Warna thumb saat tidak aktif -->
+        </shape>
+    </item>
+</selector>
