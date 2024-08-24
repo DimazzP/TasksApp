@@ -1,5 +1,6 @@
 package com.example.tasksapp.presentation.newtask
 
+import android.animation.ValueAnimator
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
@@ -9,16 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tasksapp.R
 import com.example.tasksapp.databinding.DlPriorityBinding
 import com.example.tasksapp.databinding.FragmentNewtaskBinding
 import com.example.tasksapp.presentation.newtask.adapter.CalendarAdapter
 import com.example.tasksapp.presentation.newtask.model.CalendarDay
+import com.example.tasksapp.view.CustomHourTimePicker
+import com.example.tasksapp.view.CustomMinutePickerView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -49,6 +54,7 @@ class NewtaskFragment : Fragment() {
         initializeCalendar()
         setupScrollListener()
         setVisibilityView()
+//        initTimePicker()
     }
 
     private fun setupViews() {
@@ -70,6 +76,7 @@ class NewtaskFragment : Fragment() {
 
         updateMonthTitle()
     }
+
 
     private fun setupScrollListener() {
         binding.newtaskRcDays.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -106,7 +113,12 @@ class NewtaskFragment : Fragment() {
     private fun addPaddingItemDecoration() {
         val screenWidth = resources.displayMetrics.widthPixels
         binding.newtaskRcDays.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
                 val position = parent.getChildAdapterPosition(view)
                 val itemCount = state.itemCount
                 val itemWidth = getItemWidths(binding.newtaskRcDays)
@@ -143,23 +155,35 @@ class NewtaskFragment : Fragment() {
         }
     }
 
-    private fun setVisibilityView(){
-        binding.radioDaily.isChecked = true
-        updateVisibility(binding.radioDaily.id)
+    private fun setVisibilityView() {
+        binding.apply {
+            radioDaily.isChecked = true
+            updateVisibility(radioDaily.id)
 
-        // Set listener to check which RadioButton is selected and update visibility
-        binding.newtaskRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            updateVisibility(checkedId)
-        }
+            newtaskRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+                updateVisibility(checkedId)
+            }
 
-        binding.newtaskSwitchDateEnd.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                binding.tableDateEnd.visibility = View.VISIBLE
-            } else {
-                binding.tableDateEnd.visibility = View.GONE
+            newtaskSwitchDateEnd.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    tableDateEnd.visibility = View.VISIBLE
+                } else {
+                    tableDateEnd.visibility = View.GONE
+                }
+            }
+
+            newtaskMoreBottom.setOnClickListener {
+                if (newtaskNextConst.visibility == View.GONE) {
+                    newtaskNextConst.visibility = View.VISIBLE
+                    newtaskMoreBottom.setImageResource(R.drawable.ic_ios_arrow_top)
+                } else {
+                    newtaskNextConst.visibility = View.GONE
+                    newtaskMoreBottom.setImageResource(R.drawable.ic_ios_arrow_bottom)
+                }
             }
         }
     }
+
     private fun updateVisibility(checkedId: Int) {
         binding.newtaskTableDays.visibility = View.GONE
         binding.tableMonthly.visibility = View.GONE
@@ -170,20 +194,25 @@ class NewtaskFragment : Fragment() {
             binding.radioDaily.id -> {
 
             }
+
             binding.radioSpecificDays.id -> {
                 binding.newtaskTableDays.visibility = View.VISIBLE
             }
+
             binding.radioSpecificDatesMonth.id -> {
                 binding.tableMonthly.visibility = View.VISIBLE
             }
+
             binding.radioSpecificDatesYear.id -> {
                 binding.tableYearly.visibility = View.VISIBLE
             }
+
             binding.radioRepeating.id -> {
                 binding.tablePostpone.visibility = View.VISIBLE
             }
         }
     }
+
     private fun setupListeners() {
         binding.newtaskBtnPrevMonth.setOnClickListener {
             calendar.add(Calendar.MONTH, -1)

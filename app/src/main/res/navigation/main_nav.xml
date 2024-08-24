@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/newTaskFragment">
+    app:startDestination="@id/calendarFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.tasksapp.presentation.login.LoginFragment"
@@ -66,5 +66,14 @@
 <!--        <action-->
 <!--            android:id="@+id/action_newTaskFragment_to_newTaskFragment"-->
 <!--            app:destination="@id/addMemberFragment" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.tasksapp.presentation.calendar.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar">
+        <!--        <action-->
+        <!--            android:id="@+id/action_newTaskFragment_to_newTaskFragment"-->
+        <!--            app:destination="@id/addMemberFragment" />-->
     </fragment>
 </navigation>

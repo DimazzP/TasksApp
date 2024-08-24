@@ -7,12 +7,14 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.ContextCompat
+import com.example.tasksapp.R
 import kotlin.math.*
 
-class CustomTimePickerView : View {
+class CustomHourTimePicker : View {
     private var paint: Paint? = null
-    private var selectedHour = 2
-    private var selectedMinute = 0
+    private var selectedHour = 0
+    private var onHourSelectedListener: OnHourSelectedListener? = null
 
     constructor(context: Context?) : super(context) {
         init()
@@ -93,41 +95,12 @@ class CustomTimePickerView : View {
             selectedY = (centerY + outerRadius * 0.85 * sin(selectedAngle)).toInt()
         }
 
-        paint!!.color = Color.parseColor("#7B61FF")
+        paint!!.color = ContextCompat.getColor(context, R.color.purple_deep)
         canvas.drawCircle(selectedX.toFloat(), selectedY.toFloat(), 40f, paint!!)
 
         paint!!.color = Color.WHITE
         canvas.drawText(String.format("%02d", selectedHour), selectedX.toFloat(), (selectedY + 15).toFloat(), paint!!)
-
-        // Draw center time text with purple background on hour
-        paint!!.textSize = 60f
-        val hourText = String.format("%02d", selectedHour)
-        val minuteText = String.format(":%02d", selectedMinute)
-
-        // Measure the width of the hour text and minute text
-        val hourWidth = paint!!.measureText(hourText)
-        val minuteWidth = paint!!.measureText(minuteText)
-
-        // Calculate the total width of the combined hour and minute text
-        val totalWidth = hourWidth + minuteWidth
-
-        // Draw the purple background behind the hour text
-        paint!!.color = Color.parseColor("#7B61FF")
-        canvas.drawRect(centerX - totalWidth / 2,
-            (centerY - 40).toFloat(), centerX - totalWidth / 2 + hourWidth,
-            (centerY + 40).toFloat(), paint!!)
-
-        // Draw the hour text on top of the purple background
-        paint!!.color = Color.WHITE
-        canvas.drawText(hourText, centerX - totalWidth / 2 + hourWidth / 2,
-            (centerY + 15).toFloat(), paint!!)
-
-        // Draw the minute text
-        paint!!.color = Color.BLACK
-        canvas.drawText(minuteText, centerX - totalWidth / 2 + hourWidth + minuteWidth / 2,
-            (centerY + 15).toFloat(), paint!!)
     }
-
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (event.action == MotionEvent.ACTION_DOWN) {
@@ -145,6 +118,7 @@ class CustomTimePickerView : View {
                 val hourY = (centerY + outerRadius * 0.85 * sin(angle)).toInt() + 15
                 if (distance(x, y, hourX.toFloat(), hourY.toFloat()) < 40) {
                     setSelectedHour(i)
+                    onHourSelectedListener?.onHourSelected(i)
                     return true
                 }
             }
@@ -156,6 +130,7 @@ class CustomTimePickerView : View {
                 val hourY = (centerY + innerRadius * 0.85 * sin(angle)).toInt() + 15
                 if (distance(x, y, hourX.toFloat(), hourY.toFloat()) < 40) {
                     setSelectedHour(i)
+                    onHourSelectedListener?.onHourSelected(i)
                     return true
                 }
             }
@@ -167,6 +142,7 @@ class CustomTimePickerView : View {
             val zeroY = centerY - innerRadius + 45 + offsetY
             if (distance(x, y, zeroX.toFloat(), zeroY.toFloat()) < 40) {
                 setSelectedHour(0)
+                onHourSelectedListener?.onHourSelected(0)
                 return true
             }
         }
@@ -182,8 +158,17 @@ class CustomTimePickerView : View {
         invalidate()
     }
 
-    fun setSelectedMinute(minute: Int) {
-        selectedMinute = minute
-        invalidate()
+    fun getSelectedHour(): Int {
+        return selectedHour
+    }
+
+    // Interface for the callback
+    interface OnHourSelectedListener {
+        fun onHourSelected(hour: Int)
+    }
+
+    // Setter for the callback
+    fun setOnHourSelectedListener(listener: OnHourSelectedListener) {
+        this.onHourSelectedListener = listener
     }
 }

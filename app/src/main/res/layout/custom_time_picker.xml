@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <com.example.tasksapp.view.CustomHourTimePicker
+        android:id="@+id/timeHourPicker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.example.tasksapp.view.CustomMinutePickerView
+        android:id="@+id/timeMinutePicker"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="@id/timeHourPicker"
+        app:layout_constraintBottom_toBottomOf="@id/timeHourPicker"
+        app:layout_constraintStart_toStartOf="@id/timeHourPicker"
+        app:layout_constraintEnd_toEndOf="@id/timeHourPicker" />
+
+    <TextView
+        android:id="@+id/timeHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:textSize="24sp"
+        android:background="@color/purple_deep"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/timeColon"
+        app:layout_constraintTop_toTopOf="@id/timeHourPicker"
+        app:layout_constraintBottom_toBottomOf="@id/timeHourPicker" />
+
+    <TextView
+        android:id="@+id/timeColon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/timeHourPicker"
+        app:layout_constraintBottom_toBottomOf="@id/timeHourPicker" />
+
+    <TextView
+        android:id="@+id/timeMinute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/timeColon"
+        app:layout_constraintTop_toTopOf="@id/timeHourPicker"
+        app:layout_constraintBottom_toBottomOf="@id/timeHourPicker" />
+</androidx.constraintlayout.widget.ConstraintLayout>
