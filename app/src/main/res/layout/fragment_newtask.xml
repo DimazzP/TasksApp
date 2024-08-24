@@ -80,10 +80,12 @@
             <com.example.tasksapp.view.CustomTimePickerView
                 android:id="@+id/timePicker"
                 app:layout_constraintTop_toBottomOf="@id/newtask_rc_days"
-                android:layout_width="300dp"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.7"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="300dp"
+                android:layout_height="0dp"
                 />
             <!--                android:timePickerMode="clock"-->
         </androidx.constraintlayout.widget.ConstraintLayout>
