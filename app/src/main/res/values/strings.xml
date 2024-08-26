@@ -177,6 +177,8 @@
     <string name="img_plus">Icon Plus</string>
     <string name="img_minus">Icon Minus</string>
     <string name="img_ios_arrow_right">Icon Arrow Ios Right</string>
+    <string name="img_ios_arrow_top">Icon Arrow Ios Top</string>
+    <string name="img_ios_arrow_bottom">Icon Arrow Ios Bottom</string>
     <string name="img_add_box">Icon Add Box</string>
     <string name="img_ios_arrow_left">Icon Arrow Ios Left</string>
     <string name="img_google">Google Logo</string>

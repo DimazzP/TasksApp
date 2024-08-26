@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.assignment.AssignmentFragment">
+
+    <!-- Title Bar -->
+    <TextView
+        android:id="@+id/assignTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Tugas"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <!-- Tugas Tab Layout -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/assignTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/purple_deep"
+        app:tabIndicatorHeight="3dp"
+        app:tabTextColor="@color/black"
+        app:tabSelectedTextColor="@color/purple_deep"
+        app:layout_constraintTop_toBottomOf="@id/assignTitle"
+        android:background="@color/white">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/assignTabTugas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tugas" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/assignTabTugasBerulang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tugas Berulang" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/assignTabKebiasaan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kebiasaan" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- RecyclerView for Assignments -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/assignRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/assignTabLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/calendarFragment">
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.tasksapp.presentation.login.LoginFragment"
@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailTaskFragment"
             app:destination="@id/detailTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newtaskFragment"
+            app:destination="@id/newTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailTaskFragment"
@@ -54,26 +57,30 @@
         android:name="com.example.tasksapp.presentation.addmember.AddMemberFragment"
         android:label="fragment_addMember"
         tools:layout="@layout/fragment_add_member">
-        <!--        <action-->
-        <!--            android:id="@+id/action_homeFragment_to_homeFragment"-->
-        <!--            app:destination="@id/loginFragment" />-->
+
     </fragment>
     <fragment
         android:id="@+id/newTaskFragment"
         android:name="com.example.tasksapp.presentation.newtask.NewtaskFragment"
         android:label="fragment_newtask"
         tools:layout="@layout/fragment_newtask">
-<!--        <action-->
-<!--            android:id="@+id/action_newTaskFragment_to_newTaskFragment"-->
-<!--            app:destination="@id/addMemberFragment" />-->
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.example.tasksapp.presentation.calendar.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar">
-        <!--        <action-->
-        <!--            android:id="@+id/action_newTaskFragment_to_newTaskFragment"-->
-        <!--            app:destination="@id/addMemberFragment" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.tasksapp.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+    </fragment>
+    <fragment
+        android:id="@+id/assignmentFragment"
+        android:name="com.example.tasksapp.presentation.assignment.AssignmentFragment"
+        android:label="fragment_assignment"
+        tools:layout="@layout/fragment_assignment">
     </fragment>
 </navigation>

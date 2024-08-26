@@ -51,8 +51,6 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.fragment.ktx)
-//    implementation("com.prolificinteractive:material-calendarview:1.4.3")
-//    implementation ("com.applandeo:material-calendar-view:1.9.2")
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.viewpager2)
     implementation(libs.flexbox)

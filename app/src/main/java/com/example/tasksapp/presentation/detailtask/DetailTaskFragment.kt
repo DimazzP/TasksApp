@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasksapp.R
@@ -14,12 +15,14 @@ import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.domain.model.MemberModel
 import com.example.tasksapp.presentation.detailtask.adapter.AdapterDetailTask
 import com.example.tasksapp.presentation.detailtask.adapter.AdapterDetailTaskMember
+import com.example.tasksapp.presentation.main.MainViewModel
 import java.time.LocalDateTime
 
 class DetailTaskFragment : Fragment() {
 
     private val viewModel: DetailTaskViewModel by viewModels()
     private lateinit var binding: FragmentDetailTaskBinding
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +34,8 @@ class DetailTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        mainViewModel.setBottomVisible(false)
         clickListener()
-
         val currentDateTime: LocalDateTime = LocalDateTime.now()
         val dummyDetail = listOf(
             DetailAssignmentModel("Membuat moodboard", currentDateTime, false),

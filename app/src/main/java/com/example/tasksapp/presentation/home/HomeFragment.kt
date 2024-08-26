@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +23,9 @@ import com.example.tasksapp.domain.model.MemberModel
 import com.example.tasksapp.domain.model.ProgressModel
 import com.example.tasksapp.presentation.home.adapter.AdapterProgress
 import com.example.tasksapp.presentation.home.adapter.AdapterTaskHome
+import com.example.tasksapp.presentation.main.MainViewModel
 import java.time.LocalDateTime
+import kotlin.math.abs
 
 
 class HomeFragment : Fragment() {
@@ -31,6 +34,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapterProgress: AdapterProgress
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +46,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainViewModel.setBottomVisible(true)
         val currentDateTime: LocalDateTime = LocalDateTime.now()
         val dummyMembers = listOf(
             MemberModel(
@@ -121,8 +126,8 @@ class HomeFragment : Fragment() {
 
 
         viewPager2.setPageTransformer { page, position ->
-            page.setTranslationX((-position * page.width * 0.6).toFloat())
-            page.setScaleY(1 - (0.15f * Math.abs(position)))
+            page.translationX = (-position * page.width * 0.6).toFloat()
+            page.scaleY = 1 - (0.15f * abs(position))
         }
 
         viewPager2.setOffscreenPageLimit(2)
@@ -183,21 +188,21 @@ class HomeFragment : Fragment() {
             .setView(bindingDialog.root)
             .create()
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
-        // Setel elemen-elemen di dalam dialog menggunakan bindingDialog
-        // Misalnya, mengatur listener untuk tombol di dalam dialog
         bindingDialog.hmaddtaskBtnTask.setOnClickListener {
-            // Aksi ketika tombol task diklik
+            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
+            dialog.dismiss()
         }
 
         bindingDialog.hmaddtaskBtnRepetitive.setOnClickListener {
-            // Aksi ketika tombol repetitive diklik
+            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
+            dialog.dismiss()
         }
 
         bindingDialog.hmaddtaskBtnHabit.setOnClickListener {
-            // Aksi ketika tombol habit diklik
+            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
+            dialog.dismiss()
         }
 
-        // Tampilkan dialog
         dialog.show()
     }
 
