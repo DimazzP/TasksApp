@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/default_margin_2"
+        android:paddingHorizontal="@dimen/default_margin"
         android:paddingVertical="@dimen/default_margin">
 
         <TextView

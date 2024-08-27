@@ -149,7 +149,15 @@
 <!--    dialog priority-->
     <string name="dlprio_title">Tentukan Prioritas</string>
     <string name="dlprio_description">Prioritas tertinggi akan diletakkan paling atas dalam list</string>
-<!--    <string name="dlprio_title">Prioritas</string>-->
+
+<!--    assignment-->
+    <string name="assignment_title">List Tugas</string>
+    <string name="assignment_task">Tugas</string>
+    <string name="assignment_repetitive_task">Tugas Berulang</string>
+    <string name="assignment_habitual_task">Kebiasaan</string>
+    <string name="assignment_day">Sel - Kam</string>
+    <string name="assignment_date">Tanggal 15, 18</string>
+
 
 
     
@@ -182,6 +190,7 @@
     <string name="img_add_box">Icon Add Box</string>
     <string name="img_ios_arrow_left">Icon Arrow Ios Left</string>
     <string name="img_google">Google Logo</string>
+    <string name="img_repetitive">Icon Repetitive</string>
 
 
 </resources>

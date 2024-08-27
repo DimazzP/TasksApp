@@ -1,35 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient_login"
+    android:padding="@dimen/default_margin"
     tools:context=".presentation.assignment.AssignmentFragment">
 
     <!-- Title Bar -->
     <TextView
-        android:id="@+id/assignTitle"
+        android:id="@+id/assign_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List Tugas"
-        android:textSize="24sp"
-        android:textColor="@color/black"
         android:fontFamily="@font/inter_bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="List Tugas"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/assign_search"
+        app:layout_constraintEnd_toStartOf="@id/assign_filter"
+        app:layout_constraintTop_toTopOf="@id/assign_title"
+        app:layout_constraintBottom_toBottomOf="@id/assign_title"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_search_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageButton
+        android:id="@+id/assign_filter"
+        app:layout_constraintEnd_toStartOf="@id/assign_download"
+        app:layout_constraintTop_toTopOf="@id/assign_title"
+        app:layout_constraintBottom_toBottomOf="@id/assign_title"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageButton
+        android:id="@+id/assign_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/ic_download"
+        app:layout_constraintBottom_toBottomOf="@id/assign_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/assign_title" />
 
 
     <!-- Tugas Tab Layout -->
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/assignTabLayout"
+        android:id="@+id/assign_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/assign_title"
         app:tabIndicatorColor="@color/purple_deep"
         app:tabIndicatorHeight="3dp"
-        app:tabTextColor="@color/black"
         app:tabSelectedTextColor="@color/purple_deep"
-        app:layout_constraintTop_toBottomOf="@id/assignTitle"
-        android:background="@color/white">
+        app:tabTextColor="@color/black">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/assignTabTugas"
@@ -50,16 +79,31 @@
             android:text="Kebiasaan" />
     </com.google.android.material.tabs.TabLayout>
 
-    <!-- RecyclerView for Assignments -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/assignRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/assignTabLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <View
+        android:background="@color/gray_stroke"
+        app:layout_constraintTop_toBottomOf="@id/assign_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/assign_view_pager"
+        android:layout_marginTop="@dimen/space_margin"
+        app:layout_constraintTop_toBottomOf="@id/assign_tab_layout"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:clipToPadding="false"
-        android:paddingTop="8dp" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+    <!-- RecyclerView for Assignments -->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/assign_recycler_view"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:clipToPadding="false"-->
+<!--        android:paddingTop="8dp"-->
+<!--        tools:listitem="@layout/adp_assignment"-->
+<!--        tools:itemCount="10"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/assign_tab_layout" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
