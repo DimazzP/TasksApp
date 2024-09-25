@@ -1,6 +1,5 @@
 package com.example.tasksapp.presentation.newtask
 
-import android.animation.ValueAnimator
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
@@ -10,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -24,8 +22,6 @@ import com.example.tasksapp.databinding.FragmentNewtaskBinding
 import com.example.tasksapp.presentation.main.MainViewModel
 import com.example.tasksapp.presentation.newtask.adapter.CalendarAdapter
 import com.example.tasksapp.presentation.newtask.model.CalendarDay
-import com.example.tasksapp.view.CustomHourTimePicker
-import com.example.tasksapp.view.CustomMinutePickerView
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -191,8 +187,8 @@ class NewtaskFragment : Fragment() {
     private fun updateVisibility(checkedId: Int) {
         binding.newtaskTableDays.visibility = View.GONE
         binding.tableMonthly.visibility = View.GONE
-        binding.tableYearly.visibility = View.GONE
-        binding.tablePostpone.visibility = View.GONE
+        binding.tableActivity.visibility = View.GONE
+        binding.tableYear.visibility = View.GONE
 
         when (checkedId) {
             binding.radioDaily.id -> {
@@ -207,12 +203,12 @@ class NewtaskFragment : Fragment() {
                 binding.tableMonthly.visibility = View.VISIBLE
             }
 
-            binding.radioSpecificDatesYear.id -> {
-                binding.tableYearly.visibility = View.VISIBLE
+            binding.radioYear.id -> {
+                binding.tableYear.visibility = View.VISIBLE
             }
 
-            binding.radioRepeating.id -> {
-                binding.tablePostpone.visibility = View.VISIBLE
+            binding.radioActivity.id -> {
+                binding.tableActivity.visibility = View.VISIBLE
             }
         }
     }
@@ -293,10 +289,5 @@ class NewtaskFragment : Fragment() {
             days.add(CalendarDay(i, currentMonth + 1, currentYear, dayOfWeek))
         }
         return days
-    }
-
-
-    companion object {
-        fun newInstance() = NewtaskFragment()
     }
 }

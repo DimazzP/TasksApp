@@ -25,20 +25,14 @@ class AssignmentFragment : Fragment() {
     private val viewModel: AssignmentViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
 
-    //    private lateinit var binding: FragmentAssignmentBinding
     private lateinit var view: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        binding = FragmentAssignmentBinding.inflate(inflater, container, false)
-//        binding.assignTabLayout.bringToFront()
-//        return binding.root
         view = inflater.inflate(R.layout.fragment_assignment, container, false);
         return view
-//        return inflater.inflate(R.layout.fragment_assignment, container, false)
-//        return FragmentAssignmentBinding.inflate(layoutInflater).root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

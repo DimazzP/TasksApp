@@ -4,98 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.newtask.NewtaskFragment">
+    tools:context=".presentation.newrepetitive.NewrepetitiveFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fbfaff">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/newtask_bottom_cons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/newtask_btn_prev_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_margin"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/img_ios_arrow_left"
-                android:padding="@dimen/space_margin"
-                android:src="@drawable/ic_ios_arrow_left"
-                app:layout_constraintBottom_toBottomOf="@id/newtask_month_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/newtask_month_name" />
-
-            <TextView
-                android:id="@+id/newtask_month_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_semi"
-                android:padding="@dimen/space_margin"
-                android:text="@string/example_month_name"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/newtask_btn_next_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/img_ios_arrow_right"
-                android:padding="@dimen/space_margin"
-                android:src="@drawable/ic_arrow_ios_right"
-                app:layout_constraintBottom_toBottomOf="@id/newtask_month_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/newtask_month_name" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/newtask_rc_days"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/newtask_month_name"
-                tools:listitem="@layout/adp_item_day" />
-
-            <com.example.tasksapp.view.CustomTimePicker
-                android:id="@+id/newtask_customtimepicker"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/newtask_rc_days"
-                app:layout_constraintWidth_percent="0.75" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin_2"
-                android:layout_marginHorizontal="@dimen/default_margin_2"
-                android:text="@string/newtask_add_member"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/newtask_customtimepicker" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/newtask_header"
+            android:id="@+id/newrep_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -104,32 +22,32 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/newtask_btnback"
+                android:id="@+id/newrep_btnback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/transparent"
                 android:contentDescription="@string/img_back"
                 android:cropToPadding="true"
                 android:src="@drawable/ic_arrow_back"
-                app:layout_constraintBottom_toBottomOf="@id/newtask_more"
+                app:layout_constraintBottom_toBottomOf="@id/newrep_more"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/newtask_more" />
+                app:layout_constraintTop_toTopOf="@id/newrep_more" />
 
             <TextView
-                android:id="@+id/newtask_title"
+                android:id="@+id/newrep_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_margin"
                 android:fontFamily="@font/inter_semi"
-                android:text="@string/newtask_task_title"
+                android:text="@string/newrep_title"
                 android:textColor="@color/black"
                 android:textSize="26sp"
-                app:layout_constraintBottom_toBottomOf="@id/newtask_btnback"
-                app:layout_constraintStart_toEndOf="@id/newtask_btnback"
+                app:layout_constraintBottom_toBottomOf="@id/newrep_btnback"
+                app:layout_constraintStart_toEndOf="@id/newrep_btnback"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/newtask_more"
+                android:id="@+id/newrep_more"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -147,20 +65,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
-            android:id="@+id/newtask_scroll_view"
+            android:id="@+id/newrep_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/newtask_header">
+            app:layout_constraintTop_toBottomOf="@id/newrep_header">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/newtask_top_cons"
+                android:id="@+id/newrep_top_cons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:paddingHorizontal="@dimen/default_margin_2">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/newtask_name_task"
+                    android:id="@+id/newrep_name_task"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_margin_2"
@@ -182,16 +100,16 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
-                    android:id="@+id/newtask_next_const"
+                    android:id="@+id/newrep_next_const"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_margin"
                     android:orientation="vertical"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/newtask_name_task">
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/newrep_name_task">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/newtask_description_task"
+                        android:id="@+id/newrep_description_task"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/newtask_description_name"
@@ -210,44 +128,101 @@
                             android:textColor="@android:color/black" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/newtask_bt_task"
+                    <LinearLayout
+                        android:id="@+id/newrep_bt_task"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_margin">
-
-                        <ImageView
-                            android:id="@+id/newtask_ic_remember"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@string/img_ios_arrow_right"
-                            android:src="@drawable/ic_add_box"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space_margin"
-                            android:fontFamily="@font/inter_regular"
-                            android:text="@string/newtask_add_sub"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/newtask_ic_remember"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:fontFamily="@font/inter_semi"
+                            android:text="@string/newtask_frec_task"
+                            android:textColor="@color/purple_deep"
+                            android:textSize="16sp" />
+
+                        <RadioGroup
+                            android:id="@+id/newrep_radio_group_evaluations"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical">
+
+                            <RadioButton
+                                android:id="@+id/radio_yes_no"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_regular"
+                                android:text="@string/newrep_yes_no"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                            <RadioButton
+                                android:id="@+id/radio_numeric"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_regular"
+                                android:text="@string/newrep_numeric"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:cardBackgroundColor="@color/purple_soft_1"
+                                app:cardCornerRadius="12dp">
+
+                                <LinearLayout
+                                    android:id="@+id/newrep_table_numeric"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:visibility="gone"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:padding="@dimen/small_margin">
+
+                                    <EditText
+                                        android:id="@+id/newrep_number_numeric"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:backgroundTint="@color/purple_deep"
+                                        android:fontFamily="@font/inter_regular"
+                                        android:hint="@string/newrep_total"
+                                        android:inputType="number"
+                                        android:maxLength="3"
+                                        android:paddingHorizontal="4dp"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/purple_deep"
+                                        android:textColorHint="@color/gray_text"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/inter_regular"
+                                        android:paddingHorizontal="4dp"
+                                        android:text="@string/newrep_activity_day"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp" />
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+                        </RadioGroup>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
                             android:layout_marginTop="@dimen/default_margin"
-                            android:background="@color/gray_stroke"
-                            app:layout_constraintTop_toBottomOf="@id/newtask_ic_remember" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            android:background="@color/gray_stroke" />
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/newtask_const_sub_task"
+                        android:id="@+id/newrep_const_sub_task"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/default_margin"
@@ -262,7 +237,7 @@
                             android:textSize="16sp" />
                         <!-- RadioGroup -->
                         <RadioGroup
-                            android:id="@+id/newtask_radio_group"
+                            android:id="@+id/newrep_radio_group"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -287,7 +262,7 @@
                                 android:textSize="15sp" />
 
                             <TableLayout
-                                android:id="@+id/newtask_table_days"
+                                android:id="@+id/newrep_table_days"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
@@ -365,105 +340,6 @@
                             </TableLayout>
 
                             <RadioButton
-                                android:id="@+id/radio_specific_dates_month"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/inter_regular"
-                                android:text="@string/newtask_radio_monthly"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-
-                            <LinearLayout
-                                android:id="@+id/table_monthly"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:orientation="horizontal"
-                                android:visibility="gone">
-
-                                <com.example.tasksapp.view.SelectedCalendarView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="@dimen/default_margin_2" />
-                            </LinearLayout>
-
-                            <RadioButton
-                                android:id="@+id/radio_year"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/inter_regular"
-                                android:text="@string/newtask_radio_yearly"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-
-                            <!-- CardView for the container -->
-                            <LinearLayout
-                                android:id="@+id/table_year"
-                                android:visibility="gone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:padding="8dp"
-                                    app:cardBackgroundColor="@color/purple_soft_1"
-                                    app:cardCornerRadius="12dp">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:gravity="center"
-                                        android:orientation="horizontal"
-                                        android:padding="@dimen/small_margin">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/inter_regular"
-                                            android:paddingHorizontal="4dp"
-                                            android:text="@string/newtask_date_label"
-                                            android:textColor="@color/black"
-                                            android:textSize="16sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/inter_regular"
-                                            android:paddingHorizontal="4dp"
-                                            android:textStyle="bold"
-                                            android:text="@string/newtask_yearly_empty"
-                                            android:textColor="@color/purple_deep"
-                                            android:textSize="16sp" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/inter_regular"
-                                            android:paddingHorizontal="4dp"
-                                            android:text="@string/newtask_yearly_label"
-                                            android:textColor="@color/black"
-                                            android:textSize="16sp" />
-
-                                    </LinearLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:backgroundTint="@color/purple_deep"
-                                    android:layout_margin="@dimen/space_margin"
-                                    android:src="@drawable/ic_calendar_box" />
-                            </LinearLayout>
-
-                            <RadioButton
                                 android:id="@+id/radio_activity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -490,7 +366,7 @@
                                     android:orientation="horizontal">
 
                                     <EditText
-                                        android:id="@+id/newtask_activity"
+                                        android:id="@+id/newrep_activity"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
@@ -527,7 +403,7 @@
 
                                     <!-- EditText for 'Istirahat' input -->
                                     <EditText
-                                        android:id="@+id/newtask_rest"
+                                        android:id="@+id/newrep_rest"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
@@ -565,24 +441,24 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/newtask_const_secondary"
+                        android:id="@+id/newrep_const_secondary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/newtask_bt_date_start"
+                            android:id="@+id/newrep_bt_date_start"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_margin">
 
                             <ImageView
-                                android:id="@+id/newtask_ic_calendar_start"
+                                android:id="@+id/newrep_ic_calendar_start"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/img_calendar"
                                 android:src="@drawable/ic_calendar_start"
-                                app:layout_constraintBottom_toBottomOf="@id/newtask_text_date_start"
+                                app:layout_constraintBottom_toBottomOf="@id/newrep_text_date_start"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -594,12 +470,12 @@
                                 android:text="@string/newtask_date_start"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
-                                app:layout_constraintBottom_toBottomOf="@id/newtask_text_date_start"
-                                app:layout_constraintStart_toEndOf="@id/newtask_ic_calendar_start"
+                                app:layout_constraintBottom_toBottomOf="@id/newrep_text_date_start"
+                                app:layout_constraintStart_toEndOf="@id/newrep_ic_calendar_start"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/newtask_text_date_start"
+                                android:id="@+id/newrep_text_date_start"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/rd_8"
@@ -616,17 +492,17 @@
                                 android:layout_height="2dp"
                                 android:layout_marginTop="@dimen/default_margin"
                                 android:background="@color/gray_stroke"
-                                app:layout_constraintTop_toBottomOf="@id/newtask_ic_calendar_start" />
+                                app:layout_constraintTop_toBottomOf="@id/newrep_ic_calendar_start" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/newtask_bt_date_end"
+                            android:id="@+id/newrep_bt_date_end"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/default_margin">
 
                             <ImageView
-                                android:id="@+id/newtask_ic_calendar_end"
+                                android:id="@+id/newrep_ic_calendar_end"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:contentDescription="@string/img_calendar"
@@ -642,15 +518,15 @@
                                 android:text="@string/newtask_date_end"
                                 android:textColor="@color/black"
                                 android:textSize="15sp"
-                                app:layout_constraintBottom_toBottomOf="@id/newtask_ic_calendar_end"
-                                app:layout_constraintStart_toEndOf="@id/newtask_ic_calendar_end"
+                                app:layout_constraintBottom_toBottomOf="@id/newrep_ic_calendar_end"
+                                app:layout_constraintStart_toEndOf="@id/newrep_ic_calendar_end"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <androidx.appcompat.widget.SwitchCompat
-                                android:id="@+id/newtask_switch_date_end"
+                                android:id="@+id/newrep_switch_date_end"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toBottomOf="@id/newtask_ic_calendar_end"
+                                app:layout_constraintBottom_toBottomOf="@id/newrep_ic_calendar_end"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -669,10 +545,10 @@
                                 android:orientation="horizontal"
                                 android:paddingTop="@dimen/space_margin"
                                 android:visibility="gone"
-                                app:layout_constraintTop_toBottomOf="@id/newtask_ic_calendar_end">
+                                app:layout_constraintTop_toBottomOf="@id/newrep_ic_calendar_end">
 
                                 <androidx.cardview.widget.CardView
-                                    android:id="@+id/newtask_card_date"
+                                    android:id="@+id/newrep_card_date"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:padding="12dp"
@@ -680,7 +556,7 @@
                                     app:cardCornerRadius="12dp">
 
                                     <TextView
-                                        android:id="@+id/newtask_tv_date"
+                                        android:id="@+id/newrep_tv_date"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/inter_semi"
@@ -698,7 +574,7 @@
 
                                 <!-- EditText for number input -->
                                 <EditText
-                                    android:id="@+id/newtask_et_days"
+                                    android:id="@+id/newrep_et_days"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:backgroundTint="@color/purple_deep"
@@ -711,7 +587,7 @@
                                     android:textSize="15sp" />
 
                                 <TextView
-                                    android:id="@+id/newtask_tv_hari_label"
+                                    android:id="@+id/newrep_tv_hari_label"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/inter_regular"
@@ -726,18 +602,18 @@
                     </LinearLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/newtask_bt_add_reminder"
+                        android:id="@+id/newrep_bt_add_reminder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/default_margin">
 
                         <ImageView
-                            android:id="@+id/newtask_ic_add"
+                            android:id="@+id/newrep_ic_add"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/img_ios_arrow_right"
                             android:src="@drawable/ic_bell"
-                            app:layout_constraintBottom_toBottomOf="@id/newtask_remember_text"
+                            app:layout_constraintBottom_toBottomOf="@id/newrep_remember_text"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -749,12 +625,12 @@
                             android:text="@string/newtask_reminder"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintBottom_toBottomOf="@id/newtask_remember_text"
-                            app:layout_constraintStart_toEndOf="@id/newtask_ic_add"
+                            app:layout_constraintBottom_toBottomOf="@id/newrep_remember_text"
+                            app:layout_constraintStart_toEndOf="@id/newrep_ic_add"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/newtask_remember_text"
+                            android:id="@+id/newrep_remember_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_circle_text"
@@ -771,22 +647,22 @@
                             android:layout_height="2dp"
                             android:layout_marginTop="@dimen/default_margin"
                             android:background="@color/gray_stroke"
-                            app:layout_constraintTop_toBottomOf="@id/newtask_ic_add" />
+                            app:layout_constraintTop_toBottomOf="@id/newrep_ic_add" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/newtask_bt_add_priority"
+                        android:id="@+id/newrep_bt_add_priority"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/default_margin">
 
                         <ImageView
-                            android:id="@+id/newtask_ic_priority"
+                            android:id="@+id/newrep_ic_priority"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/img_ios_arrow_right"
                             android:src="@drawable/ic_flag"
-                            app:layout_constraintBottom_toBottomOf="@id/newtask_priority_text"
+                            app:layout_constraintBottom_toBottomOf="@id/newrep_priority_text"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -798,12 +674,12 @@
                             android:text="@string/newtask_priority"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintBottom_toBottomOf="@id/newtask_priority_text"
-                            app:layout_constraintStart_toEndOf="@id/newtask_ic_priority"
+                            app:layout_constraintBottom_toBottomOf="@id/newrep_priority_text"
+                            app:layout_constraintStart_toEndOf="@id/newrep_ic_priority"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/newtask_priority_text"
+                            android:id="@+id/newrep_priority_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/rd_8"
@@ -820,77 +696,58 @@
                             android:layout_height="2dp"
                             android:layout_marginTop="@dimen/default_margin"
                             android:background="@color/gray_stroke"
-                            app:layout_constraintTop_toBottomOf="@id/newtask_ic_priority" />
+                            app:layout_constraintTop_toBottomOf="@id/newrep_ic_priority" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/newtask_bt_add_postpone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/default_margin">
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:id="@+id/newrep_bt_add_postpone"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/default_margin">-->
 
-                        <ImageView
-                            android:id="@+id/newtask_ic_postpone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@string/img_ios_arrow_right"
-                            android:src="@drawable/ic_postpone_task"
-                            app:layout_constraintBottom_toBottomOf="@id/newtask_check_postpone"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/newrep_ic_postpone"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:contentDescription="@string/img_ios_arrow_right"-->
+<!--                            android:src="@drawable/ic_postpone_task"-->
+<!--                            app:layout_constraintBottom_toBottomOf="@id/newrep_check_postpone"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space_margin"
-                            android:fontFamily="@font/inter_regular"
-                            android:text="@string/newtask_postpone"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            app:layout_constraintBottom_toBottomOf="@id/newtask_check_postpone"
-                            app:layout_constraintStart_toEndOf="@id/newtask_ic_postpone"
-                            app:layout_constraintTop_toTopOf="parent" />
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginStart="@dimen/space_margin"-->
+<!--                            android:fontFamily="@font/inter_regular"-->
+<!--                            android:text="@string/newtask_postpone"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            android:textSize="15sp"-->
+<!--                            app:layout_constraintBottom_toBottomOf="@id/newrep_check_postpone"-->
+<!--                            app:layout_constraintStart_toEndOf="@id/newrep_ic_postpone"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
 
-                        <com.google.android.material.checkbox.MaterialCheckBox
-                            android:id="@+id/newtask_check_postpone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/gray_text"
-                            android:button="@drawable/custom_checkbox"
-                            android:checked="true"
-                            app:buttonTint="@color/purple_deep"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+<!--                        <com.google.android.material.checkbox.MaterialCheckBox-->
+<!--                            android:id="@+id/newrep_check_postpone"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:backgroundTint="@color/gray_text"-->
+<!--                            android:button="@drawable/custom_checkbox"-->
+<!--                            android:checked="true"-->
+<!--                            app:buttonTint="@color/purple_deep"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent" />-->
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="@dimen/default_margin"
-                            android:background="@color/gray_stroke"
-                            app:layout_constraintTop_toBottomOf="@id/newtask_ic_postpone" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                        <View-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="2dp"-->
+<!--                            android:layout_marginTop="@dimen/default_margin"-->
+<!--                            android:background="@color/gray_stroke"-->
+<!--                            app:layout_constraintTop_toBottomOf="@id/newrep_ic_postpone" />-->
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
                 </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/newtask_more_bottom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/default_margin"
-                    android:backgroundTint="@color/transparent"
-                    android:contentDescription="@string/img_more"
-                    android:src="@drawable/ic_ios_arrow_bottom"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/newtask_next_const" />
-
-                <View
-                    android:id="@+id/newtask_bottom_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/newtask_more_bottom" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.DlHomeAddtaskBinding
+import com.example.tasksapp.databinding.DlLiterationBinding
 import com.example.tasksapp.databinding.FragmentHomeBinding
 import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.domain.model.MemberModel
@@ -194,12 +195,26 @@ class HomeFragment : Fragment() {
         }
 
         bindingDialog.hmaddtaskBtnRepetitive.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
+//            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
             dialog.dismiss()
+            val bindingDialogLiter = DlLiterationBinding.inflate(layoutInflater)
+
+            // Buat AlertDialog
+            val dialogLiter = AlertDialog.Builder(requireContext())
+                .setView(bindingDialogLiter.root)
+                .create()
+            dialogLiter.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+            dialogLiter.show()
+            bindingDialogLiter.dlliterBtOk.setOnClickListener {
+                dialogLiter.dismiss()
+            }
+            bindingDialogLiter.dlliterBtCancel.setOnClickListener {
+                dialogLiter.dismiss()
+            }
         }
 
         bindingDialog.hmaddtaskBtnHabit.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_newrepFragment)
             dialog.dismiss()
         }
 

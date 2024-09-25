@@ -131,15 +131,23 @@
     <string name="newtask_date_label">Tanggal</string>
     <string name="newtask_monthly_label">tiap bulan</string>
     <string name="newtask_yearly_label">tiap tahun</string>
+    <string name="newtask_yearly_empty">____</string>
     <string name="newtask_calendar_icon_desc">Pilih tanggal</string>
     <string name="newtask_radio_yearly">Tanggal tertentu dalam setahun</string>
-    <string name="newtask_radio_postpone">Berulang</string>
+    <string name="newtask_radio_activity">Siklus aktivitas-istirahat</string>
     <string name="newtask_aktivitas">Aktivitas</string>
     <string name="newtask_istirahat">Istirahat</string>
     <string name="newtask_hari">hari</string>
     <string name="newtask_date_start">Tanggal Mulai</string>
     <string name="newtask_date_end">Tanggal Selesai</string>
     <string name="newtask_add_member">+ Tambah Anggota</string>
+
+    <string name="newrep_title">Kebiasaan Baru</string>
+    <string name="newrep_yes_no">Ya atau Tidak</string>
+    <string name="newrep_numeric">Nilai numerik</string>
+    <string name="newrep_total">Jumlah</string>
+    <string name="newrep_activity_day">aktivitas dalam sehari</string>
+
 
 
 
@@ -149,6 +157,14 @@
 <!--    dialog priority-->
     <string name="dlprio_title">Tentukan Prioritas</string>
     <string name="dlprio_description">Prioritas tertinggi akan diletakkan paling atas dalam list</string>
+
+<!--    dialog literation-->
+    <string name="dlliter_title">Literasi</string>
+    <string name="dlliter_date">Literasi</string>
+    <string name="dlliter_today">Hari ini</string>">
+    <string name="dlliter_numeric_1">1</string>">
+    <string name="dlliter_numeric_slice">/</string>">
+    <string name="dlliter_numeric_2">2</string>">
 
 <!--    assignment-->
     <string name="assignment_title">List Tugas</string>
