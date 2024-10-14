@@ -175,8 +175,47 @@
     <string name="assignment_date">Tanggal 15, 18</string>
 
 
+<!--    profile-->
+    <string name="prof_my_profile">Profil Saya</string>
+    <string name="prof_edit">Edit</string>
+    <string name="prof_settings">Pengaturan</string>
+    <string name="prof_friends">Teman</string>
+    <string name="prof_support">Support</string>
+    <string name="prof_share">Berbagi</string>
+    <string name="prof_about_us">Tentang Kami</string>
+    <string name="prof_logout">Keluar</string>
 
-    
+<!--    edit profile-->
+    <string name="edprof_edit_profile">Edit Profil</string>
+    <string name="edprof_done">Selesai</string>
+    <string name="edprof_name">Nama</string>
+    <string name="edprof_username">Nama Pengguna</string>
+    <string name="edprof_phone_number">Nomor Telepon</string>
+    <string name="edprof_email">Email</string>
+
+<!--    Setting-->
+    <string name="sett_settings">Pengaturan</string>
+    <string name="sett_setting_task">Pengaturan Tugas</string>
+    <string name="sett_notification">Notifikasi</string>
+    <string name="sett_theme">Tema</string>
+    <string name="sett_sync">Sinkronisasi</string>
+    <string name="sett_backup">Pencadangan</string>
+    <string name="sett_language">Bahasa</string>
+
+<!--    setting task-->
+    <string name="settask_task_settings">Pengaturan Tugas</string>
+    <string name="settask_sorting_options">Opsi Pengurutan</string>
+    <string name="settask_first">Pertama</string>
+    <string name="settask_first_priority">Dari prioritas</string>
+    <string name="settask_second">Kedua</string>
+    <string name="settask_second_time">Dari waktu</string>
+    <string name="settask_task_location_done">Letak Tugas Selesai</string>
+    <string name="settask_move_to_bottom">Pindah ke bawah</string>
+    <string name="settask_text_size">Ukuran teks</string>
+    <string name="settask_default_size">Asli</string>
+    <string name="settask_show_priority">Tampilkan prioritas</string>
+
+
 <!--    image descripstion-->
     <string name="img_checker_square">Image Checker Square</string>
     <string name="img_obd1">Image Onboarding 1</string>
