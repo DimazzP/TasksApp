@@ -1,5 +1,4 @@
-
-package com.example.tasksapp.presentation.settingtask
+package com.example.tasksapp.presentation.settingnotif
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
@@ -9,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.tasksapp.R
 
-class SettingTaskFragment : Fragment() {
+class SettingNotifFragment : Fragment() {
 
-    companion object { 
-        fun newInstance() = SettingTaskFragment()
+    companion object {
+        fun newInstance() = SettingNotifFragment()
     }
 
-    private val viewModel: SettingTaskViewModel by viewModels()
+    private val viewModel: SettingNotifViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +26,6 @@ class SettingTaskFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_setting_task, container, false)
+        return inflater.inflate(R.layout.fragment_setting_notif, container, false)
     }
 }
