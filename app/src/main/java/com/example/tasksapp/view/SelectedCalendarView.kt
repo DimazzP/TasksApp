@@ -50,6 +50,10 @@ class SelectedCalendarView @JvmOverloads constructor(
         }
     }
 
+    fun getSelectedDays(): Set<Int> {
+        return selectedDays
+    }
+
     private fun onDayClicked(day: Int, dayTextView: TextView) {
         if (selectedDays.contains(day)) {
             selectedDays.remove(day)

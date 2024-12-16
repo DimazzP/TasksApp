@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.ActivitySplashScreenBinding
+import com.example.tasksapp.presentation.main.MainActivity
 import com.example.tasksapp.presentation.onboarding.OnboardingActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -30,13 +31,14 @@ class SplashScreenActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
         lifecycleScope.launch {
             delay(DELAY_SPLASH)
-            val intent = Intent(this@SplashScreenActivity, OnboardingActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
 
-    companion object{
-        private const val DELAY_SPLASH = 3000L
+    companion object {
+        //        private const val DELAY_SPLASH = 3000L
+        private const val DELAY_SPLASH = 1L
     }
 }

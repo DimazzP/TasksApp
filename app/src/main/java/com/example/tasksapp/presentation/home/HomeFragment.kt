@@ -26,11 +26,14 @@ import com.example.tasksapp.presentation.home.adapter.AdapterProgress
 import com.example.tasksapp.presentation.home.adapter.AdapterTaskHome
 import com.example.tasksapp.presentation.main.MainViewModel
 import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.TextStyle
+import java.util.Locale
 import kotlin.math.abs
 
 
 class HomeFragment : Fragment() {
-
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
@@ -172,12 +175,29 @@ class HomeFragment : Fragment() {
             }
         })
         setClickListener()
+        setTimeListener()
     }
 
     private fun setClickListener(){
         binding.homAddTask.setOnClickListener {
             showAddTaskDialog()
         }
+    }
+
+    private fun setTimeListener(){
+        val indonesiaTimeZone = ZoneId.of("Asia/Jakarta")
+        val currentDateTimeInIndonesia = ZonedDateTime.now(indonesiaTimeZone)
+
+        // Format nama hari dan bulan dalam bahasa Indonesia
+        val dayOfWeek = currentDateTimeInIndonesia.dayOfWeek.getDisplayName(TextStyle.FULL, Locale("id", "ID"))
+        val dayOfMonth = currentDateTimeInIndonesia.dayOfMonth
+        val month = currentDateTimeInIndonesia.month.getDisplayName(TextStyle.FULL, Locale("id", "ID"))
+        val year = currentDateTimeInIndonesia.year
+
+        val formattedDate = "$dayOfWeek, $dayOfMonth $month $year"
+
+        binding.homDate.text = formattedDate;
+
     }
 
     private fun showAddTaskDialog() {

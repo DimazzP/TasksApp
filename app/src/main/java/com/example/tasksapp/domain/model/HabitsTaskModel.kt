@@ -1,6 +1,6 @@
-package com.example.tasksapp.data.model
+package com.example.tasksapp.domain.model
 
-import com.example.tasksapp.data.model.utils.ActivityRest
+import com.example.tasksapp.domain.model.utils.ActivityRest
 import java.util.Date
 
 data class HabitsTaskModel(

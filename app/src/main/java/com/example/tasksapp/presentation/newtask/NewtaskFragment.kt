@@ -1,5 +1,6 @@
 package com.example.tasksapp.presentation.newtask
 
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
@@ -8,23 +9,30 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.DlPriorityBinding
 import com.example.tasksapp.databinding.FragmentNewtaskBinding
+import com.example.tasksapp.domain.model.NewTaskModel
+import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.presentation.main.MainViewModel
 import com.example.tasksapp.presentation.newtask.adapter.CalendarAdapter
 import com.example.tasksapp.presentation.newtask.model.CalendarDay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Locale
 
@@ -36,6 +44,11 @@ class NewtaskFragment : Fragment() {
     private lateinit var calendarDays: MutableList<CalendarDay>
     private var calendar: Calendar = Calendar.getInstance()
     private val mainViewModel: MainViewModel by activityViewModels()
+    private var startDate: LocalDate = LocalDate.now()
+    private var endDate: LocalDate? = null
+    private val weeklyCheck = mutableListOf<Int>()
+    private var prioritySelected = 0
+    var freqSelected = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +74,7 @@ class NewtaskFragment : Fragment() {
         val screenWidth = resources.displayMetrics.widthPixels
         calendarDays = generateDaysForMonth(calendar)
         calendarAdapter = CalendarAdapter(calendarDays, screenWidth, binding.newtaskRcDays) { day ->
-            // Handle day click, e.g., show a toast or navigate to another screen
+            startDate = LocalDate.of(day.year, day.month, day.day)
         }
 
         val snapHelper = PagerSnapHelper()
@@ -75,6 +88,15 @@ class NewtaskFragment : Fragment() {
         }
 
         updateMonthTitle()
+        testCall()
+    }
+
+    private fun testCall(){
+        mainViewModel.listNewTask.observe(viewLifecycleOwner,  Observer { data->
+            mainViewModel.listNewTask.value?.forEach {
+                Log.d("NewtaskFragment", it.title)
+            }
+        })
     }
 
 
@@ -160,6 +182,14 @@ class NewtaskFragment : Fragment() {
             radioDaily.isChecked = true
             updateVisibility(radioDaily.id)
 
+            newtaskBtnback.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            newtaskAddTask.setOnClickListener {
+                createNewTask()
+            }
+
             newtaskRadioGroup.setOnCheckedChangeListener { _, checkedId ->
                 updateVisibility(checkedId)
             }
@@ -192,23 +222,27 @@ class NewtaskFragment : Fragment() {
 
         when (checkedId) {
             binding.radioDaily.id -> {
-
+                freqSelected = 0
             }
 
             binding.radioSpecificDays.id -> {
                 binding.newtaskTableDays.visibility = View.VISIBLE
+                freqSelected = 1
             }
 
             binding.radioSpecificDatesMonth.id -> {
                 binding.tableMonthly.visibility = View.VISIBLE
+                freqSelected = 2
             }
 
             binding.radioYear.id -> {
                 binding.tableYear.visibility = View.VISIBLE
+                freqSelected = 3
             }
 
             binding.radioActivity.id -> {
                 binding.tableActivity.visibility = View.VISIBLE
+                freqSelected = 4
             }
         }
     }
@@ -218,6 +252,12 @@ class NewtaskFragment : Fragment() {
             calendar.add(Calendar.MONTH, -1)
             updateCalendarView()
         }
+
+        binding.newtaskMore.setOnClickListener{
+            createNewTask()
+        }
+
+        checkedWeekly()
 
         binding.newtaskBtnNextMonth.setOnClickListener {
             calendar.add(Calendar.MONTH, 1)
@@ -237,7 +277,7 @@ class NewtaskFragment : Fragment() {
             }
 
             bindingPrio.dlprioBtOk.setOnClickListener {
-                val selectedPriority = bindingPrio.dlprioNumberPriority.text.toString()
+                prioritySelected = bindingPrio.dlprioNumberPriority.text.toString().toInt()
                 dialog.dismiss()
             }
 
@@ -252,9 +292,13 @@ class NewtaskFragment : Fragment() {
                 val currentValue = bindingPrio.dlprioNumberPriority.text.toString().toInt()
                 bindingPrio.dlprioNumberPriority.text = (currentValue + 1).toString()
             }
-
             dialog.show()
-
+        }
+        binding.newtaskBtDateStart.setOnClickListener {
+            showStartDialog()
+        }
+        binding.newtaskBtDateEnd.setOnClickListener {
+            showEndDialog()
         }
     }
 
@@ -289,5 +333,144 @@ class NewtaskFragment : Fragment() {
             days.add(CalendarDay(i, currentMonth + 1, currentYear, dayOfWeek))
         }
         return days
+    }
+
+    private fun createNewTask() {
+        binding.apply {
+            if (newtaskTitleEdit.text == null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Nama Tugas Tidak Boleh Kosong",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return
+            }
+            var startLocal: LocalDateTime? = null
+            var endLocal: LocalDateTime? = null
+            if (startDate != null) {
+                startLocal = startDate.atStartOfDay()
+                    .withHour(
+                        newtaskCustomtimepicker.getHour()
+                    ).withHour(newtaskCustomtimepicker.getMinute())
+            }
+            if (endDate != null) {
+                endLocal = endDate?.atStartOfDay()?.withHour(0)?.withHour(0)
+            }
+
+            var newActivityRest: ActivityRest? = null
+            if (newtaskActivity.text.isNotEmpty() && newtaskRest.text.isNotEmpty()) {
+                newActivityRest = ActivityRest(
+                    newtaskActivity.text.toString().toInt(),
+                    newtaskRest.text.toString().toInt()
+                )
+            }
+            var freqYearly: Int? = null
+            if(newtaskFreqYearEdit.text.isNotEmpty()) {
+                freqYearly = newtaskFreqYearEdit.text.toString().toInt()
+            }
+
+            val newTask = NewTaskModel(
+                title = newtaskTitleEdit.text.toString(),
+                description = newtaskDescription.text.toString(),
+                subTask = null,
+                freqTask = freqSelected,
+                startDate = startLocal!!,
+                endDate = endLocal,
+                freqActivityRest = newActivityRest,
+                freqMontly = newtaskSelectedCalendarView.getSelectedDays().toList(),
+                freqWeekly = weeklyCheck,
+                freqYearly = freqYearly,
+                postpone = newtaskCheckPostpone.isChecked,
+                priority = prioritySelected,
+                reminder = 0
+            )
+            mainViewModel.addNewTask(newTask)
+        }
+    }
+
+    private fun showStartDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                startDate = LocalDate.of(year, month, selectedDay)
+            },
+            year, month, dayOfMonth
+        )
+        datePickerDialog.show()
+    }
+
+    private fun showEndDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                endDate = LocalDate.of(year, month, selectedDay)
+            },
+            year, month, dayOfMonth
+        )
+        datePickerDialog.show()
+    }
+
+    private fun checkedWeekly() {
+        binding.apply {
+            checkboxMonday.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    weeklyCheck.add(0)
+                } else {
+                    weeklyCheck.remove(1)
+                }
+            }
+            checkboxTuesday.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    weeklyCheck.add(1)
+                } else {
+                    weeklyCheck.remove(1)
+                }
+            }
+            checkboxWednesday.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    weeklyCheck.add(2)
+                } else {
+                    weeklyCheck.remove(2)
+                }
+            }
+            checkboxThursday.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    weeklyCheck.add(3)
+                } else {
+                    weeklyCheck.remove(3)
+                }
+            }
+            checkboxFriday.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    weeklyCheck.add(4)
+                } else {
+                    weeklyCheck.remove(4)
+                }
+            }
+            checkboxSaturday.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    weeklyCheck.add(5)
+                } else {
+                    weeklyCheck.remove(5)
+                }
+            }
+            checkboxSunday.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    weeklyCheck.add(6)
+                } else {
+                    weeklyCheck.remove(6)
+                }
+            }
+        }
     }
 }

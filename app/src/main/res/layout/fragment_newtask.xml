@@ -83,6 +83,7 @@
                 app:layout_constraintWidth_percent="0.75" />
 
             <Button
+                android:id="@+id/newtask_add_task"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_margin_2"
@@ -174,6 +175,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/newtask_title_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/transparent"
@@ -203,6 +205,7 @@
                         app:boxStrokeColor="@color/purple_deep">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/newtask_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@android:color/transparent"
@@ -383,6 +386,7 @@
                                 android:visibility="gone">
 
                                 <com.example.tasksapp.view.SelectedCalendarView
+                                    android:id="@+id/newtask_selected_calendar_view"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="@dimen/default_margin_2" />
@@ -432,15 +436,44 @@
                                             android:textColor="@color/black"
                                             android:textSize="16sp" />
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/inter_regular"
-                                            android:paddingHorizontal="4dp"
-                                            android:textStyle="bold"
-                                            android:text="@string/newtask_yearly_empty"
-                                            android:textColor="@color/purple_deep"
-                                            android:textSize="16sp" />
+                                        <RelativeLayout
+                                            android:layout_width="50dp"
+                                            android:layout_height="wrap_content">
+
+                                            <!-- TextView yang berada di depan -->
+                                            <TextView
+                                                android:id="@+id/textView"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/inter_regular"
+                                                android:paddingHorizontal="4dp"
+                                                android:textStyle="bold"
+                                                android:text="@string/newtask_yearly_empty"
+                                                android:textColor="@color/purple_deep"
+                                                android:textSize="16sp"
+                                                android:layout_centerInParent="true" />
+
+                                            <!-- EditText yang berada di belakang -->
+                                            <EditText
+                                                android:id="@+id/newtask_freq_year_edit"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_centerInParent="true"
+                                                android:backgroundTint="@android:color/transparent"
+                                                android:padding="10dp"
+                                                android:textColor="@android:color/black" />
+
+                                        </RelativeLayout>
+
+                                        <!--                                        <TextView-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:fontFamily="@font/inter_regular"-->
+<!--                                            android:paddingHorizontal="4dp"-->
+<!--                                            android:textStyle="bold"-->
+<!--                                            android:text="@string/newtask_yearly_empty"-->
+<!--                                            android:textColor="@color/purple_deep"-->
+<!--                                            android:textSize="16sp" />-->
 
                                         <TextView
                                             android:layout_width="wrap_content"
