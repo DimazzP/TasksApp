@@ -1,5 +1,6 @@
 package com.example.tasksapp.presentation.main
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.tasksapp.domain.model.HabitsTaskModel
@@ -23,8 +24,16 @@ class MainViewModel : ViewModel() {
         isBottomVisible.value = changeVisible
     }
 
-    fun addNewTask(task: NewTaskModel){
-        listNewTask.value = listNewTask.value?.plus(task)
+    fun addNewTask(task: NewTaskModel) {
+        val newList = listNewTask.value?.toMutableList() ?: mutableListOf()
+        newList.add(task)
+        listNewTask.postValue(newList)
+    }
+
+    fun addTaskModel(task: TaskModel) {
+        val newList = listTask.value?.toMutableList() ?: mutableListOf()
+        newList.add(task)
+        listTask.postValue(newList)
     }
 
     fun setFriends() {

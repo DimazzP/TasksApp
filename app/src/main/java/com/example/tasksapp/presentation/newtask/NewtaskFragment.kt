@@ -23,7 +23,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.DlPriorityBinding
 import com.example.tasksapp.databinding.FragmentNewtaskBinding
+import com.example.tasksapp.domain.enums.EnumTask
 import com.example.tasksapp.domain.model.NewTaskModel
+import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.presentation.main.MainViewModel
 import com.example.tasksapp.presentation.newtask.adapter.CalendarAdapter
@@ -91,10 +93,15 @@ class NewtaskFragment : Fragment() {
         testCall()
     }
 
-    private fun testCall(){
-        mainViewModel.listNewTask.observe(viewLifecycleOwner,  Observer { data->
-            mainViewModel.listNewTask.value?.forEach {
-                Log.d("NewtaskFragment", it.title)
+    private fun testCall() {
+        mainViewModel.listNewTask.observe(viewLifecycleOwner, Observer { data ->
+            data?.forEach {
+                Log.d("NewtaskFragment", it.id.toString())
+            }
+        })
+        mainViewModel.listTask.observe(viewLifecycleOwner, Observer { data ->
+            data?.forEach {
+                Log.d("NewtaskFragment1", it.idTask.toString())
             }
         })
     }
@@ -253,7 +260,7 @@ class NewtaskFragment : Fragment() {
             updateCalendarView()
         }
 
-        binding.newtaskMore.setOnClickListener{
+        binding.newtaskMore.setOnClickListener {
             createNewTask()
         }
 
@@ -365,11 +372,16 @@ class NewtaskFragment : Fragment() {
                 )
             }
             var freqYearly: Int? = null
-            if(newtaskFreqYearEdit.text.isNotEmpty()) {
+            if (newtaskFreqYearEdit.text.isNotEmpty()) {
                 freqYearly = newtaskFreqYearEdit.text.toString().toInt()
             }
+            val lastIdNewTask = mainViewModel.listNewTask.value?.last()
+            val finalIdNewTask = lastIdNewTask?.id?.plus(1) ?: 1
+            val lastTaskModel = mainViewModel.listTask.value?.last()
+            val finalIdTaskModel = lastTaskModel?.idTask?.plus(1) ?: 1
 
             val newTask = NewTaskModel(
+                id = finalIdNewTask,
                 title = newtaskTitleEdit.text.toString(),
                 description = newtaskDescription.text.toString(),
                 subTask = null,
@@ -385,6 +397,18 @@ class NewtaskFragment : Fragment() {
                 reminder = 0
             )
             mainViewModel.addNewTask(newTask)
+            mainViewModel.addTaskModel(
+                TaskModel(
+                    idTask = finalIdTaskModel,
+                    enumTask = EnumTask.NEW,
+                    idKeyTask = finalIdNewTask,
+                    titleTask = newtaskTitleEdit.text.toString(),
+                    time = newtaskCustomtimepicker.getHour()
+                        .toString() + ":" + newtaskCustomtimepicker.getMinute(),
+                    repetitive = false,
+                    teams = emptyList()
+                )
+            )
         }
     }
 
