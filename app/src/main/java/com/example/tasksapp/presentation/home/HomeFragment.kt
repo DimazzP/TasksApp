@@ -155,7 +155,10 @@ class HomeFragment : Fragment() {
         })
         binding.homViewPager.adapter = adapterProgress
 
-        val taskAdapter = AdapterTaskHome(dummyDetail)
+        val taskAdapter = AdapterTaskHome(emptyList())
+        mainViewModel.listTask.observe(viewLifecycleOwner, { newTaskList ->
+            taskAdapter.updateTasks(newTaskList)
+        })
 
         binding.homRcTask.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -178,20 +181,22 @@ class HomeFragment : Fragment() {
         setTimeListener()
     }
 
-    private fun setClickListener(){
+    private fun setClickListener() {
         binding.homAddTask.setOnClickListener {
             showAddTaskDialog()
         }
     }
 
-    private fun setTimeListener(){
+    private fun setTimeListener() {
         val indonesiaTimeZone = ZoneId.of("Asia/Jakarta")
         val currentDateTimeInIndonesia = ZonedDateTime.now(indonesiaTimeZone)
 
         // Format nama hari dan bulan dalam bahasa Indonesia
-        val dayOfWeek = currentDateTimeInIndonesia.dayOfWeek.getDisplayName(TextStyle.FULL, Locale("id", "ID"))
+        val dayOfWeek =
+            currentDateTimeInIndonesia.dayOfWeek.getDisplayName(TextStyle.FULL, Locale("id", "ID"))
         val dayOfMonth = currentDateTimeInIndonesia.dayOfMonth
-        val month = currentDateTimeInIndonesia.month.getDisplayName(TextStyle.FULL, Locale("id", "ID"))
+        val month =
+            currentDateTimeInIndonesia.month.getDisplayName(TextStyle.FULL, Locale("id", "ID"))
         val year = currentDateTimeInIndonesia.year
 
         val formattedDate = "$dayOfWeek, $dayOfMonth $month $year"

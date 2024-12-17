@@ -1,18 +1,13 @@
 package com.example.tasksapp.presentation.main
 
 import android.content.pm.ActivityInfo
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.ActivityMainBinding

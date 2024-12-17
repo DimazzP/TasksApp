@@ -114,7 +114,7 @@ class CalendarFragment : Fragment() {
                 detailAssignment = dummyDetail
             ),
         )
-        val taskAdapter = AdapterTaskHome(dummyDetail)
+        val taskAdapter = AdapterTaskHome(emptyList())
 
         binding.calenRcDailyTask.apply {
             layoutManager = LinearLayoutManager(requireContext())

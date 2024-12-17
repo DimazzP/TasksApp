@@ -193,10 +193,6 @@ class NewtaskFragment : Fragment() {
                 findNavController().popBackStack()
             }
 
-            newtaskAddTask.setOnClickListener {
-                createNewTask()
-            }
-
             newtaskRadioGroup.setOnCheckedChangeListener { _, checkedId ->
                 updateVisibility(checkedId)
             }
@@ -262,6 +258,7 @@ class NewtaskFragment : Fragment() {
 
         binding.newtaskMore.setOnClickListener {
             createNewTask()
+            findNavController().popBackStack()
         }
 
         checkedWeekly()
@@ -358,10 +355,10 @@ class NewtaskFragment : Fragment() {
                 startLocal = startDate.atStartOfDay()
                     .withHour(
                         newtaskCustomtimepicker.getHour()
-                    ).withHour(newtaskCustomtimepicker.getMinute())
+                    ).withMinute(newtaskCustomtimepicker.getMinute())
             }
             if (endDate != null) {
-                endLocal = endDate?.atStartOfDay()?.withHour(0)?.withHour(0)
+                endLocal = endDate?.atStartOfDay()?.withHour(0)?.withMinute(0)
             }
 
             var newActivityRest: ActivityRest? = null
@@ -405,6 +402,7 @@ class NewtaskFragment : Fragment() {
                     titleTask = newtaskTitleEdit.text.toString(),
                     time = newtaskCustomtimepicker.getHour()
                         .toString() + ":" + newtaskCustomtimepicker.getMinute(),
+                    startDate = startLocal,
                     repetitive = false,
                     teams = emptyList()
                 )
