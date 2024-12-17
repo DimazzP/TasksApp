@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tasksapp.R
 import com.example.tasksapp.databinding.FragmentTaskPagerBinding
-import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.presentation.assignment.adapter.AdapterAssignment
-import com.example.tasksapp.presentation.assignment.adapter.AdapterRepetitive
+import com.example.tasksapp.presentation.main.MainViewModel
 import java.time.LocalDateTime
 
 class TaskPagerFragment : Fragment() {
@@ -22,6 +22,7 @@ class TaskPagerFragment : Fragment() {
 
     private val viewModel: TaskPagerViewModel by viewModels()
     private lateinit var binding: FragmentTaskPagerBinding
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -36,12 +37,11 @@ class TaskPagerFragment : Fragment() {
 
     private fun initData(){
         val currentDateTime: LocalDateTime = LocalDateTime.now()
-        val dummyDetail = listOf(
-            DetailAssignmentModel("Membuat moodboard", currentDateTime, false),
-            DetailAssignmentModel("Membuat wireframe", currentDateTime, false),
-            DetailAssignmentModel("Membuat komponen desain", currentDateTime, false),
-        )
-        binding.taskpagerRecycler.adapter = AdapterAssignment(dummyDetail)
+        val adapterAssignment = AdapterAssignment(mainViewModel.listNewTask.value?.toList() ?: emptyList())
+        binding.taskpagerRecycler.adapter = adapterAssignment
         binding.taskpagerRecycler.layoutManager = LinearLayoutManager(requireContext())
+        mainViewModel.listNewTask.observe(viewLifecycleOwner, Observer { data->
+            adapterAssignment.updateData(data)
+        })
     }
 }

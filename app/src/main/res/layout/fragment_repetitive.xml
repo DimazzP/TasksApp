@@ -12,91 +12,6 @@
         android:background="#fbfaff">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/newrep_bottom_cons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/newrep_btn_prev_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_margin"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/img_ios_arrow_left"
-                android:padding="@dimen/space_margin"
-                android:src="@drawable/ic_ios_arrow_left"
-                app:layout_constraintBottom_toBottomOf="@id/newrep_month_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/newrep_month_name" />
-
-            <TextView
-                android:id="@+id/newrep_month_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_semi"
-                android:padding="@dimen/space_margin"
-                android:text="@string/example_month_name"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/newrep_btn_next_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/img_ios_arrow_right"
-                android:padding="@dimen/space_margin"
-                android:src="@drawable/ic_arrow_ios_right"
-                app:layout_constraintBottom_toBottomOf="@id/newrep_month_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/newrep_month_name" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/newrep_rc_days"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginEnd="@dimen/default_margin"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/newrep_month_name"
-                tools:listitem="@layout/adp_item_day" />
-
-            <com.example.tasksapp.view.CustomTimePicker
-                android:id="@+id/newrep_customtimepicker"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/newrep_rc_days"
-                app:layout_constraintWidth_percent="0.75" />
-
-            <Button
-                android:visibility="invisible"
-                android:id="@+id/newrep_add_task"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin_2"
-                android:layout_marginHorizontal="@dimen/default_margin_2"
-                android:text="@string/newtask_add_member"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/newrep_customtimepicker" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/newrep_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -190,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/default_margin"
                     android:orientation="vertical"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintTop_toBottomOf="@id/newrep_name_task">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -906,6 +821,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/newrep_more_bottom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

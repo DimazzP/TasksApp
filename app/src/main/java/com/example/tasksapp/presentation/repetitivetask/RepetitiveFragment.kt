@@ -22,9 +22,10 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.DlPriorityBinding
-import com.example.tasksapp.databinding.FragmentNewtaskBinding
+import com.example.tasksapp.databinding.FragmentRepetitiveBinding
 import com.example.tasksapp.domain.enums.EnumTask
 import com.example.tasksapp.domain.model.NewTaskModel
+import com.example.tasksapp.domain.model.RepetitiveTask
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.presentation.main.MainViewModel
@@ -41,9 +42,8 @@ import java.util.Locale
 class RepetitiveFragment : Fragment() {
 
     private val viewModel: RepetitiveViewModel by viewModels()
-    private lateinit var binding: FragmentNewtaskBinding
-    private lateinit var calendarAdapter: CalendarAdapter
-    private lateinit var calendarDays: MutableList<CalendarDay>
+    private lateinit var binding: FragmentRepetitiveBinding
+
     private var calendar: Calendar = Calendar.getInstance()
     private val mainViewModel: MainViewModel by activityViewModels()
     private var startDate: LocalDate = LocalDate.now()
@@ -56,7 +56,7 @@ class RepetitiveFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentNewtaskBinding.inflate(inflater, container, false)
+        binding = FragmentRepetitiveBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -64,142 +64,30 @@ class RepetitiveFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.setBottomVisible(false)
 
-        setupViews()
         setupListeners()
-        initializeCalendar()
-        setupScrollListener()
         setVisibilityView()
-        val nowTime = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
-        binding.newtaskTextDateStart.text = nowTime
-        binding.newtaskTvDate.text = nowTime
+        val nowTime =
+            "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
+        binding.newrepTextDateStart.text = nowTime
+        binding.newrepTvDate.text = nowTime
 //        initTimePicker()
     }
 
-    private fun setupViews() {
-        val screenWidth = resources.displayMetrics.widthPixels
-        calendarDays = generateDaysForMonth(calendar)
-        calendarAdapter = CalendarAdapter(calendarDays, screenWidth, binding.newtaskRcDays) { day ->
-            startDate = LocalDate.of(day.year, day.month, day.day)
-        }
-
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(binding.newtaskRcDays)
-        binding.newtaskRcDays.adapter = calendarAdapter
-
-        lifecycleScope.launch {
-            delay(100)
-            addPaddingItemDecoration()
-            calendarAdapter.setMiddleItemPosition(0)
-        }
-
-        updateMonthTitle()
-        testCall()
-    }
-
-    private fun testCall() {
-        mainViewModel.listNewTask.observe(viewLifecycleOwner, Observer { data ->
-            data?.forEach {
-                Log.d("NewtaskFragment", it.id.toString())
-            }
-        })
-        mainViewModel.listTask.observe(viewLifecycleOwner, Observer { data ->
-            data?.forEach {
-                Log.d("NewtaskFragment1", it.idTask.toString())
-            }
-        })
-    }
-
-    private fun setupScrollListener() {
-        binding.newtaskRcDays.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    val middlePosition = getMiddleItemOnScreenPosition(recyclerView)
-                    middlePosition?.let { calendarAdapter.setMiddleItemPosition(it) }
-                }
-            }
-        })
-    }
-
-    private fun getMiddleItemOnScreenPosition(recyclerView: RecyclerView): Int? {
-        val layoutManager = recyclerView.layoutManager as? LinearLayoutManager ?: return null
-
-        val screenCenter = recyclerView.width / 2
-        var closestPosition: Int? = null
-        var minDistance = Int.MAX_VALUE
-
-        for (i in 0 until recyclerView.childCount) {
-            val child = recyclerView.getChildAt(i)
-            val childCenter = (child.left + child.right) / 2
-            val distanceToCenter = Math.abs(childCenter - screenCenter)
-
-            if (distanceToCenter < minDistance) {
-                minDistance = distanceToCenter
-                closestPosition = recyclerView.getChildAdapterPosition(child)
-            }
-        }
-
-        return closestPosition
-    }
-
-    private fun addPaddingItemDecoration() {
-        val screenWidth = resources.displayMetrics.widthPixels
-        binding.newtaskRcDays.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
-                val position = parent.getChildAdapterPosition(view)
-                val itemCount = state.itemCount
-                val itemWidth = getItemWidths(binding.newtaskRcDays)
-                var paddingLeft = 0
-                var paddingRight = 0
-
-                if (position == 0 && itemWidth != null) {
-                    paddingLeft = (screenWidth / 2) - (itemWidth / 2)
-                    outRect.left = paddingLeft
-                }
-
-                if (position == itemCount - 1 && itemWidth != null) {
-                    paddingRight = (screenWidth / 2) - (itemWidth / 2.5).toInt()
-                    Log.d("NewtaskFragment", "paddingRight: $paddingRight")
-                    outRect.right = paddingRight
-                }
-            }
-        })
-    }
-
-    private fun refreshItemDecoration() {
-        binding.newtaskRcDays.removeItemDecorationAt(0)
-        binding.newtaskRcDays.invalidateItemDecorations()
-    }
-
-    private fun getItemWidths(recyclerView: RecyclerView): Int? {
-        val layoutManager = recyclerView.layoutManager as? LinearLayoutManager
-        val firstVisibleItemPosition = layoutManager?.findFirstVisibleItemPosition()
-
-        return if (firstVisibleItemPosition != RecyclerView.NO_POSITION) {
-            firstVisibleItemPosition?.let { layoutManager.findViewByPosition(it)?.width }
-        } else {
-            null
-        }
-    }
 
     private fun setVisibilityView() {
         binding.apply {
             radioDaily.isChecked = true
             updateVisibility(radioDaily.id)
 
-            newtaskBtnback.setOnClickListener {
+            newrepBtnback.setOnClickListener {
                 findNavController().popBackStack()
             }
 
-            newtaskRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            newrepRadioGroup.setOnCheckedChangeListener { _, checkedId ->
                 updateVisibility(checkedId)
             }
 
-            newtaskSwitchDateEnd.setOnCheckedChangeListener { buttonView, isChecked ->
+            newrepSwitchDateEnd.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     tableDateEnd.visibility = View.VISIBLE
                 } else {
@@ -207,20 +95,20 @@ class RepetitiveFragment : Fragment() {
                 }
             }
 
-            newtaskMoreBottom.setOnClickListener {
-                if (newtaskNextConst.visibility == View.GONE) {
-                    newtaskNextConst.visibility = View.VISIBLE
-                    newtaskMoreBottom.setImageResource(R.drawable.ic_ios_arrow_top)
+            newrepMoreBottom.setOnClickListener {
+                if (newrepNextConst.visibility == View.GONE) {
+                    newrepNextConst.visibility = View.VISIBLE
+                    newrepMoreBottom.setImageResource(R.drawable.ic_ios_arrow_top)
                 } else {
-                    newtaskNextConst.visibility = View.GONE
-                    newtaskMoreBottom.setImageResource(R.drawable.ic_ios_arrow_bottom)
+                    newrepNextConst.visibility = View.GONE
+                    newrepMoreBottom.setImageResource(R.drawable.ic_ios_arrow_bottom)
                 }
             }
         }
     }
 
     private fun updateVisibility(checkedId: Int) {
-        binding.newtaskTableDays.visibility = View.GONE
+        binding.newrepTableDays.visibility = View.GONE
         binding.tableMonthly.visibility = View.GONE
         binding.tableActivity.visibility = View.GONE
         binding.tableYear.visibility = View.GONE
@@ -231,7 +119,7 @@ class RepetitiveFragment : Fragment() {
             }
 
             binding.radioSpecificDays.id -> {
-                binding.newtaskTableDays.visibility = View.VISIBLE
+                binding.newrepTableDays.visibility = View.VISIBLE
                 freqSelected = 1
             }
 
@@ -253,28 +141,19 @@ class RepetitiveFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        binding.newtaskBtnPrevMonth.setOnClickListener {
-            calendar.add(Calendar.MONTH, -1)
-            updateCalendarView()
-        }
 
-        binding.newtaskMore.setOnClickListener {
+        binding.newrepMore.setOnClickListener {
             createNewTask()
             findNavController().popBackStack()
         }
 
-        binding.newtaskTvDate.setOnClickListener {
+        binding.newrepTvDate.setOnClickListener {
             showEndDialog()
         }
 
         checkedWeekly()
 
-        binding.newtaskBtnNextMonth.setOnClickListener {
-            calendar.add(Calendar.MONTH, 1)
-            updateCalendarView()
-        }
-
-        binding.newtaskBtAddPriority.setOnClickListener {
+        binding.newrepBtAddPriority.setOnClickListener {
             val bindingPrio = DlPriorityBinding.inflate(layoutInflater)
             val builder = AlertDialog.Builder(requireContext())
             builder.setView(bindingPrio.root)
@@ -304,50 +183,17 @@ class RepetitiveFragment : Fragment() {
             }
             dialog.show()
         }
-        binding.newtaskBtDateStart.setOnClickListener {
+        binding.newrepBtDateStart.setOnClickListener {
             showStartDialog()
         }
-        binding.newtaskBtDateEnd.setOnClickListener {
+        binding.newrepBtDateEnd.setOnClickListener {
             showEndDialog()
         }
     }
 
-    private fun initializeCalendar() {
-        calendarDays = generateDaysForMonth(calendar)
-        calendarAdapter.notifyDataSetChanged()
-    }
-
-    private fun updateCalendarView() {
-        val newDays = generateDaysForMonth(calendar)
-        calendarAdapter.updateDays(newDays)
-        binding.newtaskRcDays.scrollToPosition(0)
-        updateMonthTitle()
-        calendarAdapter.setMiddleItemPosition(0)
-    }
-
-    private fun updateMonthTitle() {
-        val monthFormat = SimpleDateFormat("MMMM yyyy", Locale("in", "ID"))
-        binding.newtaskMonthName.text = monthFormat.format(calendar.time)
-    }
-
-    private fun generateDaysForMonth(calendar: Calendar): MutableList<CalendarDay> {
-        val days = mutableListOf<CalendarDay>()
-        val maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-        val currentMonth = calendar.get(Calendar.MONTH)
-        val currentYear = calendar.get(Calendar.YEAR)
-        val dayOfWeekFormat = SimpleDateFormat("EEE", Locale("in", "ID"))
-
-        for (i in 1..maxDay) {
-            calendar.set(currentYear, currentMonth, i)
-            val dayOfWeek = dayOfWeekFormat.format(calendar.time)
-            days.add(CalendarDay(i, currentMonth + 1, currentYear, dayOfWeek))
-        }
-        return days
-    }
-
     private fun createNewTask() {
         binding.apply {
-            if (newtaskTitleEdit.text == null) {
+            if (newrepTitleEdit.text == null || newrepTitleEdit.text?.isEmpty() == true) {
                 Toast.makeText(
                     requireContext(),
                     "Nama Tugas Tidak Boleh Kosong",
@@ -359,55 +205,54 @@ class RepetitiveFragment : Fragment() {
             var endLocal: LocalDateTime? = null
             if (startDate != null) {
                 startLocal = startDate.atStartOfDay()
-                    .withHour(
-                        newtaskCustomtimepicker.getHour()
-                    ).withMinute(newtaskCustomtimepicker.getMinute())
+                    .withHour(7).withMinute(0)
             }
             if (endDate != null) {
                 endLocal = endDate?.atStartOfDay()?.withHour(0)?.withMinute(0)
             }
 
             var newActivityRest: ActivityRest? = null
-            if (newtaskActivity.text.isNotEmpty() && newtaskRest.text.isNotEmpty()) {
+            if (newrepActivity.text.isNotEmpty() && newrepRest.text.isNotEmpty()) {
                 newActivityRest = ActivityRest(
-                    newtaskActivity.text.toString().toInt(),
-                    newtaskRest.text.toString().toInt()
+                    newrepActivity.text.toString().toInt(),
+                    newrepRest.text.toString().toInt()
                 )
             }
             var freqYearly: Int? = null
-            if (newtaskFreqYearEdit.text.isNotEmpty()) {
-                freqYearly = newtaskFreqYearEdit.text.toString().toInt()
+            if (newrepFreqYearEdit.text.isNotEmpty()) {
+                freqYearly = newrepFreqYearEdit.text.toString().toInt()
             }
             val lastIdNewTask = mainViewModel.listNewTask.value?.last()
             val finalIdNewTask = lastIdNewTask?.id?.plus(1) ?: 1
             val lastTaskModel = mainViewModel.listTask.value?.last()
             val finalIdTaskModel = lastTaskModel?.idTask?.plus(1) ?: 1
 
-            val newTask = NewTaskModel(
+            val newTask = RepetitiveTask(
                 id = finalIdNewTask,
-                title = newtaskTitleEdit.text.toString(),
-                description = newtaskDescription.text.toString(),
+                title = newrepTitleEdit.text.toString(),
+                description = newrepDescription.text.toString(),
                 subTask = null,
                 freqTask = freqSelected,
                 startDate = startLocal!!,
                 endDate = endLocal,
                 freqActivityRest = newActivityRest,
-                freqMontly = newtaskSelectedCalendarView.getSelectedDays().toList(),
+                freqMontly = newrepSelectedCalendarView.getSelectedDays().toList(),
                 freqWeekly = weeklyCheck,
                 freqYearly = freqYearly,
-                postpone = newtaskCheckPostpone.isChecked,
+                postpone = newrepCheckPostpone.isChecked,
                 priority = prioritySelected,
                 reminder = 0
             )
-            mainViewModel.addNewTask(newTask)
+            mainViewModel.addRepetitive(newTask)
             mainViewModel.addTaskModel(
                 TaskModel(
                     idTask = finalIdTaskModel,
+                    subTask = null,
                     enumTask = EnumTask.NEW,
                     idKeyTask = finalIdNewTask,
-                    titleTask = newtaskTitleEdit.text.toString(),
-                    time = newtaskCustomtimepicker.getHour()
-                        .toString() + ":" + newtaskCustomtimepicker.getMinute(),
+                    titleTask = newrepTitleEdit.text.toString(),
+                    time = startLocal.getHour()
+                        .toString() + ":" + startLocal.getMinute(),
                     startDate = startLocal,
                     repetitive = false,
                     teams = emptyList()
@@ -419,14 +264,15 @@ class RepetitiveFragment : Fragment() {
     private fun showStartDialog() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
+        val month = calendar.get(Calendar.MONTH)+1
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
                 startDate = LocalDate.of(year, month, selectedDay)
-                binding.newtaskTextDateStart.text = "${startDate.dayOfMonth}/${startDate.monthValue}/${startDate.year}"
+                binding.newrepTextDateStart.text =
+                    "${startDate.dayOfMonth}/${startDate.monthValue}/${startDate.year}"
             },
             year, month, dayOfMonth
         )
@@ -436,14 +282,15 @@ class RepetitiveFragment : Fragment() {
     private fun showEndDialog() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
+        val month = calendar.get(Calendar.MONTH)+1
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
                 endDate = LocalDate.of(year, month, selectedDay)
-                binding.newtaskTvDate.text = "${endDate!!.dayOfMonth}/${endDate!!.monthValue}/${endDate!!.year}"
+                binding.newrepTvDate.text =
+                    "${endDate!!.dayOfMonth}/${endDate!!.monthValue}/${endDate!!.year}"
             },
             year, month, dayOfMonth
         )

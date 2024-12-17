@@ -31,11 +31,20 @@
             android:id="@+id/action_homeFragment_to_detailTaskFragment"
             app:destination="@id/detailTaskFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_newtaskFragment"
-            app:destination="@id/newTaskFragment" />
+            android:id="@+id/action_homeFragment_to_repetitiveFragment"
+            app:destination="@id/repetitiveFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_newrepFragment"
-            app:destination="@id/newRepFragment" />
+            android:id="@+id/action_homeFragment_to_habitFragment"
+            app:destination="@id/habitFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tasknewFragment"
+            app:destination="@id/newTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="com.example.tasksapp.presentation.newtask.TasknewFragment"
+        android:label="fragment_newTask"
+        tools:layout="@layout/fragment_tasknew">
     </fragment>
     <fragment
         android:id="@+id/detailTaskFragment"
@@ -63,13 +72,13 @@
 
     </fragment>
     <fragment
-        android:id="@+id/newTaskFragment"
+        android:id="@+id/repetitiveFragment"
         android:name="com.example.tasksapp.presentation.repetitivetask.RepetitiveFragment"
-        android:label="fragment_newtask"
+        android:label="fragment_repetitive"
         tools:layout="@layout/fragment_repetitive">
     </fragment>
     <fragment
-        android:id="@+id/newRepFragment"
+        android:id="@+id/habitFragment"
         android:name="com.example.tasksapp.presentation.habitstask.HabitFragment"
         android:label="fragment_newrepep"
         tools:layout="@layout/fragment_habit">

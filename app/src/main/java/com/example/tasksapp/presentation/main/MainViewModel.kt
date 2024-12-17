@@ -8,6 +8,7 @@ import com.example.tasksapp.domain.model.NewTaskModel
 import com.example.tasksapp.domain.model.RepetitiveTask
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.UserProfileModel
+import java.time.LocalDateTime
 
 class MainViewModel : ViewModel() {
 
@@ -28,6 +29,20 @@ class MainViewModel : ViewModel() {
         val newList = listNewTask.value?.toMutableList() ?: mutableListOf()
         newList.add(task)
         listNewTask.postValue(newList)
+    }
+
+    fun addRepetitive(task: RepetitiveTask) {
+        val newList = listRepetitiveTask.value?.toMutableList() ?: mutableListOf()
+        newList.add(task)
+        listRepetitiveTask.postValue(newList)
+    }
+
+
+    fun findTasksByDate(date: LocalDateTime, listData: List<TaskModel>): List<TaskModel>? {
+        val targetDate = date.toLocalDate()
+        return listData.filter {
+            it.startDate?.toLocalDate() == targetDate
+        }
     }
 
     fun addTaskModel(task: TaskModel) {

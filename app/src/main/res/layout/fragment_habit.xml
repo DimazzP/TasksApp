@@ -193,7 +193,7 @@
                                         android:layout_weight="1"
                                         android:backgroundTint="@color/purple_deep"
                                         android:fontFamily="@font/inter_regular"
-                                        android:hint="@string/habit_total"
+                                        android:hint="@string/newrep_total"
                                         android:inputType="number"
                                         android:maxLength="3"
                                         android:paddingHorizontal="4dp"
@@ -207,7 +207,7 @@
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/inter_regular"
                                         android:paddingHorizontal="4dp"
-                                        android:text="@string/habit_activity_day"
+                                        android:text="@string/newrep_activity_day"
                                         android:textColor="@color/black"
                                         android:textSize="16sp" />
 

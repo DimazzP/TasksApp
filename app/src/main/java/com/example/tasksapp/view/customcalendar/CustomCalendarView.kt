@@ -10,13 +10,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.Calendar
 import java.util.Locale
 
 class CustomCalendarView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var calendar: Calendar = Calendar.getInstance(Locale.getDefault())
@@ -25,11 +28,11 @@ class CustomCalendarView @JvmOverloads constructor(
     private val recyclerView: RecyclerView
     private val prevMonthButton: ImageButton
     private val nextMonthButton: ImageButton
+    var onDateSelected: (LocalDateTime) -> Unit = {}
 
-    // Map untuk menyimpan catatan
     private val notesMap = mutableMapOf<String, String?>()
-
     private var days = generateCalendarDataAdapt()
+    private var selectedDate: LocalDateTime = LocalDateTime.now()
 
     init {
         LayoutInflater.from(context).inflate(R.layout.view_calendar, this, true)
@@ -56,8 +59,32 @@ class CustomCalendarView @JvmOverloads constructor(
     }
 
     private fun loadCalendarData() {
-        adapter = CalendarAdapterAdapt(days, calendar)
+        adapter = CalendarAdapterAdapt(days, calendar) { day, month, year ->
+            val selectedCalendar = Calendar.getInstance()
+            selectedCalendar.set(year, month, day)
+            selectedDate =
+                selectedCalendar.time.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+            onDateSelected(selectedDate)
+
+        }
         recyclerView.adapter = adapter
+
+    }
+
+    fun getSelectedDateLocalDate(): LocalDateTime {
+        val calendar = Calendar.getInstance()
+        calendar.set(
+            selectedDate.year,
+            selectedDate.monthValue - 1,
+            selectedDate.dayOfMonth
+        ) // Perhatikan bahwa bulan di Calendar dimulai dari 0
+        // Konversi Calendar ke LocalDateTime dan set jam ke 7:00
+        return calendar.time.toInstant().atZone(ZoneId.systemDefault())
+            .toLocalDateTime()
+            .withHour(7)    // Set jam ke 7
+            .withMinute(0)  // Set menit ke 0
+            .withSecond(0)  // Set detik ke 0
+            .withNano(0)    // Set nano detik ke 0
     }
 
     private fun changeMonth(amount: Int) {
@@ -82,14 +109,28 @@ class CustomCalendarView @JvmOverloads constructor(
 
         // Tambahkan placeholder untuk hari-hari kosong sebelum hari pertama dalam minggu
         for (i in 1 until firstDayOfMonth) {
-            days.add(CalendarDayAdapt(0, null, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR)))
+            days.add(
+                CalendarDayAdapt(
+                    0,
+                    null,
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.YEAR)
+                )
+            )
         }
 
         // Tambahkan hari-hari dalam bulan ini dengan catatan yang disimpan (jika ada)
         for (day in 1..maxDay) {
             val key = "$day-${calendar.get(Calendar.MONTH)}-${calendar.get(Calendar.YEAR)}"
             val note = notesMap[key]
-            days.add(CalendarDayAdapt(day, note, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR)))
+            days.add(
+                CalendarDayAdapt(
+                    day,
+                    note,
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.YEAR)
+                )
+            )
         }
 
         return days

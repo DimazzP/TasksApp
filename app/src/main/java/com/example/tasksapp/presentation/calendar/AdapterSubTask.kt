@@ -12,11 +12,17 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import com.example.tasksapp.domain.model.ProgressModel
-
+import com.example.tasksapp.domain.model.TaskModel
 class AdapterSubTask(
     private val context: Context,
-    private val dataList: List<ProgressModel>
 ) : RecyclerView.Adapter<AdapterSubTask.SubTaskViewHolder>() {
+
+    var dataList = emptyList<TaskModel>()
+    // Method untuk memperbarui data
+    fun updateData(newDataList: List<TaskModel>) {
+        this.dataList = newDataList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubTaskViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.adp_sub_assignment, parent, false)
@@ -26,10 +32,10 @@ class AdapterSubTask(
     override fun onBindViewHolder(holder: SubTaskViewHolder, position: Int) {
         val item = dataList[position]
 
-        holder.titleTextView.text = item.title
+        holder.titleTextView.text = item.titleTask
 
         // Mengisi RadioGroup dengan detail assignment
-        val namesList: List<String> = item.detailAssignment.map { it.name }
+        val namesList: List<String> = item.subTask?.map { it } ?: emptyList()
         populateRadioGroup(holder.radioGroup, namesList)
 
         // Mengatur button untuk menampilkan/menyembunyikan RadioGroup

@@ -6,15 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.FragmentHabitualPagerBinding
 import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.presentation.assignment.adapter.AdapterHabitual
 import com.example.tasksapp.presentation.assignment.adapter.AdapterRepetitive
+import com.example.tasksapp.presentation.main.MainViewModel
 import java.time.LocalDateTime
 
 class HabitualPagerFragment : Fragment() {
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     companion object {
         fun newInstance() = HabitualPagerFragment()
@@ -36,13 +40,11 @@ class HabitualPagerFragment : Fragment() {
     }
 
     private fun initData(){
-        val currentDateTime: LocalDateTime = LocalDateTime.now()
-        val dummyDetail = listOf(
-            DetailAssignmentModel("Membuat moodboard", currentDateTime, false),
-            DetailAssignmentModel("Membuat wireframe", currentDateTime, false),
-            DetailAssignmentModel("Membuat komponen desain", currentDateTime, false),
-        )
-        binding.hapagerRecycler.adapter = AdapterHabitual(dummyDetail)
+        val adapterHabit = AdapterHabitual(mainViewModel.listHabitsTask.value ?: emptyList())
+        binding.hapagerRecycler.adapter = adapterHabit
         binding.hapagerRecycler.layoutManager = LinearLayoutManager(requireContext())
+        mainViewModel.listHabitsTask.observe(viewLifecycleOwner, Observer { data->
+            adapterHabit.updateData(data)
+        })
     }
 }

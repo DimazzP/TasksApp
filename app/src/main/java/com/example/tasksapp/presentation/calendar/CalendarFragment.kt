@@ -2,11 +2,14 @@ package com.example.tasksapp.presentation.calendar
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +18,10 @@ import com.example.tasksapp.databinding.FragmentCalendarBinding
 import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.domain.model.MemberModel
 import com.example.tasksapp.domain.model.ProgressModel
+import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.presentation.home.adapter.AdapterTaskHome
+import com.example.tasksapp.presentation.main.MainViewModel
+import com.example.tasksapp.view.customcalendar.CustomCalendarView
 //import com.example.tasksapp.presentation.calendar.adapter.CalendarAdapterAdapt
 //import com.example.tasksapp.presentation.calendar.adapter.CalendarDayAdapt
 import java.text.SimpleDateFormat
@@ -27,6 +33,9 @@ class CalendarFragment : Fragment() {
 
     private val viewModel: CalendarViewModel by viewModels()
     private lateinit var binding: FragmentCalendarBinding
+    private val mainViewModel: MainViewModel by activityViewModels()
+    private lateinit var adapterSubAssignment: AdapterSubTask
+    private lateinit var customCalendarView: CustomCalendarView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,70 +59,8 @@ class CalendarFragment : Fragment() {
 
     }
 
-    private fun initData(){
-        val currentDateTime: LocalDateTime = LocalDateTime.now()
+    private fun initData() {
 
-        val dummyMembers = listOf(
-            MemberModel(
-                name = "Renaldi",
-                photo = "https://www.perfocal.com/blog/content/images/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg",
-                role = "Developer"
-            ),
-            MemberModel(
-                name = "Retno",
-                photo = "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-                role = "Designer"
-            ),
-            MemberModel(
-                name = "Renaldi",
-                photo = "https://mrwallpaper.com/images/hd/cool-profile-pictures-panda-man-gsl2ntkjj3hrk84s.jpg",
-                role = "Manager"
-            )
-        )
-
-        val dummyDetail = listOf(
-            DetailAssignmentModel("Membuat moodboard", currentDateTime, false),
-            DetailAssignmentModel("Membuat wireframe", currentDateTime, false),
-            DetailAssignmentModel("Membuat komponen desain", currentDateTime, false),
-        )
-        val dummyData = listOf(
-            ProgressModel(
-                title = "Desain UI",
-                progress = 70,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Tugas Laravel",
-                progress = 40,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Tugas Android",
-                progress = 60,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Desain UI",
-                progress = 70,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Tugas Laravel",
-                progress = 40,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Tugas Android",
-                progress = 60,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-        )
         val taskAdapter = AdapterTaskHome(emptyList())
 
         binding.calenRcDailyTask.apply {
@@ -121,8 +68,34 @@ class CalendarFragment : Fragment() {
             adapter = taskAdapter
         }
         binding.calenRcSubTask.layoutManager = LinearLayoutManager(requireContext())
-        val adapterSubAssignment = AdapterSubTask(requireContext(), dummyData)
+        adapterSubAssignment = AdapterSubTask(requireContext())
         binding.calenRcSubTask.adapter = adapterSubAssignment
+        findTask()
+    }
+
+    private fun findTask() {
+        customCalendarView = binding.calenCalendar
+        customCalendarView.onDateSelected = { date ->
+            Log.d("getTaskCallTopMore", date.toString())
+            val getTaskTop = mainViewModel.findTasksByDate(date, mainViewModel.listTask.value ?: emptyList())
+            if(getTaskTop!=null){
+                adapterSubAssignment.updateData(getTaskTop)
+            }
+        }
+        val selectDate = binding.calenCalendar.getSelectedDateLocalDate()
+        val getTaskTop = mainViewModel.findTasksByDate(selectDate, mainViewModel.listTask.value ?: emptyList())
+        if(getTaskTop!=null){
+            adapterSubAssignment.updateData(getTaskTop)
+        }
+        Log.d("getTaskCallTop", getTaskTop.toString())
+
+        mainViewModel.listTask.observe(viewLifecycleOwner, Observer { data->
+            val getTask = mainViewModel.findTasksByDate(selectDate, data)
+            Log.d("getTaskCall", getTask.toString())
+            if(getTask!=null){
+                adapterSubAssignment.updateData(getTask)
+            }
+        })
     }
 
     companion object {

@@ -215,31 +215,33 @@ class HomeFragment : Fragment() {
             .create()
         dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         bindingDialog.hmaddtaskBtnTask.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_tasknewFragment)
             dialog.dismiss()
         }
 
         bindingDialog.hmaddtaskBtnRepetitive.setOnClickListener {
-//            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_repetitiveFragment)
             dialog.dismiss()
-            val bindingDialogLiter = DlLiterationBinding.inflate(layoutInflater)
-
-            // Buat AlertDialog
-            val dialogLiter = AlertDialog.Builder(requireContext())
-                .setView(bindingDialogLiter.root)
-                .create()
-            dialogLiter.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
-            dialogLiter.show()
-            bindingDialogLiter.dlliterBtOk.setOnClickListener {
-                dialogLiter.dismiss()
-            }
-            bindingDialogLiter.dlliterBtCancel.setOnClickListener {
-                dialogLiter.dismiss()
-            }
+//            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
+//            dialog.dismiss()
+//            val bindingDialogLiter = DlLiterationBinding.inflate(layoutInflater)
+//
+//            // Buat AlertDialog
+//            val dialogLiter = AlertDialog.Builder(requireContext())
+//                .setView(bindingDialogLiter.root)
+//                .create()
+//            dialogLiter.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+//            dialogLiter.show()
+//            bindingDialogLiter.dlliterBtOk.setOnClickListener {
+//                dialogLiter.dismiss()
+//            }
+//            bindingDialogLiter.dlliterBtCancel.setOnClickListener {
+//                dialogLiter.dismiss()
+//            }
         }
 
         bindingDialog.hmaddtaskBtnHabit.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_newrepFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_habitFragment)
             dialog.dismiss()
         }
 

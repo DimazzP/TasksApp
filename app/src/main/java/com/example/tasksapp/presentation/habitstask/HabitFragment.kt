@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,8 +56,8 @@ class HabitFragment : Fragment() {
         setClickListener()
         checkedWeekly()
         val nowTime = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
-        binding.newrepTextDateStart.text = nowTime
-        binding.newrepTvDate.text = nowTime
+        binding.habitTextDateStart.text = nowTime
+        binding.habitTvDate.text = nowTime
     }
 
     private fun setVisibilityView() {
@@ -65,15 +66,15 @@ class HabitFragment : Fragment() {
             radioYesNo.isChecked = true
             updateVisibilityRadioFrequention(radioDaily.id)
 
-            newrepRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            habitRadioGroup.setOnCheckedChangeListener { _, checkedId ->
                 updateVisibilityRadioFrequention(checkedId)
             }
 
-            newrepRadioGroupEvaluations.setOnCheckedChangeListener { group, checkedId ->
+            habitRadioGroupEvaluations.setOnCheckedChangeListener { group, checkedId ->
                 updateVisibilityRadioEvaluation(checkedId)
             }
 
-            newrepSwitchDateEnd.setOnCheckedChangeListener { buttonView, isChecked ->
+            habitSwitchDateEnd.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     tableDateEnd.visibility = View.VISIBLE
                 } else {
@@ -85,14 +86,14 @@ class HabitFragment : Fragment() {
     }
 
     private fun setClickListener(){
-        binding.newrepMore.setOnClickListener {
+        binding.habitMore.setOnClickListener {
             createHabitTask()
             findNavController().popBackStack()
         }
-        binding.newrepBtnback.setOnClickListener {
+        binding.habitBtnback.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.newrepBtAddPriority.setOnClickListener {
+        binding.habitBtAddPriority.setOnClickListener {
             val bindingPrio = DlPriorityBinding.inflate(layoutInflater)
             val builder = AlertDialog.Builder(requireContext())
             builder.setView(bindingPrio.root)
@@ -122,10 +123,10 @@ class HabitFragment : Fragment() {
             }
             dialog.show()
         }
-        binding.newrepBtDateStart.setOnClickListener {
+        binding.habitBtDateStart.setOnClickListener {
             showStartDialog()
         }
-        binding.newrepTvDate.setOnClickListener {
+        binding.habitTvDate.setOnClickListener {
             showEndDialog()
         }
     }
@@ -134,17 +135,17 @@ class HabitFragment : Fragment() {
         when (checkedId) {
             binding.radioYesNo.id -> {
                 freqWork = 0
-                binding.newrepTableNumeric.visibility = View.GONE
+                binding.habitTableNumeric.visibility = View.GONE
             }
 
             binding.radioNumeric.id -> {
                 freqWork = 1
-                binding.newrepTableNumeric.visibility = View.VISIBLE
+                binding.habitTableNumeric.visibility = View.VISIBLE
             }
         }
     }
     private fun updateVisibilityRadioFrequention(checkedId: Int) {
-        binding.newrepTableDays.visibility = View.GONE
+        binding.habitTableDays.visibility = View.GONE
         binding.tableActivity.visibility = View.GONE
 
         when (checkedId) {
@@ -154,7 +155,7 @@ class HabitFragment : Fragment() {
 
             binding.radioSpecificDays.id -> {
                 freqTask = 1
-                binding.newrepTableDays.visibility = View.VISIBLE
+                binding.habitTableDays.visibility = View.VISIBLE
             }
 
             binding.radioActivity.id -> {
@@ -166,7 +167,7 @@ class HabitFragment : Fragment() {
 
     private fun createHabitTask(){
         binding.apply {
-            if (newrepTitleEdit.text == null) {
+            if (habitTitleEdit.text == null || habitTitleEdit.text?.isEmpty()==true) {
                 Toast.makeText(
                     requireContext(),
                     "Nama Tugas Tidak Boleh Kosong",
@@ -179,10 +180,10 @@ class HabitFragment : Fragment() {
             val lastTaskModel = mainViewModel.listTask.value?.last()
             val finalIdTaskModel = lastTaskModel?.idTask?.plus(1) ?: 1
             var newActivityRest: ActivityRest? = null
-            if (newrepActivity.text.isNotEmpty() && newrepRest.text.isNotEmpty()) {
+            if (habitActivity.text.isNotEmpty() && habitRest.text.isNotEmpty()) {
                 newActivityRest = ActivityRest(
-                    newrepActivity.text.toString().toInt(),
-                    newrepRest.text.toString().toInt()
+                    habitActivity.text.toString().toInt(),
+                    habitRest.text.toString().toInt()
                 )
             }
             var startLocal: LocalDateTime? = null
@@ -197,13 +198,13 @@ class HabitFragment : Fragment() {
                 endLocal = endDate?.atStartOfDay()?.withHour(0)?.withMinute(0)
             }
             var numNumeric: Int? = null
-            if (newrepNumberNumeric.text.isNotEmpty()) {
-                numNumeric = newrepNumberNumeric.text.toString().toInt()
+            if (habitNumberNumeric.text.isNotEmpty()) {
+                numNumeric = habitNumberNumeric.text.toString().toInt()
             }
             val habitTask = HabitsTaskModel(
                 id = finalIdNewTask,
-                title = newrepTitleEdit.text.toString(),
-                description = newrepDescriptionEdit.text.toString(),
+                title = habitTitleEdit.text.toString(),
+                description = habitDescriptionEdit.text.toString(),
                 frequencyWork = freqWork,
                 evaluationNumeric = numNumeric,
                 frequencyTask = freqTask,
@@ -217,9 +218,10 @@ class HabitFragment : Fragment() {
             mainViewModel.addTaskModel(
                 TaskModel(
                     idTask = finalIdTaskModel,
+                    subTask = null,
                     enumTask = EnumTask.NEW,
                     idKeyTask = finalIdNewTask,
-                    titleTask = newrepTitleEdit.text.toString(),
+                    titleTask = habitTitleEdit.text.toString(),
                     time = startLocal?.getHour()
                         .toString() + ":" + startLocal?.getMinute(),
                     startDate = startLocal,
@@ -288,14 +290,15 @@ class HabitFragment : Fragment() {
     private fun showStartDialog() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
+        val month = calendar.get(Calendar.MONTH)+1
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
                 startDate = LocalDate.of(year, month, selectedDay)
-                binding.newrepTextDateStart.text = "${startDate.dayOfMonth}/${startDate.monthValue}/${startDate.year}"
+                Log.d("printdate", "${startDate.month}")
+                binding.habitTextDateStart.text = "${startDate.dayOfMonth}/${startDate.monthValue}/${startDate.year}"
             },
             year, month, dayOfMonth
         )
@@ -305,14 +308,14 @@ class HabitFragment : Fragment() {
     private fun showEndDialog() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
+        val month = calendar.get(Calendar.MONTH)+1
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
                 endDate = LocalDate.of(year, month, selectedDay)
-                binding.newrepTvDate.text = "${endDate!!.dayOfMonth}/${endDate!!.monthValue}/${endDate!!.year}"
+                binding.habitTvDate.text = "${endDate!!.dayOfMonth}/${endDate!!.monthValue}/${endDate!!.year}"
             },
             year, month, dayOfMonth
         )

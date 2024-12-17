@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.databinding.AdpRepetitiveAssignmentBinding
-import com.example.tasksapp.domain.model.DetailAssignmentModel
+import com.example.tasksapp.domain.model.RepetitiveTask
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
-class AdapterRepetitive(private val tasks: List<DetailAssignmentModel>) :
+
+class AdapterRepetitive(private var tasks: List<RepetitiveTask>) :
     RecyclerView.Adapter<AdapterRepetitive.TaskViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -22,13 +24,23 @@ class AdapterRepetitive(private val tasks: List<DetailAssignmentModel>) :
 
     override fun getItemCount(): Int = tasks.size
 
+    // Fungsi untuk memperbarui data dan memberi tahu adapter
+    fun updateData(newTasks: List<RepetitiveTask>) {
+        this.tasks = newTasks
+        notifyDataSetChanged() // Memberitahukan adapter agar me-refresh data
+    }
+
     inner class TaskViewHolder(private val binding: AdpRepetitiveAssignmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(task: DetailAssignmentModel) {
-            binding.adprepetTxtTitle.text = task.name
-            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
-            val formattedTime: String = task.time.format(formatter)
-            binding.adprepetTaskTime.text = formattedTime
+        fun bind(task: RepetitiveTask) {
+            binding.adprepetTxtTitle.text = task.title
+            if(task.endDate!=null){
+                val formatter = "${task.startDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale("id", "ID")))} - ${task.endDate?.format(DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale("id", "ID")))}"
+                binding.adprepetTaskTime.text = formatter
+            }else{
+                val formatter = task.startDate.format(DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale("id", "ID")))
+                binding.adprepetTaskTime.text = formatter
+            }
         }
     }
 }

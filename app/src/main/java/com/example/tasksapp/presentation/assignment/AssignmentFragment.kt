@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.FragmentAssignmentBinding
+import com.example.tasksapp.databinding.FragmentCalendarBinding
 import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.presentation.assignment.adapter.AdapterAssignment
 import com.example.tasksapp.presentation.assignment.adapter.AssignmentPagerAdapter
@@ -24,6 +25,7 @@ class AssignmentFragment : Fragment() {
 
     private val viewModel: AssignmentViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
+    private lateinit var binding: FragmentAssignmentBinding
 
     private lateinit var view: View
 
@@ -31,6 +33,8 @@ class AssignmentFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+//        binding = FragmentAssignmentBinding.inflate(inflater, container, false)
+//        return binding.root
         view = inflater.inflate(R.layout.fragment_assignment, container, false);
         return view
     }

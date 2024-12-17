@@ -8,6 +8,7 @@ data class TaskModel (
     val enumTask: EnumTask,
     val idKeyTask: Int,
     val titleTask: String,
+    val subTask: List<String>?,
     val time: String?,
     val repetitive: Boolean?,
     val startDate: LocalDateTime?,
