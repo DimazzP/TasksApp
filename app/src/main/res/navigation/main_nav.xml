@@ -64,15 +64,15 @@
     </fragment>
     <fragment
         android:id="@+id/newTaskFragment"
-        android:name="com.example.tasksapp.presentation.newtask.NewtaskFragment"
+        android:name="com.example.tasksapp.presentation.repetitivetask.RepetitiveFragment"
         android:label="fragment_newtask"
-        tools:layout="@layout/fragment_newtask">
+        tools:layout="@layout/fragment_repetitive">
     </fragment>
     <fragment
         android:id="@+id/newRepFragment"
-        android:name="com.example.tasksapp.presentation.habitstask.NewrepetitiveFragment"
+        android:name="com.example.tasksapp.presentation.habitstask.HabitFragment"
         android:label="fragment_newrepep"
-        tools:layout="@layout/fragment_newrepetitive">
+        tools:layout="@layout/fragment_habit">
 
     </fragment>
     <fragment

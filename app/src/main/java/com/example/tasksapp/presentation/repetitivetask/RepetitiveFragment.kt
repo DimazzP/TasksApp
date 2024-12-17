@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.newtask
+package com.example.tasksapp.presentation.repetitivetask
 
 import android.app.DatePickerDialog
 import android.graphics.Color
@@ -28,8 +28,8 @@ import com.example.tasksapp.domain.model.NewTaskModel
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.presentation.main.MainViewModel
-import com.example.tasksapp.presentation.newtask.adapter.CalendarAdapter
-import com.example.tasksapp.presentation.newtask.model.CalendarDay
+import com.example.tasksapp.presentation.repetitivetask.adapter.CalendarAdapter
+import com.example.tasksapp.presentation.repetitivetask.model.CalendarDay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -38,9 +38,9 @@ import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Locale
 
-class NewtaskFragment : Fragment() {
+class RepetitiveFragment : Fragment() {
 
-    private val viewModel: NewtaskViewModel by viewModels()
+    private val viewModel: RepetitiveViewModel by viewModels()
     private lateinit var binding: FragmentNewtaskBinding
     private lateinit var calendarAdapter: CalendarAdapter
     private lateinit var calendarDays: MutableList<CalendarDay>

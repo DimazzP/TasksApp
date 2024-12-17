@@ -111,6 +111,7 @@
 
 <!--    new task-->
     <string name="newtask_task_title">Tugas Baru</string>
+    <string name="newtask_repet_title">Tugas Berulang</string>
     <string name="newtask_task_name">Nama Tugas</string>
     <string name="newtask_description_name">Deskripsi (Opsional)</string>
     <string name="newtask_add_sub">Tambahkan sub-tugas</string>

@@ -14,22 +14,22 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.tasksapp.databinding.DlPriorityBinding
-import com.example.tasksapp.databinding.FragmentNewrepetitiveBinding
+import com.example.tasksapp.databinding.FragmentHabitBinding
 import com.example.tasksapp.domain.enums.EnumTask
 import com.example.tasksapp.domain.model.HabitsTaskModel
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.presentation.main.MainViewModel
-import com.example.tasksapp.presentation.newtask.adapter.CalendarAdapter
-import com.example.tasksapp.presentation.newtask.model.CalendarDay
+import com.example.tasksapp.presentation.repetitivetask.adapter.CalendarAdapter
+import com.example.tasksapp.presentation.repetitivetask.model.CalendarDay
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Calendar
 
-class NewrepetitiveFragment : Fragment() {
+class HabitFragment : Fragment() {
 
-    private val viewModel: NewrepetitiveViewModel by viewModels()
-    private lateinit var binding: FragmentNewrepetitiveBinding
+    private val viewModel: HabitViewModel by viewModels()
+    private lateinit var binding: FragmentHabitBinding
     private lateinit var calendarAdapter: CalendarAdapter
     private lateinit var calendarDays: MutableList<CalendarDay>
     private var calendar: Calendar = Calendar.getInstance()
@@ -44,7 +44,7 @@ class NewrepetitiveFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        binding = FragmentNewrepetitiveBinding.inflate(inflater, container, false)
+        binding = FragmentHabitBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.newtask.model
+package com.example.tasksapp.presentation.repetitivetask.model
 
 data class CalendarDay(
     val day: Int,
