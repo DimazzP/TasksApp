@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.newrepetitive
+package com.example.tasksapp.presentation.habitstask
 
 import androidx.lifecycle.ViewModel
 

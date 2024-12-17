@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/newRepFragment"
-        android:name="com.example.tasksapp.presentation.newrepetitive.NewrepetitiveFragment"
+        android:name="com.example.tasksapp.presentation.habitstask.NewrepetitiveFragment"
         android:label="fragment_newrepep"
         tools:layout="@layout/fragment_newrepetitive">
 

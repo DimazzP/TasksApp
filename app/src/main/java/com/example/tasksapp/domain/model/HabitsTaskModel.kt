@@ -1,18 +1,21 @@
 package com.example.tasksapp.domain.model
 
 import com.example.tasksapp.domain.model.utils.ActivityRest
+import java.time.LocalDate
 import java.util.Date
 
 data class HabitsTaskModel(
+    val id: Int,
+    val title: String,
+    val description: String?,
     val evaluation: Int=0,
-    val evaluationYesNo: Boolean?,
+    val frequencyWork: Int = 0,
     val evaluationNumeric: Int?,
     val frequencyTask : Int=0,
-    val frequencyEveryday: Boolean?,
-    val frequencyEveryWeek: Int?,
+    val frequencyEveryWeek: List<Int>?,
     val frequencyActivityRest: ActivityRest?,
-    val startDate: Date=Date(),
-    val endDate: Date?,
+    val startDate: LocalDate= LocalDate.now(),
+    val endDate: LocalDate?,
     val remember: Int=0,
     val priority: Int=0,
 )

@@ -69,6 +69,9 @@ class NewtaskFragment : Fragment() {
         initializeCalendar()
         setupScrollListener()
         setVisibilityView()
+        val nowTime = "${LocalDate.now().dayOfMonth}/${LocalDate.now().monthValue}/${LocalDate.now().year}"
+        binding.newtaskTextDateStart.text = nowTime
+        binding.newtaskTvDate.text = nowTime
 //        initTimePicker()
     }
 
@@ -105,7 +108,6 @@ class NewtaskFragment : Fragment() {
             }
         })
     }
-
 
     private fun setupScrollListener() {
         binding.newtaskRcDays.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -259,6 +261,10 @@ class NewtaskFragment : Fragment() {
         binding.newtaskMore.setOnClickListener {
             createNewTask()
             findNavController().popBackStack()
+        }
+
+        binding.newtaskTvDate.setOnClickListener {
+            showEndDialog()
         }
 
         checkedWeekly()
@@ -420,6 +426,7 @@ class NewtaskFragment : Fragment() {
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
                 startDate = LocalDate.of(year, month, selectedDay)
+                binding.newtaskTextDateStart.text = "${startDate.dayOfMonth}/${startDate.monthValue}/${startDate.year}"
             },
             year, month, dayOfMonth
         )
@@ -436,6 +443,7 @@ class NewtaskFragment : Fragment() {
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
                 endDate = LocalDate.of(year, month, selectedDay)
+                binding.newtaskTvDate.text = "${endDate!!.dayOfMonth}/${endDate!!.monthValue}/${endDate!!.year}"
             },
             year, month, dayOfMonth
         )

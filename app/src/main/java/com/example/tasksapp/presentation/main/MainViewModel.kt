@@ -36,6 +36,12 @@ class MainViewModel : ViewModel() {
         listTask.postValue(newList)
     }
 
+    fun addHabitsTask(task: HabitsTaskModel) {
+        val newList = listHabitsTask.value?.toMutableList() ?: mutableListOf()
+        newList.add(task)
+        listHabitsTask.postValue(newList)
+    }
+
     fun setFriends() {
         listFriends.value = listOf(
             UserProfileModel(
