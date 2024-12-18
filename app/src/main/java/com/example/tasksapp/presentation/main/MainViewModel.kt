@@ -116,7 +116,8 @@ class MainViewModel : ViewModel() {
                         selectFreq = 2,
                         interval = GoalInterval(start = 1, end = 7),
                         alreadyFinish = false,
-                        currency = GoalInterval(start = 0, end = 10)
+                        currency = GoalInterval(start = 0, end = 10),
+                        titleTarget = "Baca Buku"
                     )
                 ),
                 progress = 50,
@@ -135,7 +136,8 @@ class MainViewModel : ViewModel() {
                         selectFreq = 4,
                         interval = GoalInterval(start = 1, end = 30),
                         alreadyFinish = false,
-                        currency = GoalInterval(start = 0, end = 50)
+                        currency = GoalInterval(start = 0, end = 50),
+                        titleTarget = "Baca buku"
                     )
                 ),
                 progress = 25,
@@ -154,7 +156,8 @@ class MainViewModel : ViewModel() {
                         selectFreq = 1,
                         interval = GoalInterval(start = 1, end = 30),
                         alreadyFinish = true,
-                        currency = GoalInterval(start = 0, end = 2)
+                        currency = GoalInterval(start = 0, end = 2),
+                        titleTarget = "Baca buku"
                     )
                 ),
                 progress = 100,

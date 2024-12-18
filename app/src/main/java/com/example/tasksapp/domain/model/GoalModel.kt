@@ -17,6 +17,7 @@ data class GoalModel(
 
 data class GoalTarget(
     val selectFreq: Int,
+    val titleTarget: String,
     val interval: GoalInterval?,
     val alreadyFinish: Boolean?,
     val currency: GoalInterval?
