@@ -19,5 +19,7 @@ data class TeamTaskModel(
     val reminder: Int = 0,
     val priority: Int = 0,
     val postpone: Boolean = false,
-    val goalTarget: GoalTarget?
+    val goalTarget: GoalTarget?,
+    val progress: Int = 0,
+    val teams: List<UserProfileModel>?
 )

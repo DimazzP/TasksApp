@@ -1,28 +1,39 @@
 package com.example.tasksapp.presentation.detailtask
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasksapp.R
+import com.example.tasksapp.databinding.DialogAddTargetBinding
+import com.example.tasksapp.databinding.DlPriorityBinding
 import com.example.tasksapp.databinding.FragmentDetailTaskBinding
 import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.domain.model.MemberModel
+import com.example.tasksapp.domain.model.TeamTaskModel
 import com.example.tasksapp.presentation.detailtask.adapter.AdapterDetailTask
 import com.example.tasksapp.presentation.detailtask.adapter.AdapterDetailTaskMember
 import com.example.tasksapp.presentation.main.MainViewModel
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class DetailTaskFragment : Fragment() {
 
     private val viewModel: DetailTaskViewModel by viewModels()
     private lateinit var binding: FragmentDetailTaskBinding
     private val mainViewModel: MainViewModel by activityViewModels()
+    private val selectedRadio: Int = 0
+
+    private lateinit var selectedTeam: TeamTaskModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,15 +46,13 @@ class DetailTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.setBottomVisible(false)
+        selectedTeam = mainViewModel.selectedTeam!!
+        initializeData()
         clickListener()
-        val currentDateTime: LocalDateTime = LocalDateTime.now()
-        val dummyDetail = listOf(
-            DetailAssignmentModel("Membuat moodboard", currentDateTime, false),
-            DetailAssignmentModel("Membuat wireframe", currentDateTime, false),
-            DetailAssignmentModel("Membuat komponen desain", currentDateTime, false),
-        )
-        val taskAdapter = AdapterDetailTask(dummyDetail)
+        val taskAdapter =
+            AdapterDetailTask(selectedTeam.subTask ?: emptyList(), { task, isChecked ->
 
+            })
         binding.detaskRcTask.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = taskAdapter
@@ -67,16 +76,56 @@ class DetailTaskFragment : Fragment() {
             )
         )
 
-        val memberAdapter = AdapterDetailTaskMember(dummyMembers){
+        val memberAdapter = AdapterDetailTaskMember(dummyMembers) {
             findNavController().navigate(R.id.action_detailTaskFragment_to_memberFragment)
         }
         binding.detaskRcTeam.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false )
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = memberAdapter
+        }
+
+        binding.detaskAddTarget.setOnClickListener {
+            dialogTarget()
         }
     }
 
-    private fun clickListener(){
+    private fun dialogTarget(){
+        val bindingPrio = DialogAddTargetBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setView(bindingPrio.root)
+        val dialog = builder.create()
+        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        bindingPrio.rgTipeTarget.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                bindingPrio.rbIntervalPengukuran.id->{
+
+                }
+                bindingPrio.rbSedangBerlangsung.id->{
+
+                }
+                bindingPrio.rbMataUang.id->{
+
+                }
+            }
+        }
+
+
+        bindingPrio.tvSelesai.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun initializeData() {
+        binding.detaskTitle.text = selectedTeam.title
+        binding.detaskCalendar.text =
+            selectedTeam.endDate?.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        binding.detaskDescription.text = selectedTeam.description
+    }
+
+    private fun clickListener() {
         binding.detaskBtnback.setOnClickListener {
             findNavController().popBackStack()
         }

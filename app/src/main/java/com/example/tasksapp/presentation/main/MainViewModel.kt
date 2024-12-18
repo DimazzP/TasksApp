@@ -12,6 +12,7 @@ import com.example.tasksapp.domain.model.RepetitiveTask
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.TeamTaskModel
 import com.example.tasksapp.domain.model.UserProfileModel
+import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.domain.model.utils.SubTask
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -29,6 +30,7 @@ class MainViewModel : ViewModel() {
     var listGoalTask = MutableLiveData<List<GoalModel>>()
     var listTeamTask = MutableLiveData<List<TeamTaskModel>>()
     var selectedGoal: GoalModel? = null
+    var selectedTeam: TeamTaskModel? = null
 
 
     fun setBottomVisible(changeVisible: Boolean) {
@@ -79,6 +81,99 @@ class MainViewModel : ViewModel() {
     }
 
     fun setDummy() {
+
+        listTeamTask.value =
+            listOf(
+                TeamTaskModel(
+                    id = 1,
+                    title = "Develop New Feature",
+                    description = "Work on implementing the new feature for the application.",
+                    subTask = listOf(
+                        SubTask(name = "Create UI mockups"),
+                        SubTask(name = "Develop backend API"),
+                        SubTask(name = "Integrate frontend and backend")
+                    ),
+                    freqTask = 2, // Bi-weekly
+                    freqWeekly = listOf(1, 3), // Monday and Wednesday
+                    freqMontly = null,
+                    freqYearly = null,
+                    freqActivityRest = null,
+                    startDate = LocalDateTime.now().plusDays(1),
+                    endDate = LocalDateTime.now().plusDays(10),
+                    reminder = 30, // Reminder 30 minutes before
+                    priority = 1, // High priority
+                    postpone = false,
+                    goalTarget = null,
+                    progress = 50,
+                    teams = listOf(
+                        UserProfileModel(
+                            name = "John Doe",
+                            userName = "johndoe",
+                            email = "john.doe@example.com",
+                            profileImage = "https://example.com/images/johndoe.jpg",
+                            telephone = "1234567890"
+                        ),
+                        UserProfileModel(
+                            name = "Jane Smith",
+                            userName = "janesmith",
+                            email = "jane.smith@example.com",
+                            profileImage = "https://example.com/images/janesmith.jpg",
+                            telephone = "0987654321"
+                        )
+                    )
+                ),
+                TeamTaskModel(
+                    id = 2,
+                    title = "Team Presentation",
+                    description = "Prepare and deliver the quarterly presentation to the stakeholders.",
+                    subTask = listOf(
+                        SubTask(name = "Prepare slides"),
+                        SubTask(name = "Rehearse presentation"),
+                        SubTask(name = "Gather feedback")
+                    ),
+                    freqTask = 0,
+                    freqWeekly = null,
+                    freqMontly = null,
+                    freqYearly = 1, // Yearly task
+                    freqActivityRest = null,
+                    startDate = LocalDateTime.now().plusWeeks(2),
+                    endDate = LocalDateTime.now().plusWeeks(2).plusHours(2),
+                    reminder = 60, // Reminder 1 hour before
+                    priority = 2, // Medium priority
+                    postpone = false,
+                    goalTarget = null,
+                    progress = 75,
+                    teams = listOf(
+                        UserProfileModel(
+                            name = "Alice Johnson",
+                            userName = "alicej",
+                            email = "alice.johnson@example.com",
+                            profileImage = "https://example.com/images/alicejohnson.jpg",
+                            telephone = "1122334455"
+                        )
+                    )
+                ),
+                TeamTaskModel(
+                    id = 3,
+                    title = "Code Review",
+                    description = "Review the new module code pushed by the team.",
+                    subTask = null,
+                    freqTask = 1, // Daily
+                    freqWeekly = null,
+                    freqMontly = null,
+                    freqYearly = null,
+                    freqActivityRest = null,
+                    startDate = LocalDateTime.now().plusHours(4),
+                    endDate = LocalDateTime.now().plusHours(5),
+                    reminder = 15, // Reminder 15 minutes before
+                    priority = 3, // Low priority
+                    postpone = true,
+                    goalTarget = null,
+                    progress = 0,
+                    teams = null
+                )
+            )
+
         listFriends.value = listOf(
             UserProfileModel(
                 name = "Renaldi",
@@ -114,6 +209,7 @@ class MainViewModel : ViewModel() {
                 goalTarget = listOf(
                     GoalTarget(
                         selectFreq = 2,
+                        titleTarget = "Learn Variable",
                         interval = GoalInterval(start = 1, end = 7),
                         alreadyFinish = false,
                         currency = GoalInterval(start = 0, end = 10)
@@ -133,6 +229,7 @@ class MainViewModel : ViewModel() {
                 goalTarget = listOf(
                     GoalTarget(
                         selectFreq = 4,
+                        titleTarget = "Training Hand",
                         interval = GoalInterval(start = 1, end = 30),
                         alreadyFinish = false,
                         currency = GoalInterval(start = 0, end = 50)
@@ -152,6 +249,7 @@ class MainViewModel : ViewModel() {
                 goalTarget = listOf(
                     GoalTarget(
                         selectFreq = 1,
+                        titleTarget = "Read until 20 paper",
                         interval = GoalInterval(start = 1, end = 30),
                         alreadyFinish = true,
                         currency = GoalInterval(start = 0, end = 2)
@@ -327,6 +425,24 @@ class MainViewModel : ViewModel() {
                 TaskModel(
                     idTask = finalIdTaskModel,
                     enumTask = EnumTask.REPETITIVE,
+                    idKeyTask = repetitiveTask.id,
+                    titleTask = repetitiveTask.title,
+                    subTask = null, // Konversi ke List<SubTask>
+                    time = null,
+                    repetitive = true,
+                    startDate = repetitiveTask.startDate,
+                    teams = null // Tidak ada teams
+                )
+            )
+        }
+
+        listTeamTask.value?.forEach { repetitiveTask ->
+            val lastTaskModel = listTask.value?.last()
+            val finalIdTaskModel = lastTaskModel?.idTask?.plus(1) ?: 1
+            addTaskModel(
+                TaskModel(
+                    idTask = finalIdTaskModel,
+                    enumTask = EnumTask.TIM,
                     idKeyTask = repetitiveTask.id,
                     titleTask = repetitiveTask.title,
                     subTask = null, // Konversi ke List<SubTask>
