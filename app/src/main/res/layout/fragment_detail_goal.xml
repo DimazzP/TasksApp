@@ -173,6 +173,8 @@
             android:layout_height="wrap_content">
             <TextView
                 android:text="+"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="2dp"
                 android:fontFamily="@font/inter_bold"

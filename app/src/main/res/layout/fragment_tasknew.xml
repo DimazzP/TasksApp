@@ -83,14 +83,14 @@
                 app:layout_constraintWidth_percent="0.75" />
 
             <Button
-                android:visibility="invisible"
                 android:id="@+id/newtask_add_task"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_margin_2"
                 android:layout_marginHorizontal="@dimen/default_margin_2"
+                android:layout_marginTop="@dimen/default_margin_2"
                 android:text="@string/newtask_add_member"
                 android:textColor="@color/white"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/newtask_customtimepicker" />
 
@@ -183,7 +183,7 @@
                         android:inputType="text"
                         android:textColor="@android:color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
-
+                <!--tanda-->
                 <LinearLayout
                     android:id="@+id/newtask_next_const"
                     android:layout_width="match_parent"
@@ -220,34 +220,44 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/default_margin">
 
-                        <ImageView
+                        <LinearLayout
                             android:id="@+id/newtask_ic_remember"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@string/img_ios_arrow_right"
-                            android:src="@drawable/ic_add_box"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:orientation="horizontal"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:contentDescription="@string/img_ios_arrow_right"
+                                android:src="@drawable/ic_add_box" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space_margin"
+                                android:fontFamily="@font/inter_regular"
+                                android:text="@string/newtask_add_sub"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/newtask_linear_sub_task"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space_margin"
-                            android:fontFamily="@font/inter_regular"
-                            android:text="@string/newtask_add_sub"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/newtask_ic_remember"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:orientation="vertical"
+                            app:layout_constraintTop_toBottomOf="@id/newtask_ic_remember"/>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
                             android:layout_marginTop="@dimen/default_margin"
                             android:background="@color/gray_stroke"
-                            app:layout_constraintTop_toBottomOf="@id/newtask_ic_remember" />
+                            app:layout_constraintTop_toBottomOf="@id/newtask_linear_sub_task" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -418,16 +428,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
-<!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".presentation.newtask.TasknewFragment">-->
+</androidx.core.widget.NestedScrollView><!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    tools:context=".presentation.newtask.TasknewFragment">-->
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:text="Hello" />-->
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:text="Hello" />-->
 
-<!--</FrameLayout>-->
+    <!--</FrameLayout>-->
