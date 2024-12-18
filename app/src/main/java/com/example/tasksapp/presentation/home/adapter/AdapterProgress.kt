@@ -11,9 +11,20 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.AdpProgressBinding
-import com.example.tasksapp.domain.model.ProgressModel
+import com.example.tasksapp.domain.model.GoalModel
 
-class AdapterProgress(private val context: Context, private val items: List<ProgressModel>, private val viewPager: ViewPager2, private val itemSelected: (item: ProgressModel)-> Unit) : RecyclerView.Adapter<AdapterProgress.ViewHolder>() {
+class AdapterProgress(
+    private val context: Context,
+    private var items: List<GoalModel>, // Ganti val menjadi var agar bisa di-update
+    private val viewPager: ViewPager2,
+    private val itemSelected: (item: GoalModel) -> Unit
+) : RecyclerView.Adapter<AdapterProgress.ViewHolder>() {
+
+    // Metode untuk memperbarui data
+    fun updateData(newItems: List<GoalModel>) {
+        items = newItems
+        notifyDataSetChanged() // Memberitahukan RecyclerView untuk me-refresh tampilan
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = AdpProgressBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,32 +34,91 @@ class AdapterProgress(private val context: Context, private val items: List<Prog
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.bind(item)
+
         val isSelected = position == viewPager.currentItem
         val scaleTitle: Float = if (isSelected) 24f else 20f
         val scaleProgress: Float = if (isSelected) 11f else 8f
         val scaleTextview: Float = if (isSelected) 9f else 6f
 
-        val currentTitleSize = holder.binding.adpProgressTitle.textSize / context.resources.displayMetrics.scaledDensity
+        val currentTitleSize =
+            holder.binding.adpProgressTitle.textSize / context.resources.displayMetrics.scaledDensity
         animateTextSize(holder.binding.adpProgressTitle, currentTitleSize, scaleTitle, 300)
 
-        val currentProgressSize = holder.binding.adpProgressTxpro.textSize / context.resources.displayMetrics.scaledDensity
+        val currentProgressSize =
+            holder.binding.adpProgressTxpro.textSize / context.resources.displayMetrics.scaledDensity
         animateTextSize(holder.binding.adpProgressTxpro, currentProgressSize, scaleProgress, 300)
 
-        val currentTextviewSize = holder.binding.adpProgressSizemember.textSize / context.resources.displayMetrics.scaledDensity
-        animateTextSize(holder.binding.adpProgressSizemember, currentTextviewSize, scaleTextview, 300)
+        val currentTextviewSize =
+            holder.binding.adpProgressSizemember.textSize / context.resources.displayMetrics.scaledDensity
+        animateTextSize(
+            holder.binding.adpProgressSizemember,
+            currentTextviewSize,
+            scaleTextview,
+            300
+        )
 
         if (position % 2 == 0) {
-            holder.binding.adpProgressUser1.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
-            holder.binding.adpProgressUser2.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
-            holder.binding.adpPrgressOther.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
-            holder.binding.adpTaskRoot.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_progress))
-            holder.binding.adpTaskImgBg.setColorFilter(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_purple_bg_progress))
+            holder.binding.adpProgressUser1.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_purple_progress
+                )
+            )
+            holder.binding.adpProgressUser2.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_purple_progress
+                )
+            )
+            holder.binding.adpPrgressOther.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_purple_progress
+                )
+            )
+            holder.binding.adpTaskRoot.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_purple_progress
+                )
+            )
+            holder.binding.adpTaskImgBg.setColorFilter(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_purple_bg_progress
+                )
+            )
         } else {
-            holder.binding.adpProgressUser1.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
-            holder.binding.adpProgressUser2.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
-            holder.binding.adpPrgressOther.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
-            holder.binding.adpTaskRoot.setCardBackgroundColor(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_progress))
-            holder.binding.adpTaskImgBg.setColorFilter(ContextCompat.getColor(holder.binding.root.context, R.color.home_item_yellow_bg_progress))
+            holder.binding.adpProgressUser1.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_yellow_progress
+                )
+            )
+            holder.binding.adpProgressUser2.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_yellow_progress
+                )
+            )
+            holder.binding.adpPrgressOther.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_yellow_progress
+                )
+            )
+            holder.binding.adpTaskRoot.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_yellow_progress
+                )
+            )
+            holder.binding.adpTaskImgBg.setColorFilter(
+                ContextCompat.getColor(
+                    holder.binding.root.context,
+                    R.color.home_item_yellow_bg_progress
+                )
+            )
         }
     }
 
@@ -65,19 +135,20 @@ class AdapterProgress(private val context: Context, private val items: List<Prog
 
     override fun getItemCount(): Int = items.size
 
-    inner class ViewHolder(val binding: AdpProgressBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ProgressModel) {
+    inner class ViewHolder(val binding: AdpProgressBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: GoalModel) {
             binding.adpProgressTitle.text = item.title
             binding.adpProgressBar.progress = item.progress
             binding.adpProgressTxpro.text = "Progress"
             binding.root.setOnClickListener {
                 itemSelected(item)
             }
-            binding.adpPrgressOther.findViewById<TextView>(R.id.adp_progress_sizemember).text = "${item.member.size - 2} Lainnya"
+            binding.adpPrgressOther.findViewById<TextView>(R.id.adp_progress_sizemember).text =
+                "${(item.teams?.size ?: 0) - 2} Lainnya"
         }
     }
 }
-
 
 //            // Load avatar using Glide for the first member
 //            if (item.member.isNotEmpty()) {

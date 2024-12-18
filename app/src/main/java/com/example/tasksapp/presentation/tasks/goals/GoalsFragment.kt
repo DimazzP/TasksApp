@@ -141,7 +141,9 @@ class GoalsFragment : Fragment() {
                 startDate = startLocal!!,
                 endDate = endLocal,
                 remember = 0,
-                priority = prioritySelected
+                priority = prioritySelected,
+                goalTarget = null,
+                teams = null
             )
 
             mainViewModel.addGoal(goalTask)
