@@ -87,7 +87,6 @@ class CalendarFragment : Fragment() {
         if(getTaskTop!=null){
             adapterSubAssignment.updateData(getTaskTop)
         }
-        Log.d("getTaskCallTop", getTaskTop.toString())
 
         mainViewModel.listTask.observe(viewLifecycleOwner, Observer { data->
             val getTask = mainViewModel.findTasksByDate(selectDate, data)

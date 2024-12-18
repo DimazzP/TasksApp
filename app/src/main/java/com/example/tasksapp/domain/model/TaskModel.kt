@@ -1,6 +1,7 @@
 package com.example.tasksapp.domain.model
 
 import com.example.tasksapp.domain.enums.EnumTask
+import com.example.tasksapp.domain.model.utils.SubTask
 import java.time.LocalDateTime
 
 data class TaskModel (
@@ -8,7 +9,7 @@ data class TaskModel (
     val enumTask: EnumTask,
     val idKeyTask: Int,
     val titleTask: String,
-    val subTask: List<String>?,
+    val subTask: List<SubTask>?,
     val time: String?,
     val repetitive: Boolean?,
     val startDate: LocalDateTime?,

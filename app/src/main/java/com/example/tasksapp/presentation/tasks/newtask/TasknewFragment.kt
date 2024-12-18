@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
@@ -24,6 +26,7 @@ import com.example.tasksapp.databinding.FragmentTasknewBinding
 import com.example.tasksapp.domain.enums.EnumTask
 import com.example.tasksapp.domain.model.NewTaskModel
 import com.example.tasksapp.domain.model.TaskModel
+import com.example.tasksapp.domain.model.utils.SubTask
 import com.example.tasksapp.presentation.main.MainViewModel
 import com.example.tasksapp.presentation.tasks.repetitivetask.adapter.CalendarAdapter
 import com.example.tasksapp.presentation.tasks.repetitivetask.model.CalendarDay
@@ -49,6 +52,7 @@ class TasknewFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
     private var startDate: LocalDate = LocalDate.now()
     private var prioritySelected = 0
+    private val editTextList = mutableListOf<EditText>()
 
 
     override fun onCreateView(
@@ -181,6 +185,20 @@ class TasknewFragment : Fragment() {
     }
 
     private fun setupListeners() {
+
+        binding.newtaskIcRemember.setOnClickListener {
+            val editText = EditText(requireContext())
+            editText.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            editText.hint = "Sub tugas"
+            binding.newtaskLinearSubTask.addView(editText)
+
+            // Tambahkan EditText ke dalam list
+            editTextList.add(editText)
+        }
+
         binding.newtaskBtnPrevMonth.setOnClickListener {
             calendar.add(Calendar.MONTH, -1)
             updateCalendarView()
@@ -292,17 +310,20 @@ class TasknewFragment : Fragment() {
                 id = finalIdNewTask,
                 title = newtaskTitleEdit.text.toString(),
                 description = newtaskDescription.text.toString(),
-                subTask = null,
                 startDate = startLocal!!,
                 postpone = newtaskCheckPostpone.isChecked,
                 priority = prioritySelected,
                 reminder = 0
             )
             mainViewModel.addNewTask(newTask)
+
+            val subTaskList: List<SubTask> = editTextList.map { editText ->
+                SubTask(name = editText.text.toString()) // Default isChecked = false
+            }
             mainViewModel.addTaskModel(
                 TaskModel(
                     idTask = finalIdTaskModel,
-                    subTask = null,
+                    subTask = subTaskList,
                     enumTask = EnumTask.NEW,
                     idKeyTask = finalIdNewTask,
                     titleTask = newtaskTitleEdit.text.toString(),

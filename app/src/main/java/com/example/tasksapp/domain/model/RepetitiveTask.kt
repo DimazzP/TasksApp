@@ -1,6 +1,7 @@
 package com.example.tasksapp.domain.model
 
 import com.example.tasksapp.domain.model.utils.ActivityRest
+import com.example.tasksapp.domain.model.utils.SubTask
 import java.time.LocalDateTime
 import java.util.Date
 
@@ -8,7 +9,7 @@ data class RepetitiveTask(
     val id: Int,
     val title: String,
     val description: String?,
-    val subTask: List<String>?,
+    val subTask: List<SubTask>?,
     val freqTask: Int = 0,
     val freqWeekly: List<Int>?,
     val freqMontly: List<Int>?,

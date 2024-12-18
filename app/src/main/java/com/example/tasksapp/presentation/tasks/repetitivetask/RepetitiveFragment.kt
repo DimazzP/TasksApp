@@ -2,42 +2,31 @@ package com.example.tasksapp.presentation.tasks.repetitivetask
 
 import android.app.DatePickerDialog
 import android.graphics.Color
-import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.DlPriorityBinding
 import com.example.tasksapp.databinding.FragmentRepetitiveBinding
 import com.example.tasksapp.domain.enums.EnumTask
-import com.example.tasksapp.domain.model.NewTaskModel
 import com.example.tasksapp.domain.model.RepetitiveTask
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.utils.ActivityRest
+import com.example.tasksapp.domain.model.utils.SubTask
 import com.example.tasksapp.presentation.main.MainViewModel
-import com.example.tasksapp.presentation.tasks.repetitivetask.adapter.CalendarAdapter
-import com.example.tasksapp.presentation.tasks.repetitivetask.model.CalendarDay
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Calendar
-import java.util.Locale
 
 class RepetitiveFragment : Fragment() {
 
@@ -51,6 +40,8 @@ class RepetitiveFragment : Fragment() {
     private val weeklyCheck = mutableListOf<Int>()
     private var prioritySelected = 0
     var freqSelected = 0
+    private val editTextList = mutableListOf<EditText>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -141,6 +132,19 @@ class RepetitiveFragment : Fragment() {
     }
 
     private fun setupListeners() {
+
+        binding.newrepIcRemember.setOnClickListener {
+            val editText = EditText(requireContext())
+            editText.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            editText.hint = "Sub tugas"
+            binding.newrepLinearSubTask.addView(editText)
+
+            // Tambahkan EditText ke dalam list
+            editTextList.add(editText)
+        }
 
         binding.newrepMore.setOnClickListener {
             createNewTask()
@@ -244,10 +248,13 @@ class RepetitiveFragment : Fragment() {
                 reminder = 0
             )
             mainViewModel.addRepetitive(newTask)
+            val subTaskList: List<SubTask> = editTextList.map { editText ->
+                SubTask(name = editText.text.toString()) // Default isChecked = false
+            }
             mainViewModel.addTaskModel(
                 TaskModel(
                     idTask = finalIdTaskModel,
-                    subTask = null,
+                    subTask = subTaskList,
                     enumTask = EnumTask.NEW,
                     idKeyTask = finalIdNewTask,
                     titleTask = newrepTitleEdit.text.toString(),

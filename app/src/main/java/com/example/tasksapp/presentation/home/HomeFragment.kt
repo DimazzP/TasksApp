@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ import com.example.tasksapp.databinding.DlHomeAddtaskBinding
 import com.example.tasksapp.databinding.DlLiterationBinding
 import com.example.tasksapp.databinding.FragmentHomeBinding
 import com.example.tasksapp.domain.model.DetailAssignmentModel
+import com.example.tasksapp.domain.model.GoalModel
 import com.example.tasksapp.domain.model.MemberModel
 import com.example.tasksapp.domain.model.ProgressModel
 import com.example.tasksapp.presentation.home.adapter.AdapterProgress
@@ -38,6 +40,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapterProgress: AdapterProgress
+    var goalModel: List<GoalModel> = emptyList()
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -51,72 +54,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.setBottomVisible(true)
-        val currentDateTime: LocalDateTime = LocalDateTime.now()
-        val dummyMembers = listOf(
-            MemberModel(
-                name = "Renaldi",
-                photo = "https://www.perfocal.com/blog/content/images/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg",
-                role = "Developer"
-            ),
-            MemberModel(
-                name = "Retno",
-                photo = "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
-                role = "Designer"
-            ),
-            MemberModel(
-                name = "Renaldi",
-                photo = "https://mrwallpaper.com/images/hd/cool-profile-pictures-panda-man-gsl2ntkjj3hrk84s.jpg",
-                role = "Manager"
-            )
-        )
 
-        val dummyDetail = listOf(
-            DetailAssignmentModel("Membuat moodboard", currentDateTime, false),
-            DetailAssignmentModel("Membuat wireframe", currentDateTime, false),
-            DetailAssignmentModel("Membuat komponen desain", currentDateTime, false),
-        )
-
-        val dummyData = listOf(
-            ProgressModel(
-                title = "Desain UI",
-                progress = 70,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Tugas Laravel",
-                progress = 40,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Tugas Android",
-                progress = 60,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Desain UI",
-                progress = 70,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Tugas Laravel",
-                progress = 40,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-            ProgressModel(
-                title = "Tugas Android",
-                progress = 60,
-                member = dummyMembers,
-                detailAssignment = dummyDetail
-            ),
-        )
-        adapterProgress = AdapterProgress(requireContext(), dummyData, binding.homViewPager) {
+        adapterProgress = AdapterProgress(requireContext(), emptyList(), binding.homViewPager) {
             findNavController().navigate(R.id.action_homeFragment_to_detailTaskFragment)
         }
+        mainViewModel.listGoalTask.observe(viewLifecycleOwner, Observer { data->
+            adapterProgress.updateData(data)
+        })
         binding.homViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         val viewPager2 = binding.homViewPager
@@ -169,7 +113,7 @@ class HomeFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 adapterProgress.notifyItemChanged(position)
-                if (position + 1 < dummyData.size) {
+                if (position + 1 < goalModel.size) {
                     adapterProgress.notifyItemChanged(position + 1)
                 }
                 if (position - 1 >= 0) {
