@@ -211,7 +211,13 @@
     <string name="sett_backup">Pencadangan</string>
     <string name="sett_language">Bahasa</string>
 
-<!--    setting task-->
+<!--    detail goal-->
+    <string name="detgo_ended">Berakhir:</string>
+    <string name="detgo_target">Target</string>
+    <string name="detgo_target_empty">Belum ada target</string>
+
+
+    <!--    setting task-->
     <string name="settask_task_settings">Pengaturan Tugas</string>
     <string name="settask_sorting_options">Opsi Pengurutan</string>
     <string name="settask_first">Pertama</string>

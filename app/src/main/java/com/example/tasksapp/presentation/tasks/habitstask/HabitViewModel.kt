@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.habitstask
+package com.example.tasksapp.presentation.tasks.habitstask
 
 import androidx.lifecycle.ViewModel
 

@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.goals
+package com.example.tasksapp.presentation.tasks.goals
 
 import androidx.lifecycle.ViewModel
 

@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.repetitivetask
+package com.example.tasksapp.presentation.tasks.repetitivetask
 
 import android.app.DatePickerDialog
 import android.graphics.Color
@@ -29,8 +29,8 @@ import com.example.tasksapp.domain.model.RepetitiveTask
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.presentation.main.MainViewModel
-import com.example.tasksapp.presentation.repetitivetask.adapter.CalendarAdapter
-import com.example.tasksapp.presentation.repetitivetask.model.CalendarDay
+import com.example.tasksapp.presentation.tasks.repetitivetask.adapter.CalendarAdapter
+import com.example.tasksapp.presentation.tasks.repetitivetask.model.CalendarDay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat

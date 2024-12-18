@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.repetitivetask.adapter
+package com.example.tasksapp.presentation.tasks.repetitivetask.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.AdpItemDayBinding
-import com.example.tasksapp.presentation.repetitivetask.model.CalendarDay
+import com.example.tasksapp.presentation.tasks.repetitivetask.model.CalendarDay
 
 class CalendarAdapter(
     private var days: MutableList<CalendarDay>,  // MutableList agar bisa diubah

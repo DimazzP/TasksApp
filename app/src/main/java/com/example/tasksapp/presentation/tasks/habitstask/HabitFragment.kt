@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.habitstask
+package com.example.tasksapp.presentation.tasks.habitstask
 
 import android.app.DatePickerDialog
 import android.graphics.Color
@@ -21,8 +21,8 @@ import com.example.tasksapp.domain.model.HabitsTaskModel
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.presentation.main.MainViewModel
-import com.example.tasksapp.presentation.repetitivetask.adapter.CalendarAdapter
-import com.example.tasksapp.presentation.repetitivetask.model.CalendarDay
+import com.example.tasksapp.presentation.tasks.repetitivetask.adapter.CalendarAdapter
+import com.example.tasksapp.presentation.tasks.repetitivetask.model.CalendarDay
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit

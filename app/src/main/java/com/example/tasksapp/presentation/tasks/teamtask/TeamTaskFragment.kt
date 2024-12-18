@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.teamtask
+package com.example.tasksapp.presentation.tasks.teamtask
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle

@@ -48,17 +48,17 @@
     </fragment>
     <fragment
         android:id="@+id/teamTaskFragment"
-        android:name="com.example.tasksapp.presentation.teamtask.TeamTaskFragment"
+        android:name="com.example.tasksapp.presentation.tasks.teamtask.TeamTaskFragment"
         android:label="fragment_team"
         tools:layout="@layout/fragment_team_task"/>
     <fragment
         android:id="@+id/goalFragment"
-        android:name="com.example.tasksapp.presentation.goals.GoalsFragment"
+        android:name="com.example.tasksapp.presentation.tasks.goals.GoalsFragment"
         android:label="fragment_goal"
         tools:layout="@layout/fragment_goals"/>
     <fragment
         android:id="@+id/newTaskFragment"
-        android:name="com.example.tasksapp.presentation.newtask.TasknewFragment"
+        android:name="com.example.tasksapp.presentation.tasks.newtask.TasknewFragment"
         android:label="fragment_newTask"
         tools:layout="@layout/fragment_tasknew"/>
     <fragment
@@ -88,13 +88,13 @@
     </fragment>
     <fragment
         android:id="@+id/repetitiveFragment"
-        android:name="com.example.tasksapp.presentation.repetitivetask.RepetitiveFragment"
+        android:name="com.example.tasksapp.presentation.tasks.repetitivetask.RepetitiveFragment"
         android:label="fragment_repetitive"
         tools:layout="@layout/fragment_repetitive">
     </fragment>
     <fragment
         android:id="@+id/habitFragment"
-        android:name="com.example.tasksapp.presentation.habitstask.HabitFragment"
+        android:name="com.example.tasksapp.presentation.tasks.habitstask.HabitFragment"
         android:label="fragment_newrepep"
         tools:layout="@layout/fragment_habit">
 

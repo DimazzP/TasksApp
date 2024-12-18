@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.newtask
+package com.example.tasksapp.presentation.tasks.newtask
 
 import androidx.lifecycle.ViewModel
 

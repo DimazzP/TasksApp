@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.newtask
+package com.example.tasksapp.presentation.tasks.newtask
 
 import android.graphics.Color
 import android.graphics.Rect
@@ -25,8 +25,8 @@ import com.example.tasksapp.domain.enums.EnumTask
 import com.example.tasksapp.domain.model.NewTaskModel
 import com.example.tasksapp.domain.model.TaskModel
 import com.example.tasksapp.presentation.main.MainViewModel
-import com.example.tasksapp.presentation.repetitivetask.adapter.CalendarAdapter
-import com.example.tasksapp.presentation.repetitivetask.model.CalendarDay
+import com.example.tasksapp.presentation.tasks.repetitivetask.adapter.CalendarAdapter
+import com.example.tasksapp.presentation.tasks.repetitivetask.model.CalendarDay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat

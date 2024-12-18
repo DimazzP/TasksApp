@@ -1,4 +1,4 @@
-package com.example.tasksapp.presentation.repetitivetask
+package com.example.tasksapp.presentation.tasks.repetitivetask
 
 import androidx.lifecycle.ViewModel
 
