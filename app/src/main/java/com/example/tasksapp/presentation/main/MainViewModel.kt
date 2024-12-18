@@ -59,7 +59,7 @@ class MainViewModel : ViewModel() {
     fun addTaskModel(task: TaskModel) {
         val newList = listTask.value?.toMutableList() ?: mutableListOf()
         newList.add(task)
-        listTask.postValue(newList)
+        listTask.value = (newList)
     }
 
     fun addHabitsTask(task: HabitsTaskModel) {
@@ -292,7 +292,7 @@ class MainViewModel : ViewModel() {
             )
         )
 
-        listNewTask.value?.forEach { newTask->
+        listNewTask.value?.forEach { newTask ->
             val lastTaskModel = listTask.value?.last()
             val finalIdTaskModel = lastTaskModel?.idTask?.plus(1) ?: 1
             addTaskModel(
@@ -347,7 +347,6 @@ class MainViewModel : ViewModel() {
                 )
             )
         }
-
     }
 
     init {
