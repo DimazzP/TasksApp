@@ -51,19 +51,18 @@
         android:layout_height="wrap_content">
 
         <!-- Interval Pengukuran -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="8dp">
+
 
             <RadioButton
                 android:id="@+id/rb_interval_pengukuran"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="Interval pengukuran"
                 app:buttonTint="@color/radio_button_selector"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp">
+
+            </RadioButton>
 
             <LinearLayout
                 android:id="@+id/intervalLayout"
@@ -104,12 +103,12 @@
                     android:layout_marginStart="8dp" />
             </LinearLayout>
 
-        </LinearLayout>
 
         <!-- Sedang berlangsung/selesai -->
         <RadioButton
             android:id="@+id/rb_sedang_berlangsung"
             android:layout_width="match_parent"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="Sedang berlangsung/selesai"
             app:buttonTint="@color/radio_button_selector"
@@ -160,6 +159,7 @@
         <RadioButton
             android:id="@+id/rb_mata_uang"
             android:layout_width="match_parent"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="Mata uang"
             app:buttonTint="@color/radio_button_selector" />

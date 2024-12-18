@@ -74,6 +74,17 @@ class MainViewModel : ViewModel() {
         listTask.value = (newList)
     }
 
+    fun updateTeam(index: Int, updatedTask: TeamTaskModel) {
+        val currentList = listTeamTask.value?.toMutableList() ?: mutableListOf()
+
+        if (index in currentList.indices) { // Pastikan indeks valid
+            currentList[index] = updatedTask // Perbarui elemen pada indeks
+            listTeamTask.postValue(currentList) // Post nilai baru ke LiveData
+        } else {
+            throw IndexOutOfBoundsException("Index $index out of bounds for list size ${currentList.size}")
+        }
+    }
+
     fun addHabitsTask(task: HabitsTaskModel) {
         val newList = listHabitsTask.value?.toMutableList() ?: mutableListOf()
         newList.add(task)
@@ -213,7 +224,6 @@ class MainViewModel : ViewModel() {
                         interval = GoalInterval(start = 1, end = 7),
                         alreadyFinish = false,
                         currency = GoalInterval(start = 0, end = 10),
-                        titleTarget = "Baca Buku"
                     )
                 ),
                 progress = 50,
@@ -234,7 +244,6 @@ class MainViewModel : ViewModel() {
                         interval = GoalInterval(start = 1, end = 30),
                         alreadyFinish = false,
                         currency = GoalInterval(start = 0, end = 50),
-                        titleTarget = "Baca buku"
                     )
                 ),
                 progress = 25,
@@ -255,7 +264,6 @@ class MainViewModel : ViewModel() {
                         interval = GoalInterval(start = 1, end = 30),
                         alreadyFinish = true,
                         currency = GoalInterval(start = 0, end = 2),
-                        titleTarget = "Baca buku"
                     )
                 ),
                 progress = 100,
