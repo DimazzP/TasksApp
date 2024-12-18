@@ -11,12 +11,12 @@
     <color name="purple_soft_1">#E0E0FF</color>
     <color name="purple_trans">#ebe7ff</color>
     <color name="red">#E42525</color>
-
+    <color name="gray_button">#b6bbc3</color>
     <color name="switch_thumb_disabled">#BDBDBD</color> <!-- Warna thumb saat tidak aktif -->
     <color name="switch_track_enabled">#FF80AB</color> <!-- Warna track saat aktif -->
     <color name="switch_track_disabled">#E0E0E0</color>
 
-
+    <color name="green">#27ae60</color>
     <color name="home_item_purple_progress">#61346B</color>
     <color name="home_item_purple_bg_progress">#7E498A</color>
     <color name="home_item_yellow_progress">#F2C75B</color>
@@ -25,6 +25,6 @@
     <color name="member_item_purple_text">#5451D6</color>
     <color name="member_item_yellow_bg">#EDD494</color>
     <color name="member_item_yellow_text">#8B753D</color>
-
+    <color name="blue">#5451d6</color>
     <color name="callend_green_card">#80DCB0</color>
 </resources>

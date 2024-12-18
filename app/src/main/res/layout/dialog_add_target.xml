@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/rounded_background_white">
+
+    <!-- Nama Target -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/namaTargetInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/blue"
+        app:boxStrokeWidth="2dp"
+        app:hintTextColor="@color/blue"
+        android:hint="Nama Target">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_nama_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=""
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Tipe Target -->
+    <TextView
+        android:id="@+id/tv_tipe_target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tipe Target"
+        android:textColor="@color/blue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Pilihan Tipe Target -->
+    <RadioGroup
+        android:id="@+id/rg_tipe_target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Interval Pengukuran -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp">
+
+            <RadioButton
+                android:id="@+id/rb_interval_pengukuran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interval pengukuran"
+                app:buttonTint="@color/radio_button_selector"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:id="@+id/intervalLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="32dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/et_mulai"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:hint="0"
+                    android:background="@drawable/rounded_edittext_button"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="→"
+                    android:textSize="50sp"
+                    android:textColor="@color/blue"
+                    android:gravity="center_vertical" />
+
+                <EditText
+                    android:id="@+id/et_target"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:hint="5"
+                    android:background="@drawable/rounded_edittext_button"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Sedang berlangsung/selesai -->
+        <RadioButton
+            android:id="@+id/rb_sedang_berlangsung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sedang berlangsung/selesai"
+            app:buttonTint="@color/radio_button_selector"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/layout_sedang_berlangsung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_berlangsung"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berlangsung"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:cornerRadius="16dp"
+                app:backgroundTint="@color/blue"
+                app:strokeColor="@color/blue"
+                app:strokeWidth="2dp"
+                app:checkedIconTint="@color/white"
+                app:iconTint="@color/white" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_selesai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selesai"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:cornerRadius="16dp"
+                app:backgroundTint="@color/white"
+                app:strokeColor="@color/blue"
+                app:strokeWidth="2dp"
+                app:checkedIconTint="@color/white"
+                app:iconTint="@color/blue" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+
+        <!-- Mata uang -->
+        <RadioButton
+            android:id="@+id/rb_mata_uang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mata uang"
+            app:buttonTint="@color/radio_button_selector" />
+    </RadioGroup>
+    <LinearLayout
+        android:id="@+id/layout_mata_uang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <!-- Mulai -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="16dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_mulai_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mulai"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_mulai_uang"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:hint="Rp 0"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_edittext_button"
+                android:padding="8dp"
+                android:gravity="center"
+                android:inputType="number"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- Panah -->
+        <TextView
+            android:id="@+id/tv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="→"
+            android:textSize="24sp"
+            android:textColor="@color/blue"
+            android:layout_marginEnd="16dp" />
+
+        <!-- Target -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_target_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Target"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_target_uang"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="Rp 500.000"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_edittext_button"
+                android:padding="8dp"
+                android:gravity="center"
+                android:inputType="number"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <!-- Tombol Selesai -->
+    <TextView
+        android:id="@+id/tv_selesai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selesai"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:background="?selectableItemBackground" />
+</LinearLayout>
