@@ -156,7 +156,11 @@ class MainViewModel : ViewModel() {
                 id = 1,
                 title = "Rapat Harian Stand-up",
                 description = "Menghadiri rapat harian dengan tim untuk membahas perkembangan pekerjaan.",
-                subTask = listOf("Membahas tugas kemarin", "Merencanakan tugas hari ini", "Mengatasi hambatan"),
+                subTask = listOf(
+                    SubTask(name = "Membahas tugas kemarin"),
+                    SubTask(name = "Merencanakan tugas hari ini"),
+                    SubTask(name = "Mengatasi hambatan")
+                ),
                 freqTask = 1, // Harian
                 freqWeekly = null,
                 freqMontly = null,
@@ -172,7 +176,11 @@ class MainViewModel : ViewModel() {
                 id = 2,
                 title = "Pengumpulan Laporan Mingguan",
                 description = "Mempersiapkan dan mengirimkan laporan proyek mingguan kepada manajer.",
-                subTask = listOf(SubTask(name = "Mengumpulkan pembaruan dari tim", ), SubTask(name = "Menyusun laporan"), "Mengirimkan ke manajer"),
+                subTask = listOf(
+                    SubTask(name = "Mengumpulkan pembaruan dari tim"),
+                    SubTask(name = "Menyusun laporan"),
+                    SubTask(name = "\"Mengirimkan ke manajer\"")
+                ),
                 freqTask = 1,
                 freqWeekly = listOf(2), // Setiap hari Selasa
                 freqMontly = null,
@@ -188,7 +196,11 @@ class MainViewModel : ViewModel() {
                 id = 3,
                 title = "Review Anggaran Bulanan",
                 description = "Melakukan review anggaran departemen dan menyusun rencana anggaran untuk bulan berikutnya.",
-                subTask = listOf("Menganalisis pengeluaran", "Merencanakan anggaran berikutnya", "Menyusun laporan"),
+                subTask = listOf(
+                    SubTask(name = "Menganalisis pengeluaran"),
+                    SubTask(name = "Merencanakan anggaran berikutnya"),
+                    SubTask(name = "Menyusun laporan")
+                ),
                 freqTask = 1,
                 freqWeekly = null,
                 freqMontly = listOf(1, 15), // Setiap tanggal 1 dan 15 setiap bulan
@@ -202,7 +214,7 @@ class MainViewModel : ViewModel() {
             )
         )
 
-        listHabitsTask.value =  listOf(
+        listHabitsTask.value = listOf(
             HabitsTaskModel(
                 id = 1,
                 title = "Meditasi Harian",
@@ -249,13 +261,61 @@ class MainViewModel : ViewModel() {
                 priority = 1 // Prioritas sangat tinggi
             )
         )
-        val taskModels = mutableListOf<TaskModel>()
 
-// Konversi dari RepetitiveTask
-        listRepetitiveTask.value?.forEach { repetitiveTask ->
-            taskModels.add(
+        listNewTask.value = listOf(
+            NewTaskModel(
+                id = 101,
+                title = "Complete Project Proposal",
+                description = "Draft and finalize the proposal for the new project.",
+                startDate = LocalDateTime.now().plusDays(3),
+                priority = 1,
+                reminder = 15, // Reminder 15 minutes before
+                postpone = false
+            ),
+            NewTaskModel(
+                id = 102,
+                title = "Weekly Team Sync-Up",
+                description = "Regular meeting to align on weekly tasks and goals.",
+                startDate = LocalDateTime.now().plusHours(5),
+                priority = 2,
+                reminder = 30, // Reminder 30 minutes before
+                postpone = true // Task has been postponed
+            ),
+            NewTaskModel(
+                id = 103,
+                title = "Submit Expense Report",
+                description = "Compile and submit the expense report for the last quarter.",
+                startDate = LocalDateTime.now().plusDays(7),
+                priority = 3,
+                reminder = 60, // Reminder 1 hour before
+                postpone = false
+            )
+        )
+
+        listNewTask.value?.forEach { newTask->
+            val lastTaskModel = listTask.value?.last()
+            val finalIdTaskModel = lastTaskModel?.idTask?.plus(1) ?: 1
+            addTaskModel(
                 TaskModel(
-                    idTask = repetitiveTask.id,
+                    idTask = finalIdTaskModel,
+                    enumTask = EnumTask.NEW,
+                    idKeyTask = newTask.id,
+                    titleTask = newTask.title,
+                    subTask = null, // Konversi ke List<SubTask>
+                    time = null,
+                    repetitive = true,
+                    startDate = newTask.startDate,
+                    teams = null // Tidak ada teams
+                )
+            )
+        }
+
+        listRepetitiveTask.value?.forEach { repetitiveTask ->
+            val lastTaskModel = listTask.value?.last()
+            val finalIdTaskModel = lastTaskModel?.idTask?.plus(1) ?: 1
+            addTaskModel(
+                TaskModel(
+                    idTask = finalIdTaskModel,
                     enumTask = EnumTask.REPETITIVE,
                     idKeyTask = repetitiveTask.id,
                     titleTask = repetitiveTask.title,
@@ -268,11 +328,14 @@ class MainViewModel : ViewModel() {
             )
         }
 
+
 // Konversi dari HabitsTaskModel
         listHabitsTask.value?.forEach { habitsTask ->
-            taskModels.add(
+            val lastTaskModel = listTask.value?.last()
+            val finalIdTaskModel = lastTaskModel?.idTask?.plus(1) ?: 1
+            addTaskModel(
                 TaskModel(
-                    idTask = habitsTask.id,
+                    idTask = finalIdTaskModel,
                     enumTask = EnumTask.HABITS,
                     idKeyTask = habitsTask.id,
                     titleTask = habitsTask.title,
