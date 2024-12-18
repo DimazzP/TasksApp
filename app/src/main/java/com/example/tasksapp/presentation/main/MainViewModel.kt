@@ -3,6 +3,7 @@ package com.example.tasksapp.presentation.main
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.tasksapp.domain.model.GoalModel
 import com.example.tasksapp.domain.model.HabitsTaskModel
 import com.example.tasksapp.domain.model.NewTaskModel
 import com.example.tasksapp.domain.model.RepetitiveTask
@@ -20,6 +21,7 @@ class MainViewModel : ViewModel() {
     var listRepetitiveTask = MutableLiveData<List<RepetitiveTask>>()
     var listNewTask = MutableLiveData<List<NewTaskModel>>()
     var listHabitsTask = MutableLiveData<List<HabitsTaskModel>>()
+    var listGoalTask = MutableLiveData<List<GoalModel>>()
 
     fun setBottomVisible(changeVisible: Boolean) {
         isBottomVisible.value = changeVisible
@@ -37,6 +39,11 @@ class MainViewModel : ViewModel() {
         listRepetitiveTask.postValue(newList)
     }
 
+    fun addGoal(task: GoalModel) {
+        val newList = listGoalTask.value?.toMutableList() ?: mutableListOf()
+        newList.add(task)
+        listGoalTask.postValue(newList)
+    }
 
     fun findTasksByDate(date: LocalDateTime, listData: List<TaskModel>): List<TaskModel>? {
         val targetDate = date.toLocalDate()

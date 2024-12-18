@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.goals.GoalsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/goal_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="@dimen/default_margin_2"
+            android:paddingTop="@dimen/default_margin"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/goal_btnback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:contentDescription="@string/img_back"
+                android:cropToPadding="true"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="@id/goal_more"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/goal_more" />
+
+            <TextView
+                android:id="@+id/goal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_margin"
+                android:fontFamily="@font/inter_semi"
+                android:text="@string/goal_title"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/goal_btnback"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/goal_more"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semi"
+                android:letterSpacing="0.05"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:text="@string/addmem_finish"
+                android:textAlignment="textEnd"
+                android:textAllCaps="false"
+                android:textColor="@color/purple_deep"
+                app:iconPadding="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/goal_top_cons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="@dimen/default_margin_2"
+            app:layout_constraintTop_toBottomOf="@id/goal_header">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/goal_name_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_2"
+                android:hint="@string/goal_name"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxStrokeColor="@color/purple_deep"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/goal_title_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    android:inputType="text"
+                    android:textColor="@android:color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/goal_next_const"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/goal_name_task">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/goal_description_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/newtask_description_name"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxStrokeColor="@color/purple_deep">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/goal_description_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/transparent"
+                        android:inputType="text"
+                        android:textColor="@android:color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:background="@color/gray_stroke" />
+                <LinearLayout
+                    android:id="@+id/goal_const_secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/goal_bt_date_start"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin">
+
+                        <ImageView
+                            android:id="@+id/goal_ic_calendar_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/img_calendar"
+                            android:src="@drawable/ic_calendar_start"
+                            app:layout_constraintBottom_toBottomOf="@id/goal_text_date_start"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_margin"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/newtask_date_start"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="@id/goal_text_date_start"
+                            app:layout_constraintStart_toEndOf="@id/goal_ic_calendar_start"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/goal_text_date_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rd_8"
+                            android:fontFamily="@font/inter_semi"
+                            android:gravity="center"
+                            android:text="@string/today"
+                            android:textAlignment="center"
+                            android:textColor="@color/purple_deep"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/default_margin"
+                            android:background="@color/gray_stroke"
+                            app:layout_constraintTop_toBottomOf="@id/goal_ic_calendar_start" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/goal_bt_date_end"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin">
+
+                        <ImageView
+                            android:id="@+id/goal_ic_calendar_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/img_calendar"
+                            android:src="@drawable/ic_calendar_end"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_margin"
+                            android:fontFamily="@font/inter_regular"
+                            android:text="@string/newtask_date_end"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="@id/goal_ic_calendar_end"
+                            app:layout_constraintStart_toEndOf="@id/goal_ic_calendar_end"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/goal_switch_date_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="@id/goal_ic_calendar_end"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="@dimen/default_margin"
+                            android:background="@color/gray_stroke"
+                            app:layout_constraintTop_toBottomOf="@id/table_date_end" />
+
+                        <LinearLayout
+                            android:id="@+id/table_date_end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/space_margin"
+                            android:visibility="gone"
+                            app:layout_constraintTop_toBottomOf="@id/goal_ic_calendar_end">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/goal_card_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="12dp"
+                                app:cardBackgroundColor="@color/purple_soft_1"
+                                app:cardCornerRadius="12dp">
+
+                                <TextView
+                                    android:id="@+id/goal_tv_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_semi"
+                                    android:paddingHorizontal="@dimen/space_margin"
+                                    android:paddingVertical="@dimen/small_margin"
+                                    android:text="@string/example_date"
+                                    android:textColor="@color/purple_deep"
+                                    android:textSize="12sp" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <View
+                                android:layout_width="@dimen/space_margin"
+                                android:layout_height="wrap_content" />
+
+                            <!-- EditText for number input -->
+                            <EditText
+                                android:id="@+id/goal_et_days"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/purple_deep"
+                                android:fontFamily="@font/inter_medium"
+                                android:enabled="false"
+                                android:hint="@string/example_number_0"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                android:paddingHorizontal="4dp"
+                                android:textColor="@color/black"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:id="@+id/goal_tv_hari_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_regular"
+                                android:paddingStart="@dimen/small_margin"
+                                android:text="@string/newtask_hari"
+                                android:textColor="@color/black"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/goal_bt_add_reminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin">
+
+                    <ImageView
+                        android:id="@+id/goal_ic_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/img_ios_arrow_right"
+                        android:src="@drawable/ic_bell"
+                        app:layout_constraintBottom_toBottomOf="@id/goal_remember_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_margin"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/newtask_reminder"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@id/goal_remember_text"
+                        app:layout_constraintStart_toEndOf="@id/goal_ic_add"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/goal_remember_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_circle_text"
+                        android:fontFamily="@font/inter_semi"
+                        android:gravity="center"
+                        android:text="@string/example_number_0"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple_deep"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:background="@color/gray_stroke"
+                        app:layout_constraintTop_toBottomOf="@id/goal_ic_add" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/goal_bt_add_priority"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin">
+
+                    <ImageView
+                        android:id="@+id/goal_ic_priority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/img_ios_arrow_right"
+                        android:src="@drawable/ic_flag"
+                        app:layout_constraintBottom_toBottomOf="@id/goal_priority_text"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_margin"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/newtask_priority"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@id/goal_priority_text"
+                        app:layout_constraintStart_toEndOf="@id/goal_ic_priority"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/goal_priority_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rd_8"
+                        android:fontFamily="@font/inter_semi"
+                        android:gravity="center"
+                        android:text="@string/default1"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple_deep"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:background="@color/gray_stroke"
+                        app:layout_constraintTop_toBottomOf="@id/goal_ic_priority" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

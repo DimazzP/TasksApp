@@ -25,6 +25,7 @@ import com.example.tasksapp.presentation.repetitivetask.adapter.CalendarAdapter
 import com.example.tasksapp.presentation.repetitivetask.model.CalendarDay
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 import java.util.Calendar
 
 class HabitFragment : Fragment() {
@@ -107,6 +108,7 @@ class HabitFragment : Fragment() {
 
             bindingPrio.dlprioBtOk.setOnClickListener {
                 prioritySelected = bindingPrio.dlprioNumberPriority.text.toString().toInt()
+                binding.habitPriorityText.text = prioritySelected.toString()
                 dialog.dismiss()
             }
 
@@ -316,6 +318,8 @@ class HabitFragment : Fragment() {
             { _, selectedYear, selectedMonth, selectedDay ->
                 endDate = LocalDate.of(year, month, selectedDay)
                 binding.habitTvDate.text = "${endDate!!.dayOfMonth}/${endDate!!.monthValue}/${endDate!!.year}"
+                val daysBetween = ChronoUnit.DAYS.between(startDate, endDate)
+                binding.habitEtDays.setText(daysBetween.toString())
             },
             year, month, dayOfMonth
         )

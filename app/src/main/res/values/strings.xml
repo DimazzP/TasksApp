@@ -108,6 +108,10 @@
     <string name="hmaddtask_repetitive_description">Aktivitas berkala yang dijadwalkan ulang otomatis tanpa pemantauan progres.</string>
     <string name="hmaddtask_habit_title">Kebiasaan</string>
     <string name="hmaddtask_habit_description">Aktivitas yang berulang seiring waktu dengan pelacakan dan statistik.</string>
+    <string name="hmaddtask_goal_title">Goals</string>
+    <string name="hmaddtask_goal_description">Aktivitas dengan pencapaian dalam jangka waktu tertentu yang terpantau.</string>
+    <string name="hmaddtask_teams_title">Proyek Tim</string>
+    <string name="hmaddtask_teams_description">Memudahkan kolaborasi dan pelacakan progres tugas secara efisien..</string>
 
 <!--    new task-->
     <string name="newtask_task_title">Tugas Baru</string>
@@ -151,6 +155,9 @@
     <string name="newrep_activity_day">aktivitas dalam sehari</string>
 
 
+    // goals
+    <string name="goal_title">Goals Baru</string>
+    <string name="goal_name">Goals Baru</string>
 
 
     <string name="newtask_select_date">Pilih Waktu</string>

@@ -129,7 +129,11 @@
                             android:inputType="text"
                             android:textColor="@android:color/black" />
                     </com.google.android.material.textfield.TextInputLayout>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:background="@color/gray_stroke" />
                     <LinearLayout
                         android:id="@+id/habit_bt_task"
                         android:layout_width="match_parent"
@@ -577,6 +581,7 @@
                                 <!-- EditText for number input -->
                                 <EditText
                                     android:id="@+id/habit_et_days"
+                                    android:enabled="false"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:backgroundTint="@color/purple_deep"

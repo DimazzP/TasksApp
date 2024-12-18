@@ -222,6 +222,31 @@ class HomeFragment : Fragment() {
         bindingDialog.hmaddtaskBtnRepetitive.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_repetitiveFragment)
             dialog.dismiss()
+        }
+
+        bindingDialog.hmaddtaskBtnHabit.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_habitFragment)
+            dialog.dismiss()
+        }
+
+        bindingDialog.hmaddtaskBtnGoal.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_goalFragment)
+            dialog.dismiss()
+        }
+
+        bindingDialog.hmaddtaskBtnTeam.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_teamTaskFragment)
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    companion object {
+        fun newInstance() = HomeFragment()
+    }
+}
+
 //            findNavController().navigate(R.id.action_homeFragment_to_newtaskFragment)
 //            dialog.dismiss()
 //            val bindingDialogLiter = DlLiterationBinding.inflate(layoutInflater)
@@ -238,17 +263,3 @@ class HomeFragment : Fragment() {
 //            bindingDialogLiter.dlliterBtCancel.setOnClickListener {
 //                dialogLiter.dismiss()
 //            }
-        }
-
-        bindingDialog.hmaddtaskBtnHabit.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_habitFragment)
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
-
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
-}

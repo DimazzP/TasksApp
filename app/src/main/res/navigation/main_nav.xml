@@ -39,13 +39,28 @@
         <action
             android:id="@+id/action_homeFragment_to_tasknewFragment"
             app:destination="@id/newTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_goalFragment"
+            app:destination="@id/goalFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_teamTaskFragment"
+            app:destination="@id/teamTaskFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/teamTaskFragment"
+        android:name="com.example.tasksapp.presentation.teamtask.TeamTaskFragment"
+        android:label="fragment_team"
+        tools:layout="@layout/fragment_team_task"/>
+    <fragment
+        android:id="@+id/goalFragment"
+        android:name="com.example.tasksapp.presentation.goals.GoalsFragment"
+        android:label="fragment_goal"
+        tools:layout="@layout/fragment_goals"/>
     <fragment
         android:id="@+id/newTaskFragment"
         android:name="com.example.tasksapp.presentation.newtask.TasknewFragment"
         android:label="fragment_newTask"
-        tools:layout="@layout/fragment_tasknew">
-    </fragment>
+        tools:layout="@layout/fragment_tasknew"/>
     <fragment
         android:id="@+id/detailTaskFragment"
         android:name="com.example.tasksapp.presentation.detailtask.DetailTaskFragment"

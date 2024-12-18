@@ -1,6 +1,5 @@
 package com.example.tasksapp.presentation.newtask
 
-import android.app.DatePickerDialog
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
@@ -14,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,12 +20,10 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.DlPriorityBinding
-import com.example.tasksapp.databinding.FragmentRepetitiveBinding
 import com.example.tasksapp.databinding.FragmentTasknewBinding
 import com.example.tasksapp.domain.enums.EnumTask
 import com.example.tasksapp.domain.model.NewTaskModel
 import com.example.tasksapp.domain.model.TaskModel
-import com.example.tasksapp.domain.model.utils.ActivityRest
 import com.example.tasksapp.presentation.main.MainViewModel
 import com.example.tasksapp.presentation.repetitivetask.adapter.CalendarAdapter
 import com.example.tasksapp.presentation.repetitivetask.model.CalendarDay
@@ -54,10 +50,6 @@ class TasknewFragment : Fragment() {
     private var startDate: LocalDate = LocalDate.now()
     private var prioritySelected = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,8 +68,6 @@ class TasknewFragment : Fragment() {
         initializeCalendar()
         setupScrollListener()
         setVisibilityView()
-
-//        initTimePicker()
     }
 
     private fun setupViews() {
@@ -98,20 +88,6 @@ class TasknewFragment : Fragment() {
         }
 
         updateMonthTitle()
-        testCall()
-    }
-
-    private fun testCall() {
-        mainViewModel.listNewTask.observe(viewLifecycleOwner, Observer { data ->
-            data?.forEach {
-                Log.d("NewtaskFragment", it.id.toString())
-            }
-        })
-        mainViewModel.listTask.observe(viewLifecycleOwner, Observer { data ->
-            data?.forEach {
-                Log.d("NewtaskFragment1", it.idTask.toString())
-            }
-        })
     }
 
     private fun setupScrollListener() {
@@ -126,7 +102,6 @@ class TasknewFragment : Fragment() {
     }
 
     private fun getMiddleItemOnScreenPosition(recyclerView: RecyclerView): Int? {
-        val layoutManager = recyclerView.layoutManager as? LinearLayoutManager ?: return null
 
         val screenCenter = recyclerView.width / 2
         var closestPosition: Int? = null
@@ -252,6 +227,9 @@ class TasknewFragment : Fragment() {
             dialog.show()
         }
 
+        binding.newtaskBtnback.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun initializeCalendar() {
@@ -337,5 +315,4 @@ class TasknewFragment : Fragment() {
             )
         }
     }
-
 }
