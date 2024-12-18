@@ -10,6 +10,7 @@ import com.example.tasksapp.domain.model.HabitsTaskModel
 import com.example.tasksapp.domain.model.NewTaskModel
 import com.example.tasksapp.domain.model.RepetitiveTask
 import com.example.tasksapp.domain.model.TaskModel
+import com.example.tasksapp.domain.model.TeamTaskModel
 import com.example.tasksapp.domain.model.UserProfileModel
 import com.example.tasksapp.domain.model.utils.SubTask
 import java.time.LocalDate
@@ -26,6 +27,9 @@ class MainViewModel : ViewModel() {
     var listNewTask = MutableLiveData<List<NewTaskModel>>()
     var listHabitsTask = MutableLiveData<List<HabitsTaskModel>>()
     var listGoalTask = MutableLiveData<List<GoalModel>>()
+    var listTeamTask = MutableLiveData<List<TeamTaskModel>>()
+    var selectedGoal: GoalModel? = null
+
 
     fun setBottomVisible(changeVisible: Boolean) {
         isBottomVisible.value = changeVisible
@@ -47,6 +51,12 @@ class MainViewModel : ViewModel() {
         val newList = listGoalTask.value?.toMutableList() ?: mutableListOf()
         newList.add(task)
         listGoalTask.postValue(newList)
+    }
+
+    fun addTeam(task: TeamTaskModel) {
+        val newList = listTeamTask.value?.toMutableList() ?: mutableListOf()
+        newList.add(task)
+        listTeamTask.postValue(newList)
     }
 
     fun findTasksByDate(date: LocalDateTime, listData: List<TaskModel>): List<TaskModel>? {

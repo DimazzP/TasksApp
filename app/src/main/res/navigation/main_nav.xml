@@ -45,7 +45,15 @@
         <action
             android:id="@+id/action_homeFragment_to_teamTaskFragment"
             app:destination="@id/teamTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailGoalFragment"
+            app:destination="@id/detailGoalFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailGoalFragment"
+        android:name="com.example.tasksapp.presentation.tasks.goals.detailsgoal.DetailGoalFragment"
+        android:label="fragment_detailGoal"
+        tools:layout="@layout/fragment_detail_goal"/>
     <fragment
         android:id="@+id/teamTaskFragment"
         android:name="com.example.tasksapp.presentation.tasks.teamtask.TeamTaskFragment"

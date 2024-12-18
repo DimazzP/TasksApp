@@ -62,6 +62,8 @@
 <!--    home-->
     <string name="hom_example_date">Selasa, 21 April 2024</string>
     <string name="hom_example_name">Andi</string>
+    <string name="hom_team">Tim</string>
+    <string name="hom_goal">Goals</string>
     <string name="hom_hello">Halo&#160;</string>
     <string name="hom_wishes">Semoga harimu menyenangkan!</string>
     <string name="hom_search">Cari</string>
@@ -210,6 +212,10 @@
     <string name="sett_sync">Sinkronisasi</string>
     <string name="sett_backup">Pencadangan</string>
     <string name="sett_language">Bahasa</string>
+
+<!--    New Project-->
+    <string name="newproj_title">Proyek Baru</string>
+
 
 <!--    detail goal-->
     <string name="detgo_ended">Berakhir:</string>

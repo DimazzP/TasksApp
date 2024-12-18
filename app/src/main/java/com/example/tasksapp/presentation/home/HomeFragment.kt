@@ -55,15 +55,23 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.setBottomVisible(true)
 
-        adapterProgress = AdapterProgress(requireContext(), emptyList(), binding.homViewPager) {
-            findNavController().navigate(R.id.action_homeFragment_to_detailTaskFragment)
+//        viewPagerInitTeam()
+        viewPagerInitGoal()
+        setClickListener()
+        setTimeListener()
+    }
+
+    private fun viewPagerInitGoal(){
+        adapterProgress = AdapterProgress(requireContext(), emptyList(), binding.homViewPagerGoal) {
+            mainViewModel.selectedGoal = it
+            findNavController().navigate(R.id.action_homeFragment_to_detailGoalFragment)
         }
         mainViewModel.listGoalTask.observe(viewLifecycleOwner, Observer { data->
             adapterProgress.updateData(data)
         })
-        binding.homViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.homViewPagerGoal.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        val viewPager2 = binding.homViewPager
+        val viewPager2 = binding.homViewPagerGoal
 
         val displayMetrics = resources.displayMetrics
         val screenWidth = displayMetrics.widthPixels
@@ -97,7 +105,7 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-        binding.homViewPager.adapter = adapterProgress
+        binding.homViewPagerGoal.adapter = adapterProgress
 
         val taskAdapter = AdapterTaskHome(emptyList())
         mainViewModel.listTask.observe(viewLifecycleOwner, { newTaskList ->
@@ -121,14 +129,89 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-        setClickListener()
-        setTimeListener()
     }
+
+//    private fun viewPagerInitTeam(){
+//        adapterProgress = AdapterProgress(requireContext(), emptyList(), binding.homViewPagerTeam) {
+//            findNavController().navigate(R.id.action_homeFragment_to_detailTaskFragment)
+//        }
+//        mainViewModel.listGoalTask.observe(viewLifecycleOwner, Observer { data->
+//            adapterProgress.updateData(data)
+//        })
+//        binding.homViewPagerTeam.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+//
+//        val viewPager2 = binding.homViewPagerTeam
+//
+//        val displayMetrics = resources.displayMetrics
+//        val screenWidth = displayMetrics.widthPixels
+//        val itemWidth = screenWidth * 0.65
+//
+//        val largeMargin =
+//            (screenWidth - itemWidth).toInt()
+//
+//
+//        viewPager2.setPageTransformer { page, position ->
+//            page.translationX = (-position * page.width * 0.6).toFloat()
+//            page.scaleY = 1 - (0.15f * abs(position))
+//        }
+//
+//        viewPager2.setOffscreenPageLimit(2)
+//
+//        viewPager2.addItemDecoration(object : RecyclerView.ItemDecoration() {
+//            override fun getItemOffsets(
+//                outRect: Rect,
+//                view: View,
+//                parent: RecyclerView,
+//                state: RecyclerView.State
+//            ) {
+//                val position = parent.getChildAdapterPosition(view)
+//                if (position == 0) {
+//                    outRect.left = 0
+//                    outRect.right = largeMargin
+//                } else {
+//                    outRect.left = 0
+//                    outRect.right = largeMargin
+//                }
+//            }
+//        })
+//        binding.homViewPagerTeam.adapter = adapterProgress
+//
+//        val taskAdapter = AdapterTaskHome(emptyList())
+//        mainViewModel.listTask.observe(viewLifecycleOwner, { newTaskList ->
+//            taskAdapter.updateTasks(newTaskList)
+//        })
+//
+//        binding.homRcTask.apply {
+//            layoutManager = LinearLayoutManager(requireContext())
+//            adapter = taskAdapter
+//        }
+//
+//        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                adapterProgress.notifyItemChanged(position)
+//                if (position + 1 < goalModel.size) {
+//                    adapterProgress.notifyItemChanged(position + 1)
+//                }
+//                if (position - 1 >= 0) {
+//                    adapterProgress.notifyItemChanged(position - 1)
+//                }
+//            }
+//        })
+//    }
 
     private fun setClickListener() {
         binding.homAddTask.setOnClickListener {
             showAddTaskDialog()
         }
+//        binding.homTeamBtn.setOnClickListener {
+//            binding.homViewPagerTeam.visibility = View.VISIBLE
+//            binding.homViewPagerGoal.visibility = View.GONE
+//        }
+//        binding.homGoalBtn.setOnClickListener {
+//            binding.homViewPagerTeam.visibility = View.GONE
+//            binding.homViewPagerGoal.visibility = View.VISIBLE
+//        }
     }
 
     private fun setTimeListener() {

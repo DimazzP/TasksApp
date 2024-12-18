@@ -94,15 +94,34 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <LinearLayout
+                android:id="@+id/hom_top_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginHorizontal="@dimen/default_margin"
+                app:layout_constraintTop_toBottomOf="@id/hom_cons"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/hom_team_btn"
+                    android:text="@string/hom_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/hom_goal_btn"
+                    android:text="@string/hom_goal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/hom_view_pager"
+                android:id="@+id/hom_view_pager_goal"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:layout_marginTop="20dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
-                app:layout_constraintTop_toBottomOf="@id/hom_cons" />
+                app:layout_constraintTop_toBottomOf="@id/hom_top_btn" />
+
 
             <TextView
                 android:id="@+id/hom_daily_tasks"
@@ -114,7 +133,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hom_view_pager" />
+                app:layout_constraintTop_toBottomOf="@id/hom_view_pager_goal" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hom_rc_task"
