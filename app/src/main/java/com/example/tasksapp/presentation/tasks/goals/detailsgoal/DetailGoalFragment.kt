@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.FragmentDetailGoalBinding
 import com.example.tasksapp.domain.model.GoalInterval
@@ -33,6 +34,7 @@ class DetailGoalFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
 
     private lateinit var goalModel: GoalModel
+    private lateinit var adapter: GoalTargetAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,24 +55,15 @@ class DetailGoalFragment : Fragment() {
         binding.detgoDescription.text = goalModel.description
         binding.detgoEnded.text = goalModel.endDate?.toString() ?: "No End Date"
 
+        // Inisialisasi adapter dan RecyclerView
+        adapter = GoalTargetAdapter(goalModel.goalTarget ?: emptyList())
+        binding.rvGoalTargets.adapter = adapter
+        binding.rvGoalTargets.layoutManager = LinearLayoutManager(requireContext())
+
         // Tambahkan listener untuk tombol addTask
         binding.addTask.setOnClickListener {
             showAddTaskDialog()
         }
-
-
-
-            // Ambil data dari MainViewModel
-            val goalModel = mainViewModel.selectedGoal!!
-
-            // Inisialisasi adapter dan RecyclerView
-            adapter = GoalTargetAdapter(goalModel.goalTarget ?: emptyList())
-            binding.rvGoalTargets.adapter = adapter
-            binding.rvGoalTargets.layoutManager = LinearLayoutManager(requireContext())
-
-
-
-
     }
 
     private fun showAddTaskDialog() {
@@ -78,7 +71,8 @@ class DetailGoalFragment : Fragment() {
         val dialogBuilder = AlertDialog.Builder(requireContext())
 
         // Inflate layout custom untuk dialog
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_target, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_target, null)
 
         // Set layout custom ke dialog
         dialogBuilder.setView(dialogView)
@@ -93,7 +87,8 @@ class DetailGoalFragment : Fragment() {
         val etMulaiUang = dialogView.findViewById<EditText>(R.id.et_mulai_uang)
         val etTargetUang = dialogView.findViewById<EditText>(R.id.et_target_uang)
         val layoutInterval = dialogView.findViewById<LinearLayout>(R.id.intervalLayout)
-        val layoutSedangBerlangsung = dialogView.findViewById<MaterialButtonToggleGroup>(R.id.layout_sedang_berlangsung)
+        val layoutSedangBerlangsung =
+            dialogView.findViewById<MaterialButtonToggleGroup>(R.id.layout_sedang_berlangsung)
         val layoutMataUang = dialogView.findViewById<LinearLayout>(R.id.layout_mata_uang)
 
         // Tampilkan layout yang sesuai berdasarkan pilihan
@@ -121,7 +116,11 @@ class DetailGoalFragment : Fragment() {
             // Validasi input
             val titleTarget = etNamaTarget.text.toString()
             if (titleTarget.isBlank()) {
-                Toast.makeText(requireContext(), "Nama target tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Nama target tidak boleh kosong",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
@@ -162,6 +161,11 @@ class DetailGoalFragment : Fragment() {
 
                 val updatedGoal = currentGoal.copy(goalTarget = updatedGoalTarget)
                 mainViewModel.selectedGoal = updatedGoal
+
+                // Perbarui adapter dengan data baru
+                adapter = GoalTargetAdapter(updatedGoalTarget)
+                binding.rvGoalTargets.adapter = adapter
+                adapter.notifyDataSetChanged()
             }
 
             // Tutup dialog
@@ -173,10 +177,4 @@ class DetailGoalFragment : Fragment() {
         val dialog = dialogBuilder.create()
         dialog.show()
     }
-
-    private lateinit var adapter: GoalTargetAdapter
-
-
-
-
 }
