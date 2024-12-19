@@ -241,6 +241,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detask_progress_bar" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/detask_add_target"
+            android:foregroundGravity="center"
+            app:layout_constraintTop_toTopOf="@id/detask_tx_sub_assignment"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/default_margin"
+            app:cardCornerRadius="4dp"
+            app:cardBackgroundColor="@color/purple_deep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="+"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="2dp"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.cardview.widget.CardView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/detask_rc_task"
             android:layout_width="match_parent"
@@ -248,7 +271,7 @@
             android:scrollbars="none"
             android:nestedScrollingEnabled="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/detask_tx_sub_assignment"
+            app:layout_constraintTop_toBottomOf="@id/detask_add_target"
             tools:itemCount="10"
             tools:listitem="@layout/adp_detail_task" />
 

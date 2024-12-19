@@ -255,7 +255,9 @@ class TeamTaskFragment : Fragment() {
                 postpone = newrepCheckPostpone.isChecked,
                 priority = prioritySelected,
                 reminder = 0,
-                goalTarget = null
+                goalTarget = null,
+                teams = null,
+                progress = 0
             )
             mainViewModel.addTeam(newTask)
             val subTaskList: List<SubTask> = editTextList.map { editText ->

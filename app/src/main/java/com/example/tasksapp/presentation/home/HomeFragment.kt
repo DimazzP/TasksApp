@@ -18,16 +18,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.DlHomeAddtaskBinding
-import com.example.tasksapp.databinding.DlLiterationBinding
 import com.example.tasksapp.databinding.FragmentHomeBinding
-import com.example.tasksapp.domain.model.DetailAssignmentModel
 import com.example.tasksapp.domain.model.GoalModel
-import com.example.tasksapp.domain.model.MemberModel
-import com.example.tasksapp.domain.model.ProgressModel
 import com.example.tasksapp.presentation.home.adapter.AdapterProgress
 import com.example.tasksapp.presentation.home.adapter.AdapterTaskHome
+import com.example.tasksapp.presentation.home.adapter.AdapterTeam
 import com.example.tasksapp.presentation.main.MainViewModel
-import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.TextStyle
@@ -39,8 +35,10 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adapterProgress: AdapterProgress
+    private lateinit var adapterGoal: AdapterProgress
+    private lateinit var adapterTeam: AdapterTeam
     var goalModel: List<GoalModel> = emptyList()
+    var teamMode = false
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -61,13 +59,20 @@ class HomeFragment : Fragment() {
         setTimeListener()
     }
 
-    private fun viewPagerInitGoal(){
-        adapterProgress = AdapterProgress(requireContext(), emptyList(), binding.homViewPagerGoal) {
+    private fun viewPagerInitGoal() {
+        adapterGoal = AdapterProgress(requireContext(), emptyList(), binding.homViewPagerGoal) {
             mainViewModel.selectedGoal = it
             findNavController().navigate(R.id.action_homeFragment_to_detailGoalFragment)
         }
-        mainViewModel.listGoalTask.observe(viewLifecycleOwner, Observer { data->
-            adapterProgress.updateData(data)
+        adapterTeam = AdapterTeam(requireContext(), emptyList(), binding.homViewPagerGoal) {
+            mainViewModel.selectedTeam = it
+            findNavController().navigate(R.id.action_homeFragment_to_detailTaskFragment)
+        }
+        mainViewModel.listGoalTask.observe(viewLifecycleOwner, Observer { data ->
+            adapterGoal.updateData(data)
+        })
+        mainViewModel.listTeamTask.observe(viewLifecycleOwner, Observer { data ->
+            adapterTeam.updateData(data)
         })
         binding.homViewPagerGoal.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
@@ -105,7 +110,13 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-        binding.homViewPagerGoal.adapter = adapterProgress
+        binding.homViewPagerGoal.adapter = adapterGoal
+        binding.homGoalBtn.setOnClickListener {
+            binding.homViewPagerGoal.adapter = adapterGoal
+        }
+        binding.homTeamBtn.setOnClickListener {
+            binding.homViewPagerGoal.adapter = adapterTeam
+        }
 
         val taskAdapter = AdapterTaskHome(emptyList())
         mainViewModel.listTask.observe(viewLifecycleOwner, { newTaskList ->
@@ -120,13 +131,24 @@ class HomeFragment : Fragment() {
         viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                adapterProgress.notifyItemChanged(position)
-                if (position + 1 < goalModel.size) {
-                    adapterProgress.notifyItemChanged(position + 1)
+                if (!teamMode) {
+                    adapterGoal.notifyItemChanged(position)
+                    if (position + 1 < goalModel.size) {
+                        adapterGoal.notifyItemChanged(position + 1)
+                    }
+                    if (position - 1 >= 0) {
+                        adapterGoal.notifyItemChanged(position - 1)
+                    }
+                } else {
+                    adapterTeam.notifyItemChanged(position)
+                    if (position + 1 < goalModel.size) {
+                        adapterTeam.notifyItemChanged(position + 1)
+                    }
+                    if (position - 1 >= 0) {
+                        adapterTeam.notifyItemChanged(position - 1)
+                    }
                 }
-                if (position - 1 >= 0) {
-                    adapterProgress.notifyItemChanged(position - 1)
-                }
+
             }
         })
     }
