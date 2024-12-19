@@ -184,11 +184,15 @@ class DetailTaskFragment : Fragment() {
                 interval = interval,
                 alreadyFinish = alreadyFinish,
                 currency = currency
+
             )
 
             // Tambahkan ke GoalModel yang ada
-            val currentGoal = mainViewModel.selectedTeam
+            val currentGoal = selectedTeam
             if (currentGoal != null) {
+                currentGoal.goalTarget?.sortedBy {
+                    Log.d("sortedcoy", it.titleTarget)
+                }
                 val updatedGoalTarget = currentGoal.goalTarget?.toMutableList() ?: mutableListOf()
                 updatedGoalTarget.add(goalTarget)
 
