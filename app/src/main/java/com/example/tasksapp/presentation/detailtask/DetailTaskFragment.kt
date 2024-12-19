@@ -25,7 +25,6 @@ import com.example.tasksapp.domain.model.GoalInterval
 import com.example.tasksapp.domain.model.GoalTarget
 import com.example.tasksapp.domain.model.MemberModel
 import com.example.tasksapp.domain.model.TeamTaskModel
-import com.example.tasksapp.domain.model.utils.SubTask
 import com.example.tasksapp.presentation.detailtask.adapter.AdapterDetailTask
 import com.example.tasksapp.presentation.detailtask.adapter.AdapterDetailTaskMember
 import com.example.tasksapp.presentation.main.MainViewModel

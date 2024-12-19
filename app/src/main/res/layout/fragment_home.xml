@@ -96,6 +96,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
                 android:id="@+id/hom_top_btn"
+                android:layout_marginTop="@dimen/default_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginHorizontal="@dimen/default_margin"
                 app:layout_constraintTop_toBottomOf="@id/hom_cons"
@@ -117,7 +118,7 @@
                 android:id="@+id/hom_view_pager_goal"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 app:layout_constraintTop_toBottomOf="@id/hom_top_btn" />
