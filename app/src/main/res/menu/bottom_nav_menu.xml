@@ -14,10 +14,10 @@
         android:id="@+id/assignmentFragment"
         android:icon="@drawable/ic_assignment"
         android:title="Tugas" />
-    <item
-        android:id="@+id/goalsFragment"
-        android:icon="@drawable/ph_target"
-        android:title="Goals" />
+<!--    <item-->
+<!--        android:id="@+id/goalsFragment"-->
+<!--        android:icon="@drawable/ph_target"-->
+<!--        android:title="Goals" />-->
 
     <item
         android:id="@+id/profileFragment"
