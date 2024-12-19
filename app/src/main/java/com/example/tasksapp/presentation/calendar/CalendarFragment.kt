@@ -54,6 +54,7 @@ class CalendarFragment : Fragment() {
             setNoteForDate(2, "3 Tugas", currentMonth, currentYear)
             setNoteForDate(3, "2 Tugas", currentMonth, currentYear)
             setNoteForDate(7, "1 Tugas", currentMonth, currentYear)
+            setNoteForDate(19, "3 Tugas", currentMonth, currentYear)
         }
         initData()
 

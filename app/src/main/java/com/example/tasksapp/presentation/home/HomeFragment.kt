@@ -82,9 +82,7 @@ class HomeFragment : Fragment() {
         val screenWidth = displayMetrics.widthPixels
         val itemWidth = screenWidth * 0.65
 
-        val largeMargin =
-            (screenWidth - itemWidth).toInt()
-
+        val largeMargin = (screenWidth - itemWidth).toInt()
 
         viewPager2.setPageTransformer { page, position ->
             page.translationX = (-position * page.width * 0.6).toFloat()
@@ -111,11 +109,28 @@ class HomeFragment : Fragment() {
             }
         })
         binding.homViewPagerGoal.adapter = adapterGoal
+
+        // Handle button color change
         binding.homGoalBtn.setOnClickListener {
             binding.homViewPagerGoal.adapter = adapterGoal
+
+            // Change button colors
+            binding.homGoalBtn.setBackgroundColor(Color.BLUE)
+            binding.homGoalBtn.setTextColor(Color.WHITE)
+
+            binding.homTeamBtn.setBackgroundColor(Color.WHITE)
+            binding.homTeamBtn.setTextColor(Color.BLACK)
         }
+
         binding.homTeamBtn.setOnClickListener {
             binding.homViewPagerGoal.adapter = adapterTeam
+
+            // Change button colors
+            binding.homTeamBtn.setBackgroundColor(Color.BLUE)
+            binding.homTeamBtn.setTextColor(Color.WHITE)
+
+            binding.homGoalBtn.setBackgroundColor(Color.WHITE)
+            binding.homGoalBtn.setTextColor(Color.BLACK)
         }
 
         val taskAdapter = AdapterTaskHome(emptyList())
@@ -148,10 +163,10 @@ class HomeFragment : Fragment() {
                         adapterTeam.notifyItemChanged(position - 1)
                     }
                 }
-
             }
         })
     }
+
 
 //    private fun viewPagerInitTeam(){
 //        adapterProgress = AdapterProgress(requireContext(), emptyList(), binding.homViewPagerTeam) {
