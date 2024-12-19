@@ -142,18 +142,18 @@ class TeamTaskFragment : Fragment() {
 
     private fun setupListeners() {
 
-        binding.newrepIcRemember.setOnClickListener {
-            val editText = EditText(requireContext())
-            editText.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            editText.hint = "Sub tugas"
-            binding.newrepLinearSubTask.addView(editText)
-
-            // Tambahkan EditText ke dalam list
-            editTextList.add(editText)
-        }
+//        binding.newrepIcRemember.setOnClickListener {
+//            val editText = EditText(requireContext())
+//            editText.layoutParams = LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                LinearLayout.LayoutParams.WRAP_CONTENT
+//            )
+//            editText.hint = "Sub tugas"
+//            binding.newrepLinearSubTask.addView(editText)
+//
+//            // Tambahkan EditText ke dalam list
+//            editTextList.add(editText)
+//        }
 
         binding.newrepMore.setOnClickListener {
             createNewTask()

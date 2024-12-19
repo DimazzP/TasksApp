@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_margin"
                 android:fontFamily="@font/inter_semi"
-                android:text="@string/newtask_repet_title"
+                android:text="@string/newproj_title"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 app:layout_constraintBottom_toBottomOf="@id/newrep_btnback"
@@ -135,42 +135,42 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/default_margin">
 
-                        <LinearLayout
-                            android:id="@+id/newrep_ic_remember"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/newrep_ic_remember"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent">-->
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:contentDescription="@string/img_ios_arrow_right"
-                                android:src="@drawable/ic_add_box" />
+<!--                            <ImageView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:contentDescription="@string/img_ios_arrow_right"-->
+<!--                                android:src="@drawable/ic_add_box" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/space_margin"
-                                android:fontFamily="@font/inter_regular"
-                                android:text="@string/newtask_add_sub"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/newrep_linear_sub_task"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            app:layout_constraintTop_toBottomOf="@id/newrep_ic_remember"/>
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginStart="@dimen/space_margin"-->
+<!--                                android:fontFamily="@font/inter_regular"-->
+<!--                                android:text="@string/newtask_add_sub"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="15sp" />-->
+<!--                        </LinearLayout>-->
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/newrep_linear_sub_task"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="vertical"-->
+<!--                            app:layout_constraintTop_toBottomOf="@id/newrep_ic_remember"/>-->
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="@dimen/default_margin"
-                            android:background="@color/gray_stroke"
-                            app:layout_constraintTop_toBottomOf="@id/newrep_linear_sub_task" />
+<!--                        <View-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="2dp"-->
+<!--                            android:layout_marginTop="@dimen/default_margin"-->
+<!--                            android:background="@color/gray_stroke"-->
+<!--                            app:layout_constraintTop_toBottomOf="@id/newrep_linear_sub_task" />-->
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout

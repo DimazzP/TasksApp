@@ -106,11 +106,15 @@
                 <Button
                     android:id="@+id/hom_team_btn"
                     android:text="@string/hom_team"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <Button
                     android:id="@+id/hom_goal_btn"
                     android:text="@string/hom_goal"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/blue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>

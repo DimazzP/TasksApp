@@ -27,5 +27,23 @@
         android:name="com.example.tasksapp.presentation.onboarding.onboardingfragment.ThirdOnboardingFragment"
         android:label="fragment_thirdOnboarding"
         tools:layout="@layout/fragment_third_onboarding">
+        <action
+            android:id="@+id/action_thirdFragment_to_detailTaskFragment"
+            app:destination="@id/loginFragment1" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment1"
+        android:name="com.example.tasksapp.presentation.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment1" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment1"
+        android:name="com.example.tasksapp.presentation.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register">
     </fragment>
 </navigation>

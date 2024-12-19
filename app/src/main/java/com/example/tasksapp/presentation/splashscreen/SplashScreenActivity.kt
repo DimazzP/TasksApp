@@ -31,7 +31,7 @@ class SplashScreenActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
         lifecycleScope.launch {
             delay(DELAY_SPLASH)
-            val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity, OnboardingActivity::class.java)
             startActivity(intent)
             finish()
         }

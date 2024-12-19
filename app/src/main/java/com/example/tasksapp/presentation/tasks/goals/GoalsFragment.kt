@@ -62,6 +62,9 @@ class GoalsFragment : Fragment() {
         binding.goalMore.setOnClickListener {
             createGoal()
         }
+        binding.goalBtnback.setOnClickListener {
+            findNavController().popBackStack()
+        }
         binding.goalBtAddPriority.setOnClickListener {
             val bindingPrio = DlPriorityBinding.inflate(layoutInflater)
             val builder = AlertDialog.Builder(requireContext())

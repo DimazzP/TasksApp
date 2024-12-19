@@ -26,6 +26,7 @@ import com.example.tasksapp.domain.model.utils.SubTask
 import com.example.tasksapp.presentation.main.MainViewModel
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 import java.util.Calendar
 
 class RepetitiveFragment : Fragment() {
@@ -298,6 +299,8 @@ class RepetitiveFragment : Fragment() {
                 endDate = LocalDate.of(year, month, selectedDay)
                 binding.newrepTvDate.text =
                     "${endDate!!.dayOfMonth}/${endDate!!.monthValue}/${endDate!!.year}"
+                val daysBetween = ChronoUnit.DAYS.between(startDate, endDate)
+                binding.newrepEtDays.setText(daysBetween.toString())
             },
             year, month, dayOfMonth
         )
