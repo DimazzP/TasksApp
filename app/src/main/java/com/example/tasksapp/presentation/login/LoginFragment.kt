@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.tasksapp.R
 import com.example.tasksapp.databinding.FragmentLoginBinding
 import com.example.tasksapp.databinding.FragmentThirdOnboardingBinding
@@ -32,6 +33,9 @@ class LoginFragment : Fragment() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
             requireActivity().finish()
+        }
+        binding.lgnBtnRegist.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment);
         }
     }
 }
